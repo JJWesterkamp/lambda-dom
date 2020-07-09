@@ -1,0 +1,22 @@
+{
+  "name": "qnext",
+  "version": "0.0.1",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JJWesterkamp/qnext.git"
+  },
+  "author": "Jeffrey Westerkamp",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/JJWesterkamp/qnext/issues"
+  },
+  "homepage": "https://github.com/JJWesterkamp/qnext#readme",
+  "dependencies": {
+    "tslib": "^2.0.0"
+  }
+}
