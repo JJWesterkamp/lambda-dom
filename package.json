@@ -1,21 +1,21 @@
 {
-  "name": "qnext",
-  "version": "0.0.1",
-  "description": "",
+  "name": "lambda-dom",
+  "version": "0.1.0",
+  "description": "Some DOM helper functions for programming web projects in a functional style.",
+  "keywords": ["dom", "library", "typescript", "javascript", "fp", "curried", "functional programming"],
   "main": "dist/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/JJWesterkamp/qnext.git"
+    "url": "git+https://github.com/JJWesterkamp/lambda-dom.git"
   },
   "author": "Jeffrey Westerkamp",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/JJWesterkamp/qnext/issues"
+    "url": "https://github.com/JJWesterkamp/lambda-dom/issues"
   },
-  "homepage": "https://github.com/JJWesterkamp/qnext#readme",
+  "homepage": "https://github.com/JJWesterkamp/lambda-dom#readme",
   "dependencies": {
     "tslib": "^2.0.0"
   }
