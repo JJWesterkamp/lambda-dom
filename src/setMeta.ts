@@ -1,4 +1,13 @@
-export function setMeta(name: string, value: string) {
+/**
+ *
+ */
+export function setMeta(name: string): (value: string) => void
+export function setMeta(name: string, value: string): void
+export function setMeta(name: string, value?: string) {
+
+    if (value === undefined) {
+        return (value: string) => setMeta(name, value)
+    }
 
     let element: HTMLMetaElement | null = document.querySelector(`meta[name="${name}"]`)
 
