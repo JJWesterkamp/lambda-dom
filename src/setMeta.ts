@@ -21,4 +21,5 @@ export function setMeta(name: string, value?: string) {
     }
 
     element.content = value
+    return
 }

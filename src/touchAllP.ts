@@ -13,6 +13,6 @@ export function touchAllP<T1 extends Element, T2 extends Element, T3 extends Ele
 export function touchAllP<T1 extends Element, T2 extends Element, T3 extends Element, T4 extends Element>(selectors: [string, string, string, string], scope?: ParentNode): Promise<[T1, T2, T3, T4]>
 export function touchAllP<T1 extends Element, T2 extends Element, T3 extends Element, T4 extends Element, T5 extends Element>(selectors: [string, string, string, string, string], scope?: ParentNode): Promise<[T1, T2, T3, T4, T5]>
 export function touchAllP<T1 extends Element, T2 extends Element, T3 extends Element, T4 extends Element, T5 extends Element, T6 extends Element>(selectors: [string, string, string, string, string, string], scope?: ParentNode): Promise<[T1, T2, T3, T4, T5, T6]>
-export function touchAllP(selectors: string[], scope = document.body) {
+export function touchAllP(selectors: string[], scope: ParentNode = document.body) {
     return new Promise((resolve) => touchAll(selectors, (...elements) => resolve(elements), scope))
 }
