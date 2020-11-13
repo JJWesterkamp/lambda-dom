@@ -5,6 +5,32 @@
  * Note: `touchAll` has overloads for tuples of up to 6 selectors. When called with more selectors all arguments to
  * the callback will be of type `T` where `T extends Element`, regardless of wheter the callback expects more arguments
  * than selectors were provided.
+ *
+ * @example
+ * ```typescript
+ * declare function doSomething(button: HTMLButtonElement, form: HTMLFormElement): string
+ *
+ * // Either specify the element types in the callback
+ * const resultA: TheType = touchAll([
+ *     '.my-button',
+ *     '#the-form',
+ * ], (
+ *     button: HTMLButtonElement,
+ *     form: HTMLFormElement,
+ * ) => doSomething(button, form))
+ *
+ * // or provide them as type arguments list, in which case the return type for `touchAll` itself is required:
+ * const resultB: TheType = touchAll<HTMLButtonElement, HTMLFormElement, string>([
+ *     '.my-button',
+ *     '#the-form',
+ * ], (
+ *     button,
+ *     form,
+ * ) => doSomething(button, form))
+ *
+ * // and because the queries can fail:
+ * type TheType = null | string
+ * ```
  */
 export function touchAll<T1 extends Element, U>(selectors: [string], cb: (v1: T1) => U, scope?: ParentNode): U | null
 export function touchAll<T1 extends Element, T2 extends Element, U>(selectors: [string, string], cb: (v1: T1, v2: T2) => U, scope?: ParentNode): U | null

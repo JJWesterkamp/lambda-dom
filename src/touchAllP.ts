@@ -10,6 +10,17 @@ import { touchAll } from './touchAll'
  *
  * Note: `touchAllP` has overloads for tuples of up to 6 selectors. When called with more selectors the returned
  * promise will contain a `T[]` where `T extends Element`.
+ *
+ * @example
+ * ```typescript
+ * // Without explicit type arguments:
+ * const elementsPA = touchAllP(['.my-button', '#the-form'])
+ * // > Promise<[Element, Element]>
+ *
+ * // With explicit type arguments:
+ * const elementsPB = touchAllP<HTMLButtonElement, HTMLFormElement>(['.my-button', '#the-form'])
+ * // > Promise<[HTMLButtonElement, HTMLFormElement]>
+ * ```
  */
 export function touchAllP<T1 extends Element>(selectors: [string], scope?: ParentNode): Promise<[T1]>
 export function touchAllP<T1 extends Element, T2 extends Element>(selectors: [string, string], scope?: ParentNode): Promise<[T1, T2]>
