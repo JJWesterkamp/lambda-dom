@@ -3,7 +3,7 @@
  * scope is omitted. Returns an array containing the found elements.
  *
  * @example
- * ```typescript
+ *
  * // Recognizes keys of HTMLElementTagNameMap:
  * const anchors = queryAll('a') // HTMLAnchorElement[]
  *
@@ -13,7 +13,6 @@
  * // Defaults to Element, or accepts an explicit type argument for the searched elements:
  * const elements = queryAll('.some-element') // Element[]
  * const buttons = queryAll<HTMLButtonElement>('.my-button') // HTMLButtonElement[]
- * ```
  */
 export function queryAll<K extends keyof HTMLElementTagNameMap>(selector: K, scope?: ParentNode): HTMLElementTagNameMap[K][]
 export function queryAll<K extends keyof SVGElementTagNameMap>(selector: K, scope?: ParentNode): SVGElementTagNameMap[K][]

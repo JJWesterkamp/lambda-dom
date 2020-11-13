@@ -4,7 +4,7 @@
  * back display control to the CSS stylesheet declarations.
  *
  * @example
- * ```typescript
+ *
  * declare const someElement: Element
  *
  * // This will unset any inline style for `display` and let CSS take over control
@@ -25,9 +25,6 @@
  * // And then use them on any element conditionally:
  * declare const shouldShow: boolean
  * (shouldShow ? showFn : hideFn) (someElement)
- *
- *
- * ```
  */
 export function display(display: string | null = null) {
     return (element: HTMLElement): void => {

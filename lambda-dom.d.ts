@@ -4,7 +4,6 @@
  *
  * @example
  *
- * ```javascript
  * declare const elements: Element[]
  * declare const someElement: Element
  *
@@ -15,10 +14,15 @@
  *
  * // Or execute addClasses in one go:
  * addClasses('class-one', 'class-two') (someElement)
- * ```
  */
 export declare function addClasses(...classes: string[]): (element: Element) => void;
+/**
+ *
+ */
 export declare function addClassesForMS(ms: number, ...classes: string[]): (element: Element) => void;
+/**
+ *
+ */
 export declare function addClassesForNFrames(n: number, ...classes: string[]): (element: Element) => void;
 /**
  * Takes a positive (>= 0) integer `n` and a callback function, and executes the callback function after `n`
@@ -27,7 +31,7 @@ export declare function addClassesForNFrames(n: number, ...classes: string[]): (
  * @Todo Add the possibility to cancel. The requires the request ID of the latest request.
  *
  * @example
- * ```typescript
+ *
  * declare const f: () => void
  * // Run `f` after ten animation frames
  * deferFrames(10, f)
@@ -41,20 +45,18 @@ export declare function addClassesForNFrames(n: number, ...classes: string[]): (
  * requestAnimationFrame(() => requestAnimationFrame(f))
  *
  * // Etc..
- * ```
  */
 export declare function deferFrames(n: number, handler: () => any): void;
 /**
  * Returns a `Promise<void>` that resolves after `n` animation frames.
  *
  * @example
- * ```javascript
+ *
  * async function f() {
  *      // Do something immediately...
  *      await deferFramesP(10)
  *      // Do something else after 10 animation frames:
  * }
- * ```
  */
 export declare function deferFramesP(n: number): Promise<void>;
 /**
@@ -63,7 +65,7 @@ export declare function deferFramesP(n: number): Promise<void>;
  * back display control to the CSS stylesheet declarations.
  *
  * @example
- * ```typescript
+ *
  * declare const someElement: Element
  *
  * // This will unset any inline style for `display` and let CSS take over control
@@ -84,9 +86,6 @@ export declare function deferFramesP(n: number): Promise<void>;
  * // And then use them on any element conditionally:
  * declare const shouldShow: boolean
  * (shouldShow ? showFn : hideFn) (someElement)
- *
- *
- * ```
  */
 export declare function display(display?: string | null): (element: HTMLElement) => void;
 /**
@@ -96,13 +95,10 @@ export declare function display(display?: string | null): (element: HTMLElement)
  *
  * @example
  *
- * ```html
  * <!-- Considering these meta tags -->
  * <meta name="some-json-meta" content='{ "foo": "bar", "baz": 42 }'>
  * <meta name="just-string-meta" content="Lorem ipsum">
- * ```
  *
- * ```typescript
  * // And this object interface
  * interface JsonMeta { foo: string, baz: number }
  *
@@ -115,15 +111,14 @@ export declare function display(display?: string | null): (element: HTMLElement)
  * // And because the queries can fail:
  * type A = null | JsonMeta
  * type b = null | string
- * ```
- *
  */
 export declare function getMeta(name: string): string | null;
 export declare function getMeta<T>(name: string, transformer: (content: string) => T): T | null;
 /**
  * Hide the given element through the style.display property.
+ *
  * @example
- * ```typescript
+ *
  * declare const someElement: Element
  *
  * // Hides the given element
@@ -131,7 +126,6 @@ export declare function getMeta<T>(name: string, transformer: (content: string) 
  *
  * // This is equivalent to:
  * display('none') (someElement)
- * ```
  */
 export declare function hide(element: HTMLElement): void;
 /**
@@ -139,7 +133,7 @@ export declare function hide(element: HTMLElement): void;
  * scope is omitted. Returns an array containing the found elements.
  *
  * @example
- * ```typescript
+ *
  * // Recognizes keys of HTMLElementTagNameMap:
  * const anchors = queryAll('a') // HTMLAnchorElement[]
  *
@@ -149,7 +143,6 @@ export declare function hide(element: HTMLElement): void;
  * // Defaults to Element, or accepts an explicit type argument for the searched elements:
  * const elements = queryAll('.some-element') // Element[]
  * const buttons = queryAll<HTMLButtonElement>('.my-button') // HTMLButtonElement[]
- * ```
  */
 export declare function queryAll<K extends keyof HTMLElementTagNameMap>(selector: K, scope?: ParentNode): HTMLElementTagNameMap[K][];
 export declare function queryAll<K extends keyof SVGElementTagNameMap>(selector: K, scope?: ParentNode): SVGElementTagNameMap[K][];
@@ -160,7 +153,6 @@ export declare function queryAll<T extends Element>(selector: string, scope?: Pa
  *
  * @example
  *
- * ```javascript
  * declare const someElement: Element
  * declare const elements: Element[]
  *
@@ -170,10 +162,15 @@ export declare function queryAll<T extends Element>(selector: string, scope?: Pa
  *
  * // Or execute removeClasses in one go:
  * removeClasses('class-one', 'class-two', 'even-more-classes')(element)
- * ```
  */
 export declare function removeClasses(...classes: string[]): (element: Element) => void;
+/**
+ *
+ */
 export declare function removeClassesForMS(ms: number, ...classes: string[]): (element: Element) => void;
+/**
+ *
+ */
 export declare function removeClassesForNFrames(n: number, ...classes: string[]): (element: Element) => void;
 /**
  * Takes a string name and returns a new function that takes a string content, and
@@ -184,13 +181,10 @@ export declare function removeClassesForNFrames(n: number, ...classes: string[])
  * When a new element is created it will be appended to the end of `<head>`.
  *
  * @example
- * ```typescript
+ *
  * const element = setMeta('foo')('bar')
- * ```
- * ```html
- * <!-- This updates or creates the following element -->
+ * // This updates or creates the following element
  * <meta name="foo" content="bar">
- * ```
  */
 export declare function setMeta(name: string): (content: string) => HTMLMetaElement;
 /**
@@ -198,7 +192,7 @@ export declare function setMeta(name: string): (content: string) => HTMLMetaElem
  * `display: none` rule is set in CSS.
  *
  * @example
- * ```typescript
+ *
  * declare const someElement: Element
  *
  * // Shows (or unhides) the given element, if it has no display: none set in CSS
@@ -206,7 +200,6 @@ export declare function setMeta(name: string): (content: string) => HTMLMetaElem
  *
  * // This is equivalent to:
  * display(null) (someElement)
- * ```
  */
 export declare function show(element: HTMLElement): void;
 /**
@@ -214,7 +207,7 @@ export declare function show(element: HTMLElement): void;
  * element to apply those styles to.
  *
  * @example
- * ```typescript
+ *
  * declare const someElement: HTMLElement
  * style({ color: 'red' }) (someElement)
  *
@@ -227,7 +220,6 @@ export declare function show(element: HTMLElement): void;
  *
  * declare const elements: HTMLElement[]
  * elements.forEach(warningButtonStyle)
- * ```
  */
 export declare function style(styles: Partial<CSSStyleDeclaration>): (element: HTMLElement) => void;
 /**
@@ -238,7 +230,6 @@ export declare function style(styles: Partial<CSSStyleDeclaration>): (element: H
  *
  * @example
  *
- * ```typescript
  * declare const someElement: Element
  * declare const elements: Element[]
  *
@@ -256,7 +247,6 @@ export declare function style(styles: Partial<CSSStyleDeclaration>): (element: H
  *
  * // This is like removeClasses:
  * toggleClasses('class-one', 'class-two', '...') (someElement, false)
- * ```
  */
 export declare function toggleClasses(...classes: string[]): (element: Element, force?: boolean | undefined) => void;
 /**
@@ -268,7 +258,7 @@ export declare function toggleClasses(...classes: string[]): (element: Element, 
  * than selectors were provided.
  *
  * @example
- * ```typescript
+ *
  * declare function doSomething(button: HTMLButtonElement, form: HTMLFormElement): string
  *
  * // Either specify the element types in the callback
@@ -291,7 +281,6 @@ export declare function toggleClasses(...classes: string[]): (element: Element, 
  *
  * // and because the queries can fail:
  * type TheType = null | string
- * ```
  */
 export declare function touchAll<T1 extends Element, U>(selectors: [
 	string
@@ -339,7 +328,7 @@ export declare function touchAll<T extends Element, U>(selectors: string[], cb: 
  * promise will contain a `T[]` where `T extends Element`.
  *
  * @example
- * ```typescript
+ *
  * // Without explicit type arguments:
  * const elementsPA = touchAllP(['.my-button', '#the-form'])
  * // > Promise<[Element, Element]>
@@ -347,7 +336,6 @@ export declare function touchAll<T extends Element, U>(selectors: string[], cb: 
  * // With explicit type arguments:
  * const elementsPB = touchAllP<HTMLButtonElement, HTMLFormElement>(['.my-button', '#the-form'])
  * // > Promise<[HTMLButtonElement, HTMLFormElement]>
- * ```
  */
 export declare function touchAllP<T1 extends Element>(selectors: [
 	string
@@ -417,18 +405,21 @@ export declare function touchAllP<T extends Element>(selectors: string[], scope?
  * `null` is returned from `touchElement`.
  *
  * @example
- * ```typescript
+ *
  * // The callback's return value is returned from touchElement:
  * const inputValue: TheType = touchElement('#my-input', (input: HTMLInputElement): string => input.value)
  *
  * // and because the query for '#my-input' can fail:
  * type TheType = string | null
- * ```
  */
 export declare function touchElement<T extends Element, U = any>(selector: string, callback: (element: T) => U, scope?: ParentNode): U | null;
 /**
  * Finds the first element within the set scope that matches `selector`. If found the returned
  * promise resolves with the element. If no element is found, the promise will never resolve.
+ *
+ * @example
+ *
+ * const button = await touchElementP<HTMLButtonElement>('#my-button')
  */
 export declare function touchElementP<T extends Element>(selector: string, scope?: ParentNode): Promise<T>;
 

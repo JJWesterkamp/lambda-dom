@@ -7,7 +7,7 @@
  * than selectors were provided.
  *
  * @example
- * ```typescript
+ *
  * declare function doSomething(button: HTMLButtonElement, form: HTMLFormElement): string
  *
  * // Either specify the element types in the callback
@@ -30,7 +30,6 @@
  *
  * // and because the queries can fail:
  * type TheType = null | string
- * ```
  */
 export function touchAll<T1 extends Element, U>(selectors: [string], cb: (v1: T1) => U, scope?: ParentNode): U | null
 export function touchAll<T1 extends Element, T2 extends Element, U>(selectors: [string, string], cb: (v1: T1, v2: T2) => U, scope?: ParentNode): U | null

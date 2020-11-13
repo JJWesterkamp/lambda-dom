@@ -5,13 +5,12 @@
  * `null` is returned from `touchElement`.
  *
  * @example
- * ```typescript
+ *
  * // The callback's return value is returned from touchElement:
  * const inputValue: TheType = touchElement('#my-input', (input: HTMLInputElement): string => input.value)
  *
  * // and because the query for '#my-input' can fail:
  * type TheType = string | null
- * ```
  */
 export function touchElement<T extends Element, U = any>(selector: string, callback: (element: T) => U, scope: ParentNode = document.body): U | null {
     const element = scope.querySelector<T>(selector)

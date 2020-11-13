@@ -5,13 +5,10 @@
  *
  * @example
  *
- * ```html
  * <!-- Considering these meta tags -->
  * <meta name="some-json-meta" content='{ "foo": "bar", "baz": 42 }'>
  * <meta name="just-string-meta" content="Lorem ipsum">
- * ```
  *
- * ```typescript
  * // And this object interface
  * interface JsonMeta { foo: string, baz: number }
  *
@@ -24,8 +21,6 @@
  * // And because the queries can fail:
  * type A = null | JsonMeta
  * type b = null | string
- * ```
- *
  */
 export function getMeta(name: string): string | null
 export function getMeta<T>(name: string, transformer: (content: string) => T): T | null

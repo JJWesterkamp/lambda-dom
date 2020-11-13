@@ -5,7 +5,7 @@
  * @Todo Add the possibility to cancel. The requires the request ID of the latest request.
  *
  * @example
- * ```typescript
+ *
  * declare const f: () => void
  * // Run `f` after ten animation frames
  * deferFrames(10, f)
@@ -19,7 +19,6 @@
  * requestAnimationFrame(() => requestAnimationFrame(f))
  *
  * // Etc..
- * ```
  */
 export function deferFrames(n: number, handler: () => any): void {
     n === 0 ? requestAnimationFrame(handler) : deferFrames(n - 1, () => requestAnimationFrame(handler))

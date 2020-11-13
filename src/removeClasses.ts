@@ -6,7 +6,6 @@ import { toggleClasses } from './toggleClasses'
  *
  * @example
  *
- * ```javascript
  * declare const someElement: Element
  * declare const elements: Element[]
  *
@@ -16,7 +15,6 @@ import { toggleClasses } from './toggleClasses'
  *
  * // Or execute removeClasses in one go:
  * removeClasses('class-one', 'class-two', 'even-more-classes')(element)
- * ```
  */
 export function removeClasses(...classes: string[]) {
     return (element: Element): void => toggleClasses(...classes)(element, false)

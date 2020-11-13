@@ -6,7 +6,6 @@
  *
  * @example
  *
- * ```typescript
  * declare const someElement: Element
  * declare const elements: Element[]
  *
@@ -24,7 +23,6 @@
  *
  * // This is like removeClasses:
  * toggleClasses('class-one', 'class-two', '...') (someElement, false)
- * ```
  */
 export function toggleClasses(...classes: string[]) {
     return function(element: Element, force?: boolean): void {

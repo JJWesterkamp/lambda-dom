@@ -12,7 +12,7 @@ import { touchAll } from './touchAll'
  * promise will contain a `T[]` where `T extends Element`.
  *
  * @example
- * ```typescript
+ *
  * // Without explicit type arguments:
  * const elementsPA = touchAllP(['.my-button', '#the-form'])
  * // > Promise<[Element, Element]>
@@ -20,7 +20,6 @@ import { touchAll } from './touchAll'
  * // With explicit type arguments:
  * const elementsPB = touchAllP<HTMLButtonElement, HTMLFormElement>(['.my-button', '#the-form'])
  * // > Promise<[HTMLButtonElement, HTMLFormElement]>
- * ```
  */
 export function touchAllP<T1 extends Element>(selectors: [string], scope?: ParentNode): Promise<[T1]>
 export function touchAllP<T1 extends Element, T2 extends Element>(selectors: [string, string], scope?: ParentNode): Promise<[T1, T2]>

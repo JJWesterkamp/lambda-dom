@@ -6,7 +6,6 @@ import { toggleClasses } from './toggleClasses'
  *
  * @example
  *
- * ```javascript
  * declare const elements: Element[]
  * declare const someElement: Element
  *
@@ -17,7 +16,6 @@ import { toggleClasses } from './toggleClasses'
  *
  * // Or execute addClasses in one go:
  * addClasses('class-one', 'class-two') (someElement)
- * ```
  */
 export function addClasses(...classes: string[]) {
     return (element: Element): void => toggleClasses(...classes)(element, true)

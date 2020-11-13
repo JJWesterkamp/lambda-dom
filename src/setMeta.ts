@@ -7,13 +7,10 @@
  * When a new element is created it will be appended to the end of `<head>`.
  *
  * @example
- * ```typescript
+ *
  * const element = setMeta('foo')('bar')
- * ```
- * ```html
- * <!-- This updates or creates the following element -->
+ * // This updates or creates the following element
  * <meta name="foo" content="bar">
- * ```
  */
 export function setMeta(name: string) {
     return (content: string): HTMLMetaElement => {
