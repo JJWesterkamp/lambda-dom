@@ -1,5 +1,4 @@
 const { resolve } = require('path');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = {
     mode: "production",
@@ -9,7 +8,7 @@ module.exports = {
     output: {
         path: resolve(__dirname, 'umd'),
         filename: '[name].js',
-        library: 'LambdaDom',
+        library: 'LD',
         libraryTarget: 'umd',
     },
     devtool: "source-map",
