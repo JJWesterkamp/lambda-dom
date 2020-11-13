@@ -13,4 +13,6 @@ import { display } from './display'
  * display('none') (someElement)
  * ```
  */
-export const hide = display('none')
+export function hide(element: HTMLElement): void {
+    display('none')(element)
+}

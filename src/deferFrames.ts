@@ -21,6 +21,6 @@
  * // Etc..
  * ```
  */
-export const deferFrames = (n: number, handler: () => any): void => {
+export function deferFrames(n: number, handler: () => any): void {
     n === 0 ? requestAnimationFrame(handler) : deferFrames(n - 1, () => requestAnimationFrame(handler))
 }

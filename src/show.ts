@@ -15,4 +15,6 @@ import { display } from './display'
  * display(null) (someElement)
  * ```
  */
-export const show = display(null)
+export function show(element: HTMLElement): void {
+    display(null)(element)
+}

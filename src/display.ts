@@ -29,6 +29,8 @@
  *
  * ```
  */
-export const display = (display: string | null = null) => (element: HTMLElement): void => {
-    element.style.display = display || ''
+export function display(display: string | null = null) {
+    return (element: HTMLElement): void => {
+        element.style.display = display || ''
+    }
 }

@@ -12,6 +12,6 @@ import { deferFrames } from './deferFrames'
  * }
  * ```
  */
-export const deferFramesP = (n: number): Promise<void> => {
+export function deferFramesP(n: number): Promise<void> {
     return new Promise((resolve) => deferFrames(n, resolve))
 }

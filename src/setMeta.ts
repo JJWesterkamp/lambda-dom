@@ -15,17 +15,19 @@
  * <meta name="foo" content="bar">
  * ```
  */
-export const setMeta = (name: string) => (content: string): HTMLMetaElement => {
+export function setMeta(name: string) {
+    return (content: string): HTMLMetaElement => {
 
-    let element: HTMLMetaElement | null = document.querySelector(`meta[name="${name}"]`)
+        let element: HTMLMetaElement | null = document.querySelector(`meta[name="${name}"]`)
 
-    if ( ! element) {
-        element      = document.createElement('meta')
-        element.name = name
-        const head   = document.head || document.getElementsByTagName("head")[0]
-        head.appendChild(element)
+        if ( ! element) {
+            element      = document.createElement('meta')
+            element.name = name
+            const head   = document.head || document.getElementsByTagName("head")[0]
+            head.appendChild(element)
+        }
+
+        element.content = content
+        return element
     }
-
-    element.content = content
-    return element
 }

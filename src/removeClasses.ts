@@ -18,6 +18,6 @@ import { toggleClasses } from './toggleClasses'
  * removeClasses('class-one', 'class-two', 'even-more-classes')(element)
  * ```
  */
-export const removeClasses = (...classes: string[]) => (element: Element): void => {
-    toggleClasses(...classes)(element, false)
+export function removeClasses(...classes: string[]) {
+    return (element: Element): void => toggleClasses(...classes)(element, false)
 }

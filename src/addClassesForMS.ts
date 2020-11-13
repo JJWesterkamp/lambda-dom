@@ -2,7 +2,9 @@ import { addClasses } from './addClasses'
 import { removeClasses } from './removeClasses'
 
 
-export const addClassesForMS = (ms: number, ...classes: string[]) => (element: Element): void => {
-    addClasses(...classes)(element)
-    setTimeout(() => removeClasses(...classes)(element), ms)
+export function addClassesForMS(ms: number, ...classes: string[]) {
+    return (element: Element): void => {
+        addClasses(...classes)(element)
+        setTimeout(() => removeClasses(...classes)(element), ms)
+    }
 }

@@ -20,8 +20,10 @@ import { toPairs } from './tools/toPairs'
  * elements.forEach(warningButtonStyle)
  * ```
  */
-export const style = (styles: Partial<CSSStyleDeclaration>) => (element: HTMLElement) => {
-    for (const [key, val] of toPairs(styles)) {
-        element.style[key] = val
+export function style(styles: Partial<CSSStyleDeclaration>) {
+    return (element: HTMLElement) => {
+        for (const [key, val] of toPairs(styles)) {
+            element.style[key] = val
+        }
     }
 }
