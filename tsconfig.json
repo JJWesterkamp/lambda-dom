@@ -1,14 +1,28 @@
 {
     "compilerOptions": {
-        "module": "commonjs",
+        "moduleResolution": "node",
+        "lib": ["es2015", "dom"],
         "target": "es5",
-        "lib": ["dom", "es5", "es6", "es7"],
+        "module":"commonjs",
         "noImplicitAny": true,
+        "noImplicitReturns": true,
+        "noImplicitThis": true,
+        "suppressImplicitAnyIndexErrors": true,
         "sourceMap": true,
-        "esModuleInterop": true,
         "strictNullChecks": true,
-        "downlevelIteration": true,
-        "importHelpers": true
+        "strictFunctionTypes": true,
+        "declaration": true,
+        "outDir": "cjs",
+        "keyofStringsOnly": true
     },
-    "include": ["src/**/*.ts"]
+    "include":[
+        "src/**/*.ts",
+        "src/**/*.d.ts"
+    ],
+    "exclude": [
+        "node_modules",
+        "cjs",
+        "umd",
+        "esm"
+    ]
 }
