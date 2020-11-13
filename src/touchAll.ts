@@ -1,7 +1,12 @@
 /**
  * Takes an array of selectors and a callback function. When for all selectors an element is found, the callback
  * is called with each found element in order. Optionally takes a scope as third argument to use for the element search.
+ *
+ * Note: `touchAll` has overloads for tuples of up to 6 selectors. When called with more selectors all arguments to
+ * the callback will be of type `T` where `T extends Element`, regardless of wheter the callback expects more arguments
+ * than selectors were provided.
  */
+export function touchAll<T1 extends Element, U>(selectors: [string], cb: (v1: T1) => U, scope?: ParentNode): U | null
 export function touchAll<T1 extends Element, T2 extends Element, U>(selectors: [string, string], cb: (v1: T1, v2: T2) => U, scope?: ParentNode): U | null
 export function touchAll<T1 extends Element, T2 extends Element, T3 extends Element, U>(selectors: [string, string, string], cb: (v1: T1, v2: T2, v3: T3) => U, scope?: ParentNode): U | null
 export function touchAll<T1 extends Element, T2 extends Element, T3 extends Element, T4 extends Element, U>(selectors: [string, string, string, string], cb: (v1: T1, v2: T2, v3: T3, v4: T4) => U, scope?: ParentNode): U | null
