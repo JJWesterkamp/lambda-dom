@@ -61,16 +61,14 @@ export declare function deferFrames(n: number, handler: () => any): void;
 export declare function deferFramesP(n: number): Promise<void>;
 /**
  * Shows given element through the style.display property. Optionally takes a second
- * argument denoting the value for style.display. The default NULL value will give
- * back display control to the CSS stylesheet declarations.
+ * argument denoting the value for style.display. A `null` value will unset any inline
+ * attibute for `display` to give back display control to the CSS stylesheet declarations.
  *
  * @example
  *
  * declare const someElement: Element
  *
  * // This will unset any inline style for `display` and let CSS take over control
- * display() (someElement)
- * // or
  * display(null) (someElement)
  *
  * // This will explicitly set the display property to 'flex'
@@ -87,7 +85,7 @@ export declare function deferFramesP(n: number): Promise<void>;
  * declare const shouldShow: boolean
  * (shouldShow ? showFn : hideFn) (someElement)
  */
-export declare function display(value?: string | null): (element: HTMLElement) => void;
+export declare function display(value: string | null): (element: HTMLElement) => void;
 /**
  * Get the value of the content attribute for the first (and presumably only)
  * `<meta>` element with given `name` as the value for its name attribute.
