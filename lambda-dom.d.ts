@@ -146,6 +146,22 @@ export declare function queryAll<K extends keyof HTMLElementTagNameMap>(selector
 export declare function queryAll<K extends keyof SVGElementTagNameMap>(selector: K, scope?: ParentNode): SVGElementTagNameMap[K][];
 export declare function queryAll<T extends Element>(selector: string, scope?: ParentNode): T[];
 /**
+ * Read dataset values. Takes a dataset key and optionally a transformer for the corresponding value,
+ * and returns a new function that takes the element to read the dataset key from.
+ *
+ * @example
+ *
+ * declare const someElement: HTMLElement
+ *
+ * const x: T = readDataset('someKey') (someElement)
+ * const y: U = readDataset('someOtherKey', parseInt) (someElement)
+ *
+ * type T = undefined | string
+ * type U = undefined | number
+ */
+export declare function readDataset(key: string): (element: HTMLElement) => string | undefined;
+export declare function readDataset<T>(key: string, transform: (value: string) => T): (element: HTMLElement) => T | undefined;
+/**
  * Curried function that first takes a list of classes, then returns a new function that
  * takes the element to remove those classes from.
  *
@@ -470,6 +486,17 @@ export declare function touchElement<T extends Element, U = any>(selector: strin
  * const button = await touchElementP<HTMLButtonElement>('#my-button')
  */
 export declare function touchElementP<T extends Element>(selector: string, scope?: ParentNode): Promise<T>;
+/**
+ * Write dataset values. Takes a key, and returns a new function that takes the value, which in turn
+ * returns the last function that takes the element to write the key-value pair to.
+ *
+ * @example
+ *
+ * declare const someElement: HTMLElement
+ *
+ * writeDataset('someKey') ('someValue') (someElement)
+ */
+export declare function writeDataset(key: string): (value: string) => (element: HTMLElement) => undefined;
 
 export as namespace LD;
 

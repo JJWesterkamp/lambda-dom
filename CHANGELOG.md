@@ -16,6 +16,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - function `getMeta`
 - function `hide`
 - function `queryAll`
+- function `readDataset`
 - function `removeClasses`
 - function `removeClassesForMS`
 - function `removeClassesForNFrames`
@@ -27,3 +28,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - function `touchAllP`
 - function `touchElement`
 - function `touchElementP`
+- function `writeDataset`
