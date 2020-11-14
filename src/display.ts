@@ -26,8 +26,8 @@
  * declare const shouldShow: boolean
  * (shouldShow ? showFn : hideFn) (someElement)
  */
-export function display(display: string | null = null) {
+export function display(value: string | null = null) {
     return (element: HTMLElement): void => {
-        element.style.display = display || ''
+        element.style.display = value || ''
     }
 }
