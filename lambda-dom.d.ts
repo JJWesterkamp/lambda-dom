@@ -253,9 +253,7 @@ export declare function toggleClasses(...classes: string[]): (element: Element, 
  * Takes an array of selectors and a callback function. When for all selectors an element is found, the callback
  * is called with each found element in order. Optionally takes a scope as third argument to use for the element search.
  *
- * Note: `touchAll` has overloads for tuples of up to 6 selectors. When called with more selectors all arguments to
- * the callback will be of type `T` where `T extends Element`, regardless of wheter the callback expects more arguments
- * than selectors were provided.
+ * Note: `touchAll` has overloads for tuples of up to 8 selectors.
  *
  * @example
  *
@@ -315,7 +313,25 @@ export declare function touchAll<T1 extends Element, T2 extends Element, T3 exte
 	string,
 	string
 ], cb: (v1: T1, v2: T2, v3: T3, v4: T4, v5: T5, v6: T6) => U, scope?: ParentNode): U | null;
-export declare function touchAll<T extends Element, U>(selectors: string[], cb: (...elements: T[]) => U, scope?: ParentNode): U | null;
+export declare function touchAll<T1 extends Element, T2 extends Element, T3 extends Element, T4 extends Element, T5 extends Element, T6 extends Element, T7 extends Element, U>(selectors: [
+	string,
+	string,
+	string,
+	string,
+	string,
+	string,
+	string
+], cb: (v1: T1, v2: T2, v3: T3, v4: T4, v5: T5, v6: T6, v7: T7) => U, scope?: ParentNode): U | null;
+export declare function touchAll<T1 extends Element, T2 extends Element, T3 extends Element, T4 extends Element, T5 extends Element, T6 extends Element, T7 extends Element, T8 extends Element, U>(selectors: [
+	string,
+	string,
+	string,
+	string,
+	string,
+	string,
+	string,
+	string
+], cb: (v1: T1, v2: T2, v3: T3, v4: T4, v5: T5, v6: T6, v7: T7, v8: T8) => U, scope?: ParentNode): U | null;
 /**
  * Takes an array of selectors. Returns a promise that will only resolve when for all selectors an element is found.
  * The promise value is an array of the elements in the order of the selector array. Optionally takes a scope as
@@ -324,8 +340,7 @@ export declare function touchAll<T extends Element, U>(selectors: string[], cb: 
  * This function is useful as an alternative for `touchAll` in async functions. When `await`ed  it'll block
  * all further execution of the function when not all elements are found.
  *
- * Note: `touchAllP` has overloads for tuples of up to 6 selectors. When called with more selectors the returned
- * promise will contain a `T[]` where `T extends Element`.
+ * Note: `touchAllP` has overloads for tuples of up to 8 selectors.
  *
  * @example
  *
@@ -397,7 +412,42 @@ export declare function touchAllP<T1 extends Element, T2 extends Element, T3 ext
 	T5,
 	T6
 ]>;
-export declare function touchAllP<T extends Element>(selectors: string[], scope?: ParentNode): Promise<T[]>;
+export declare function touchAllP<T1 extends Element, T2 extends Element, T3 extends Element, T4 extends Element, T5 extends Element, T6 extends Element, T7 extends Element>(selectors: [
+	string,
+	string,
+	string,
+	string,
+	string,
+	string,
+	string
+], scope?: ParentNode): Promise<[
+	T1,
+	T2,
+	T3,
+	T4,
+	T5,
+	T6,
+	T7
+]>;
+export declare function touchAllP<T1 extends Element, T2 extends Element, T3 extends Element, T4 extends Element, T5 extends Element, T6 extends Element, T7 extends Element, T8 extends Element>(selectors: [
+	string,
+	string,
+	string,
+	string,
+	string,
+	string,
+	string,
+	string
+], scope?: ParentNode): Promise<[
+	T1,
+	T2,
+	T3,
+	T4,
+	T5,
+	T6,
+	T7,
+	T8
+]>;
 /**
  * Finds the first element within the set scope that matches `selector`. If found the element
  * is applied to the given callback function, and the function's return value will be propagated

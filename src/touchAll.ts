@@ -2,9 +2,7 @@
  * Takes an array of selectors and a callback function. When for all selectors an element is found, the callback
  * is called with each found element in order. Optionally takes a scope as third argument to use for the element search.
  *
- * Note: `touchAll` has overloads for tuples of up to 6 selectors. When called with more selectors all arguments to
- * the callback will be of type `T` where `T extends Element`, regardless of wheter the callback expects more arguments
- * than selectors were provided.
+ * Note: `touchAll` has overloads for tuples of up to 8 selectors.
  *
  * @example
  *
@@ -37,7 +35,8 @@ export function touchAll<T1 extends Element, T2 extends Element, T3 extends Elem
 export function touchAll<T1 extends Element, T2 extends Element, T3 extends Element, T4 extends Element, U>(selectors: [string, string, string, string], cb: (v1: T1, v2: T2, v3: T3, v4: T4) => U, scope?: ParentNode): U | null
 export function touchAll<T1 extends Element, T2 extends Element, T3 extends Element, T4 extends Element, T5 extends Element, U>(selectors: [string, string, string, string, string], cb: (v1: T1, v2: T2, v3: T3, v4: T4, v5: T5) => U, scope?: ParentNode): U | null
 export function touchAll<T1 extends Element, T2 extends Element, T3 extends Element, T4 extends Element, T5 extends Element, T6 extends Element, U>(selectors: [string, string, string, string, string, string], cb: (v1: T1, v2: T2, v3: T3, v4: T4, v5: T5, v6: T6) => U, scope?: ParentNode): U | null
-export function touchAll<T extends Element, U>(selectors: string[], cb: (...elements: T[]) => U, scope?: ParentNode): U | null
+export function touchAll<T1 extends Element, T2 extends Element, T3 extends Element, T4 extends Element, T5 extends Element, T6 extends Element, T7 extends Element, U>(selectors: [string, string, string, string, string, string, string], cb: (v1: T1, v2: T2, v3: T3, v4: T4, v5: T5, v6: T6, v7: T7) => U, scope?: ParentNode): U | null
+export function touchAll<T1 extends Element, T2 extends Element, T3 extends Element, T4 extends Element, T5 extends Element, T6 extends Element, T7 extends Element, T8 extends Element, U>(selectors: [string, string, string, string, string, string, string, string], cb: (v1: T1, v2: T2, v3: T3, v4: T4, v5: T5, v6: T6, v7: T7, v8: T8) => U, scope?: ParentNode): U | null
 export function touchAll(selectors: string[], cb: Function, scope: ParentNode = document.body) {
 
     const elements: Element[] = []
