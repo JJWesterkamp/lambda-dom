@@ -7,11 +7,10 @@
         "noImplicitAny": true,
         "noImplicitReturns": true,
         "noImplicitThis": true,
-        "suppressImplicitAnyIndexErrors": true,
-        "sourceMap": true,
+        "sourceMap": false,
         "strictNullChecks": true,
         "strictFunctionTypes": true,
-        "declaration": true,
+        "declaration": false,
         "outDir": "cjs",
         "keyofStringsOnly": true
     },
