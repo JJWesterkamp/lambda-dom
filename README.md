@@ -5,14 +5,7 @@
 
 Some DOM helper functions for programming web projects in a functional style.
 
-## Installation
-
-Install the package with npm:
-```
-npm install lambda-dom
-```
-
-## Disclaimer ;)
+## Disclaimer
 
 This package does not aim to use the best FP practices, nor to be as pure as it gets. Instead it aims to provide some convenient
 helpers for DOM manipulation, querying elements, and some continuation patterns to facilitate a
