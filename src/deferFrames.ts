@@ -21,5 +21,6 @@
  * // Etc..
  */
 export function deferFrames(n: number, handler: () => any): void {
+    n = Math.max(0, n)
     n === 0 ? requestAnimationFrame(handler) : deferFrames(n - 1, () => requestAnimationFrame(handler))
 }

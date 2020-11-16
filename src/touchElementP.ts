@@ -8,6 +8,6 @@ import { touchElement } from './touchElement'
  *
  * const button = await touchElementP<HTMLButtonElement>('#my-button')
  */
-export function touchElementP<T extends Element>(selector: string, scope: ParentNode = document.body): Promise<T> {
+export function touchElementP<T extends Element>(selector: string, scope: ParentNode = document): Promise<T> {
     return new Promise((resolve) => touchElement<T>(selector, resolve, scope))
 }

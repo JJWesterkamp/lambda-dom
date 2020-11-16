@@ -1,4 +1,6 @@
-.*
+.nvmrc
+.travis.yml
+jest.config.js
 tsconfig.json
 webpack.config.js
 package-lock.json

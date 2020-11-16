@@ -12,7 +12,7 @@
  * // and because the query for '#my-input' can fail:
  * type TheType = string | null
  */
-export function touchElement<T extends Element, U = any>(selector: string, callback: (element: T) => U, scope: ParentNode = document.body): U | null {
+export function touchElement<T extends Element, U = any>(selector: string, callback: (element: T) => U, scope: ParentNode = document): U | null {
     const element = scope.querySelector<T>(selector)
     return element && callback(element)
 }
