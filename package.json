@@ -22,7 +22,8 @@
     "build:umd": "webpack",
     "build:declaration": "dts-bundle-generator -o lambda-dom.d.ts src/index.ts --umd-module-name LD --no-banner",
     "clean:dist": "rm -rf esm cjs umd",
-    "test": "jest"
+    "test": "jest",
+    "test:ci": "jest --coverage && cat ./coverage/lcov.info | coveralls"
   },
   "repository": {
     "type": "git",
@@ -41,6 +42,7 @@
     "@types/jest": "^26.0.15",
     "@types/jsdom": "^16.2.5",
     "@types/webpack-env": "^1.15.3",
+    "coveralls": "^3.1.0",
     "dts-bundle-generator": "^5.5.0",
     "jest": "^26.6.3",
     "jsdom": "^16.4.0",
