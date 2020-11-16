@@ -23,7 +23,7 @@
     "build:declaration": "dts-bundle-generator -o lambda-dom.d.ts src/index.ts --umd-module-name LD --no-banner",
     "clean:dist": "rm -rf esm cjs umd",
     "test": "jest",
-    "test:ci": "jest --coverage && cat ./coverage/lcov.info | coveralls"
+    "coveralls": "cat ./coverage/lcov.info | coveralls"
   },
   "repository": {
     "type": "git",
