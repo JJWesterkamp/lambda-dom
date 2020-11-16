@@ -29,7 +29,7 @@ export function touchAllP<T1 extends Element, T2 extends Element, T3 extends Ele
 export function touchAllP<T1 extends Element, T2 extends Element, T3 extends Element, T4 extends Element, T5 extends Element, T6 extends Element>(selectors: [string, string, string, string, string, string], scope?: ParentNode): Promise<[T1, T2, T3, T4, T5, T6]>
 export function touchAllP<T1 extends Element, T2 extends Element, T3 extends Element, T4 extends Element, T5 extends Element, T6 extends Element, T7 extends Element>(selectors: [string, string, string, string, string, string, string], scope?: ParentNode): Promise<[T1, T2, T3, T4, T5, T6, T7]>
 export function touchAllP<T1 extends Element, T2 extends Element, T3 extends Element, T4 extends Element, T5 extends Element, T6 extends Element, T7 extends Element, T8 extends Element>(selectors: [string, string, string, string, string, string, string, string], scope?: ParentNode): Promise<[T1, T2, T3, T4, T5, T6, T7, T8]>
-export function touchAllP(selectors: string[], scope: ParentNode = document.body) {
+export function touchAllP(selectors: string[], scope: ParentNode = document) {
     return Promise.all(
         selectors.map((selector) => touchElementP(selector, scope))
     )
