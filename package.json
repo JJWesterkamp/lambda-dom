@@ -23,7 +23,10 @@
     "build:declaration": "dts-bundle-generator -o lambda-dom.d.ts src/index.ts --umd-module-name LD --no-banner",
     "clean:dist": "rm -rf esm cjs umd",
     "test": "jest",
-    "coveralls": "cat ./coverage/lcov.info | coveralls"
+    "coveralls": "cat ./coverage/lcov.info | coveralls",
+    "bump": "npx yarn version --new-version",
+    "preversion": "npm run build:declaration && git reset && git add ./lambda-dom.d.ts ./CHANGELOG.md",
+    "prepublishOnly": "npm-run-all test build"
   },
   "repository": {
     "type": "git",
