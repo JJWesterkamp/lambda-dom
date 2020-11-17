@@ -19,8 +19,8 @@ const toPairs = (object: { [key: string]: any }) => Object.keys(object).map((key
  * declare const elements: HTMLElement[]
  * elements.forEach(warningButtonStyle)
  */
-export function style(styles: Partial<CSSStyleDeclaration>) {
-    return (element: HTMLElement) => {
+export function style(styles: Partial<CSSStyleDeclaration>): (element: HTMLElement) => void {
+    return (element) => {
         for (const [key, val] of toPairs(styles)) {
             element.style[key] = val
         }

@@ -17,6 +17,6 @@ import { toggleClasses } from './toggleClasses'
  * // Or execute addClasses in one go:
  * addClasses('class-one', 'class-two') (someElement)
  */
-export function addClasses(...classes: string[]) {
-    return (element: Element): void => toggleClasses(...classes)(element, true)
+export function addClasses(...classes: string[]): (element: Element) => void {
+    return (element) => toggleClasses(...classes)(element, true)
 }

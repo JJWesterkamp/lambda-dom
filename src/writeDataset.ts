@@ -8,6 +8,6 @@
  *
  * writeDataset('someKey') ('someValue') (someElement)
  */
-export function writeDataset(key: string) {
-    return (value: string) => (element: HTMLElement) => void (element.dataset[key] = value)
+export function writeDataset(key: string): (value: string) => (element: HTMLElement) => void {
+    return (value) => (element) => void (element.dataset[key] = value)
 }

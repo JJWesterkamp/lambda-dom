@@ -12,8 +12,8 @@
  * // This updates or creates the following element
  * <meta name="foo" content="bar">
  */
-export function setMeta(name: string) {
-    return (content: string): HTMLMetaElement => {
+export function setMeta(name: string): (content: string) => HTMLMetaElement {
+    return (content) => {
 
         let element: HTMLMetaElement | null = document.querySelector(`meta[name="${name}"]`)
 

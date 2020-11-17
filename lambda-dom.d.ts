@@ -262,7 +262,7 @@ export declare function style(styles: Partial<CSSStyleDeclaration>): (element: H
  * // This is like removeClasses:
  * toggleClasses('class-one', 'class-two', '...') (someElement, false)
  */
-export declare function toggleClasses(...classes: string[]): (element: Element, force?: boolean | undefined) => void;
+export declare function toggleClasses(...classes: string[]): (element: Element, force?: boolean) => void;
 /**
  * Takes an array of selectors and a callback function. When for all selectors an element is found, the callback
  * is called with each found element in order. Optionally takes a scope as third argument to use for the element search.
@@ -496,7 +496,7 @@ export declare function touchElementP<T extends Element>(selector: string, scope
  *
  * writeDataset('someKey') ('someValue') (someElement)
  */
-export declare function writeDataset(key: string): (value: string) => (element: HTMLElement) => undefined;
+export declare function writeDataset(key: string): (value: string) => (element: HTMLElement) => void;
 
 export as namespace LD;
 
