@@ -5,6 +5,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.0-beta1] (2020-11-17, initial release)
+
 ### Added
 
 - function `addClasses`
@@ -29,3 +31,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - function `touchElement`
 - function `touchElementP`
 - function `writeDataset`
+
+
+[Unreleased]: https://github.com/JJWesterkamp/lambda-dom/compare/v1.0.0-beta1...HEAD
+[1.0.0-beta1]: https://github.com/JJWesterkamp/lambda-dom/tree/v1.0.0-beta1
