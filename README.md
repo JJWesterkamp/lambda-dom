@@ -6,6 +6,11 @@
 
 Some DOM helper functions for programming web projects in a functional style.
 
+> **DISCLAIMER**
+
+> This package does not (yet) aim to use the best FP practices, nor to be as pure as it gets. Instead it aims to provide some convenient, practical helpers for DOM manipulation, querying elements, and some continuation patterns to facilitate a slightly more functional style. Many functions are curried (the easy way) but not all of them. There are also some functions that take rest parameters: `(...args)`. It just depends on the situation.
+
+
 ## Installation
 
 Install the package with npm
@@ -17,23 +22,9 @@ or yarn:
 yarn add lambda-dom
 ```
 
-## API
+## Documentation
 
-Coming soon! For now the source files are all documented with examples, and their declarations are bundled in the [declaration file].
-
-## Disclaimer
-
-This package does not aim to use the best FP practices, nor to be as pure as it gets. Instead it aims to provide some convenient
-helpers for DOM manipulation, querying elements, and some continuation patterns to facilitate a
-slightly more functional style. Many functions are curried (the easy way) but not all of them.
-There are also some functions that take rest parameters: `(...args)`. It just depends on the situation.
-
-**For example:**
-
-In the case of DOM querying lambda-dom provides `touchElement` and `touchAll`,
-and `touchElementP` and `touchAllP` (the promise equivalents) that all take a callback that will only run if
-for one or many selectors HTML elements can be found. This reduces the amount of explicit null-checking
-on element queries and the amount of required intermediate constants that hold element references.
+Visit the [documentation page](https://jjwesterkamp.github.io/lambda-dom/) for the documentation of this package.
 
 ## Contributing
 
