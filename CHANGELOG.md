@@ -47,5 +47,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [docs]: https://jjwesterkamp.github.io/lambda-dom/
 
 [Unreleased]: https://github.com/JJWesterkamp/lambda-dom/compare/v1.0.0...HEAD
-[1.0.0]: https://github.com/JJWesterkamp/lambda-dom/compare/v1.0.0-beta...v1.0.01
+[1.0.0]: https://github.com/JJWesterkamp/lambda-dom/compare/v1.0.0-beta1...v1.0.0
 [1.0.0-beta1]: https://github.com/JJWesterkamp/lambda-dom/tree/v1.0.0-beta1
