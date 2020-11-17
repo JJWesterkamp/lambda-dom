@@ -20,8 +20,7 @@ export function setMeta(name: string) {
         if ( ! element) {
             element      = document.createElement('meta')
             element.name = name
-            const head   = document.head || document.getElementsByTagName("head")[0]
-            head.appendChild(element)
+            document.head.appendChild(element)
         }
 
         element.content = content
