@@ -2,8 +2,11 @@
  * Curried function that first takes a list of classes, then returns a new function that
  * takes the element to add those classes to.
  *
- * @example
+ * @param classes Rest parameter for one or multiple classes to add.
+ * @param element The element to add the classes to.
  *
+ * @example
+ * ```typescript
  * declare const elements: Element[]
  * declare const someElement: Element
  *
@@ -14,24 +17,51 @@
  *
  * // Or execute addClasses in one go:
  * addClasses('class-one', 'class-two') (someElement)
+ * ```
  */
 export declare function addClasses(...classes: string[]): (element: Element) => void;
 /**
+ * Adds classes to an element for a given amount of milliseconds.
  *
+ * @param ms The amount of milliseconds to add the classes for
+ * @param classes Rest parameter for one or multiple classes to temporarily add
+ * @param element The element to add the classes to
+ *
+ * @example
+ *
+ * ```typescript
+ * declare const element: Element
+ * addClassesForMS(500, 'class-a', 'class-b') (element)
+ * ```
  */
 export declare function addClassesForMS(ms: number, ...classes: string[]): (element: Element) => void;
 /**
+ * Adds classes to an element for a given amount of animation frames.
  *
+ * @param n The amount of animation frames to add the classes for.
+ * @param classes Rest parameter for one or multiple classes to temporarily add.
+ * @param element The element to add the classes to.
+ *
+ * @example
+ *
+ * ```typescript
+ * declare const element: Element
+ * addClassesForNFrames(10, 'class-a', 'class-b') (element)
+ * ```
  */
 export declare function addClassesForNFrames(n: number, ...classes: string[]): (element: Element) => void;
 /**
  * Takes a positive (>= 0) integer `n` and a callback function, and executes the callback function after `n`
  * animation frames have passed.
  *
+ * @param n The amount of animation frames to wait.
+ * @param handler The callback function to run after `n` animation-frames have passed.
+ *
  * @Todo Add the possibility to cancel. The requires the request ID of the latest request.
  *
  * @example
  *
+ * ```typescript
  * declare const f: () => void
  * // Run `f` after ten animation frames
  * deferFrames(10, f)
@@ -45,18 +75,25 @@ export declare function addClassesForNFrames(n: number, ...classes: string[]): (
  * requestAnimationFrame(() => requestAnimationFrame(f))
  *
  * // Etc..
+ * ```
  */
 export declare function deferFrames(n: number, handler: () => any): void;
 /**
- * Returns a `Promise<void>` that resolves after `n` animation frames.
+ * Returns a `Promise<void>` that resolves after `n` animation frames have passed.
+ * Like {@linkcode deferFrames} but 'portable', so that many callbacks can subscribe
+ * to the 'event' of `n` frames having passed.
+ *
+ * @param n The amount of animation frames to wait before the returned promise resolves.
  *
  * @example
  *
+ * ```typescript
  * async function f() {
  *      // Do something immediately...
  *      await deferFramesP(10)
  *      // Do something else after 10 animation frames:
  * }
+ * ```
  */
 export declare function deferFramesP(n: number): Promise<void>;
 /**
@@ -64,8 +101,11 @@ export declare function deferFramesP(n: number): Promise<void>;
  * argument denoting the value for style.display. A `null` value will unset any inline
  * attibute for `display` to give back display control to the CSS stylesheet declarations.
  *
- * @example
+ * @param value The display CSS value to use. When `null` any inline display value is removed.
+ * @param element The target element to set the display value on.
  *
+ * @example
+ * ```typescript
  * declare const someElement: Element
  *
  * // This will unset any inline style for `display` and let CSS take over control
@@ -84,6 +124,7 @@ export declare function deferFramesP(n: number): Promise<void>;
  * // And then use them on any element conditionally:
  * declare const shouldShow: boolean
  * (shouldShow ? showFn : hideFn) (someElement)
+ * ```
  */
 export declare function display(value: string | null): (element: HTMLElement) => void;
 /**
@@ -91,32 +132,93 @@ export declare function display(value: string | null): (element: HTMLElement) =>
  * `<meta>` element with given `name` as the value for its name attribute.
  * Optionally takes a transformer to deserialize string values.
  *
+ * @param name The value for the `name` attribute to find the `<meta>` element by.
+ *
  * @example
  *
- * <!-- Considering these meta tags -->
+ * Considering these meta tags:
+ *
+ * ```html
  * <meta name="some-json-meta" content='{ "foo": "bar", "baz": 42 }'>
  * <meta name="just-string-meta" content="Lorem ipsum">
+ * ```
  *
- * // And this object interface
+ * And this object interface:
+ *
+ * ```typescript
  * interface JsonMeta { foo: string, baz: number }
+ * ```
  *
- * // We can get the JSON data and parse it like so:
+ * We can get the JSON data and parse it like so:
+ *
+ * ```typescript
  * const jsonMeta: A = getMeta<JsonMeta>('some-json-meta', JSON.parse)
+ * ```
  *
- * // and simple string metadata doesn't need to be transformed:
+ * and simple string metadata doesn't need to be transformed:
+ *
+ * ```typescript
  * const textgMeta: B = getMeta('just-string-meta')
+ * ```
  *
- * // And because the queries can fail:
+ * And because the queries can fail:
+ *
+ * ```typescript
  * type A = null | JsonMeta
  * type b = null | string
+ * ```
  */
 export declare function getMeta(name: string): string | null;
+/**
+ * Get the value of the content attribute for the first (and presumably only)
+ * `<meta>` element with given `name` as the value for its name attribute.
+ * Optionally takes a transformer to deserialize string values.
+ *
+ * @param name The value for the `name` attribute to find the `<meta>` element by.
+ * @param transformer A transformer function that deserializes content values.
+ *
+ * @example
+ *
+ * Considering these meta tags:
+ *
+ * ```html
+ * <meta name="some-json-meta" content='{ "foo": "bar", "baz": 42 }'>
+ * <meta name="just-string-meta" content="Lorem ipsum">
+ * ```
+ *
+ * And this object interface:
+ *
+ * ```typescript
+ * interface JsonMeta { foo: string, baz: number }
+ * ```
+ *
+ * We can get the JSON data and parse it like so:
+ *
+ * ```typescript
+ * const jsonMeta: A = getMeta<JsonMeta>('some-json-meta', JSON.parse)
+ * ```
+ *
+ * and simple string metadata doesn't need to be transformed:
+ *
+ * ```typescript
+ * const textgMeta: B = getMeta('just-string-meta')
+ * ```
+ *
+ * And because the queries can fail:
+ *
+ * ```typescript
+ * type A = null | JsonMeta
+ * type b = null | string
+ * ```
+ */
 export declare function getMeta<T>(name: string, transformer: (content: string) => T): T | null;
 /**
  * Hide the given element through the style.display property.
  *
+ * @param element The element to hide.
  * @example
  *
+ * ```typescript
  * declare const someElement: Element
  *
  * // Hides the given element
@@ -124,14 +226,19 @@ export declare function getMeta<T>(name: string, transformer: (content: string) 
  *
  * // This is equivalent to:
  * display('none') (someElement)
+ * ```
  */
 export declare function hide(element: HTMLElement): void;
 /**
  * Calls `querySelectorAll` with given `selector` on given `scope`, or on `document` by default when the
  * scope is omitted. Returns an array containing the found elements.
  *
+ * @param selector The selector to match elements against.
+ * @param scope The scope of the element query. When omitted `queryAll` performs a global search.
+ *
  * @example
  *
+ * ```typescript
  * // Recognizes keys of HTMLElementTagNameMap:
  * const anchors = queryAll('a') // HTMLAnchorElement[]
  *
@@ -141,6 +248,7 @@ export declare function hide(element: HTMLElement): void;
  * // Defaults to Element, or accepts an explicit type argument for the searched elements:
  * const elements = queryAll('.some-element') // Element[]
  * const buttons = queryAll<HTMLButtonElement>('.my-button') // HTMLButtonElement[]
+ * ```
  */
 export declare function queryAll<K extends keyof HTMLElementTagNameMap>(selector: K, scope?: ParentNode): HTMLElementTagNameMap[K][];
 export declare function queryAll<K extends keyof SVGElementTagNameMap>(selector: K, scope?: ParentNode): SVGElementTagNameMap[K][];
@@ -149,8 +257,12 @@ export declare function queryAll<T extends Element>(selector: string, scope?: Pa
  * Read dataset values. Takes a dataset key and optionally a transformer for the corresponding value,
  * and returns a new function that takes the element to read the dataset key from.
  *
+ * @param key The dataset key to read (camelCase, like the native dataset API).
+ * @param element The element to read the dataset value from.
+ *
  * @example
  *
+ * ```typescript
  * declare const someElement: HTMLElement
  *
  * const x: T = readDataset('someKey') (someElement)
@@ -158,15 +270,29 @@ export declare function queryAll<T extends Element>(selector: string, scope?: Pa
  *
  * type T = undefined | string
  * type U = undefined | number
+ * ```
  */
 export declare function readDataset(key: string): (element: HTMLElement) => string | undefined;
+/**
+ * Read dataset values. Takes a dataset key and optionally a transformer for the corresponding value,
+ * and returns a new function that takes the element to read the dataset key from.
+ *
+ * @param key The dataset key to read (camelCase, like the native dataset API).
+ * @param transform The optional transformer function for dataset values.
+ * @param element The element to read the dataset value from.
+ *
+ */
 export declare function readDataset<T>(key: string, transform: (value: string) => T): (element: HTMLElement) => T | undefined;
 /**
  * Curried function that first takes a list of classes, then returns a new function that
  * takes the element to remove those classes from.
  *
+ * @param classes Rest parameter for one or multiple classes to remove.
+ * @param element The element to remove the classes from.
+ *
  * @example
  *
+ * ```typescript
  * declare const someElement: Element
  * declare const elements: Element[]
  *
@@ -176,14 +302,36 @@ export declare function readDataset<T>(key: string, transform: (value: string) =
  *
  * // Or execute removeClasses in one go:
  * removeClasses('class-one', 'class-two', 'even-more-classes')(element)
+ * ```
  */
 export declare function removeClasses(...classes: string[]): (element: Element) => void;
 /**
+ * Removes classes from an element for a given amount of milliseconds.
  *
+ * @param ms The amount of milliseconds to remove the classes for.
+ * @param classes Rest parameter for one or multiple classes to remove.
+ * @param element The element to remove the classes from.
+ *
+ * @example
+ * ```typescript
+ * declare const element: Element
+ * removeClassesForMS(500, 'class-a', 'class-b') (element)
+ * ```
  */
 export declare function removeClassesForMS(ms: number, ...classes: string[]): (element: Element) => void;
 /**
+ * Removes classes from an element for a given amount of animation frames.
  *
+ * @param n The amount of animation frames to remove the classes for.
+ * @param classes Rest parameter for one or multiple classes to temporarily remove.
+ * @param element The element to remove the classes from.
+ *
+ * @example
+ *
+ * ```typescript
+ * declare const element: Element
+ * removeClassesForNFrames(10, 'class-a', 'class-b') (element)
+ * ```
  */
 export declare function removeClassesForNFrames(n: number, ...classes: string[]): (element: Element) => void;
 /**
@@ -194,19 +342,27 @@ export declare function removeClassesForNFrames(n: number, ...classes: string[])
  *
  * When a new element is created it will be appended to the end of `<head>`.
  *
- * @example
+ * @param name The value for the name attribute.
+ * @param content The value for the content attribute.
  *
+ * @example
+ * ```typescript
  * const element = setMeta('foo')('bar')
- * // This updates or creates the following element
+ * ```
+ * This updates or creates the following element
+ * ```
  * <meta name="foo" content="bar">
+ * ```
  */
 export declare function setMeta(name: string): (content: string) => HTMLMetaElement;
 /**
  * Shows the given element by unsetting any inline `style.display` value, assuming no
  * `display: none` rule is set in CSS.
  *
- * @example
+ * @param element The element to unset the inline display value for.
  *
+ * @example
+ * ```typescript
  * declare const someElement: Element
  *
  * // Shows (or unhides) the given element, if it has no display: none set in CSS
@@ -214,14 +370,19 @@ export declare function setMeta(name: string): (content: string) => HTMLMetaElem
  *
  * // This is equivalent to:
  * display(null) (someElement)
+ * ```
  */
 export declare function show(element: HTMLElement): void;
 /**
  * Takes an object of style attribute values, and returns a new function that takes an
  * element to apply those styles to.
  *
+ * @param styles An object with inline styles to set.
+ * @param element An element to apply the inline styles to.
+ *
  * @example
  *
+ * ```typescript
  * declare const someElement: HTMLElement
  * style({ color: 'red' }) (someElement)
  *
@@ -234,6 +395,7 @@ export declare function show(element: HTMLElement): void;
  *
  * declare const elements: HTMLElement[]
  * elements.forEach(warningButtonStyle)
+ * ```
  */
 export declare function style(styles: Partial<CSSStyleDeclaration>): (element: HTMLElement) => void;
 /**
@@ -242,8 +404,13 @@ export declare function style(styles: Partial<CSSStyleDeclaration>): (element: H
  * the second argument `force: boolean` to use on the native `DOMTokenList.toggle()` method.
  * Note that the value for `force` will be the same for all classes that are toggled.
  *
+ * @param classes One or multiple classes to toggle.
+ * @param element An element onto which to toggle provided classes.
+ * @param force The optional boolean for force adding / removing the classes (like the native [`DOMTokenList.toggle`](https://developer.mozilla.org/en-US/docs/Web/API/DOMTokenList/toggle))
+ *
  * @example
  *
+ * ```typescript
  * declare const someElement: Element
  * declare const elements: Element[]
  *
@@ -261,6 +428,7 @@ export declare function style(styles: Partial<CSSStyleDeclaration>): (element: H
  *
  * // This is like removeClasses:
  * toggleClasses('class-one', 'class-two', '...') (someElement, false)
+ * ```
  */
 export declare function toggleClasses(...classes: string[]): (element: Element, force?: boolean) => void;
 /**
@@ -269,30 +437,42 @@ export declare function toggleClasses(...classes: string[]): (element: Element, 
  *
  * Note: `touchAll` has overloads for tuples of up to 8 selectors.
  *
+ * @param selectors An array of CSS-compatible selectors. For each selector an element will be searched.
+ * @param cb The callback to execute when all elements are found.
+ * @param scope An optional scope for the element queries.
+ *
  * @example
  *
- * declare function doSomething(button: HTMLButtonElement, form: HTMLFormElement): string
- *
+ * ```typescript
  * // Either specify the element types in the callback
+ *
  * const resultA: TheType = touchAll([
  *     '.my-button',
  *     '#the-form',
  * ], (
  *     button: HTMLButtonElement,
  *     form: HTMLFormElement,
- * ) => doSomething(button, form))
+ * ) => {
+ *     // do something with button and form...
+ * })
  *
- * // or provide them as type arguments list, in which case the return type for `touchAll` itself is required:
+ * // or provide them as type arguments list, in which case
+ * // the return type for `touchAll` itself is required:
+ *
  * const resultB: TheType = touchAll<HTMLButtonElement, HTMLFormElement, string>([
  *     '.my-button',
  *     '#the-form',
  * ], (
  *     button,
  *     form,
- * ) => doSomething(button, form))
+ * ) => {
+ *     // do something with button and form...
+ * })
  *
  * // and because the queries can fail:
+ *
  * type TheType = null | string
+ * ```
  */
 export declare function touchAll<T1 extends Element, U>(selectors: [
 	string
@@ -356,8 +536,15 @@ export declare function touchAll<T1 extends Element, T2 extends Element, T3 exte
  *
  * Note: `touchAllP` has overloads for tuples of up to 8 selectors.
  *
+ * Like {@linkcode touchAll} but 'portable', so that many callbacks can subscribe
+ * to the 'event' of the elements being found.
+ *
+ * @param selectors An array of CSS-compatible selectors. For each selector an element will be searched.
+ * @param scope An optional scope for the element queries.
+ *
  * @example
  *
+ * ```typescript
  * // Without explicit type arguments:
  * const elementsPA = touchAllP(['.my-button', '#the-form'])
  * // > Promise<[Element, Element]>
@@ -365,6 +552,7 @@ export declare function touchAll<T1 extends Element, T2 extends Element, T3 exte
  * // With explicit type arguments:
  * const elementsPB = touchAllP<HTMLButtonElement, HTMLFormElement>(['.my-button', '#the-form'])
  * // > Promise<[HTMLButtonElement, HTMLFormElement]>
+ * ```
  */
 export declare function touchAllP<T1 extends Element>(selectors: [
 	string
@@ -468,33 +656,50 @@ export declare function touchAllP<T1 extends Element, T2 extends Element, T3 ext
  * as return value of `touchElement`. If no element is found, the callback is not invoked, and
  * `null` is returned from `touchElement`.
  *
- * @example
+ * @param selector A CSS-compatible selector to match the searched element against.
+ * @param cb The callback to execute when the element is found.
+ * @param scope An optional scope for the element query.
  *
+ * @example
+ * ```typescript
  * // The callback's return value is returned from touchElement:
  * const inputValue: TheType = touchElement('#my-input', (input: HTMLInputElement): string => input.value)
  *
  * // and because the query for '#my-input' can fail:
  * type TheType = string | null
+ * ```
  */
 export declare function touchElement<T extends Element, U = any>(selector: string, callback: (element: T) => U, scope?: ParentNode): U | null;
 /**
  * Finds the first element within the set scope that matches `selector`. If found the returned
  * promise resolves with the element. If no element is found, the promise will never resolve.
+ * Like {@linkcode touchElement} but 'portable', so that many callbacks can subscribe
+ * to the 'event' of the element being found.
+ *
+ * @param selector A CSS-compatible selector to match the searched element against.
+ * @param scope An optional scope for the element query.
  *
  * @example
- *
+ * ```typescript
  * const button = await touchElementP<HTMLButtonElement>('#my-button')
+ * ```
  */
 export declare function touchElementP<T extends Element>(selector: string, scope?: ParentNode): Promise<T>;
 /**
  * Write dataset values. Takes a key, and returns a new function that takes the value, which in turn
  * returns the last function that takes the element to write the key-value pair to.
  *
+ * @param key The dataset property to write.
+ * @param value The value to write to the property.
+ * @param element An element upon which to perform the dataset update.
+ *
  * @example
  *
+ * ```typescript
  * declare const someElement: HTMLElement
  *
  * writeDataset('someKey') ('someValue') (someElement)
+ * ```
  */
 export declare function writeDataset(key: string): (value: string) => (element: HTMLElement) => void;
 
