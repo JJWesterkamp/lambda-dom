@@ -11,8 +11,15 @@ import { touchElementP } from './touchElementP'
  *
  * Note: `touchAllP` has overloads for tuples of up to 8 selectors.
  *
+ * Like {@linkcode touchAll} but 'portable', so that many callbacks can subscribe
+ * to the 'event' of the elements being found.
+ *
+ * @param selectors An array of CSS-compatible selectors. For each selector an element will be searched.
+ * @param scope An optional scope for the element queries.
+ *
  * @example
  *
+ * ```typescript
  * // Without explicit type arguments:
  * const elementsPA = touchAllP(['.my-button', '#the-form'])
  * // > Promise<[Element, Element]>
@@ -20,6 +27,7 @@ import { touchElementP } from './touchElementP'
  * // With explicit type arguments:
  * const elementsPB = touchAllP<HTMLButtonElement, HTMLFormElement>(['.my-button', '#the-form'])
  * // > Promise<[HTMLButtonElement, HTMLFormElement]>
+ * ```
  */
 export function touchAllP<T1 extends Element>(selectors: [string], scope?: ParentNode): Promise<[T1]>
 export function touchAllP<T1 extends Element, T2 extends Element>(selectors: [string, string], scope?: ParentNode): Promise<[T1, T2]>

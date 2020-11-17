@@ -4,8 +4,13 @@
  * the second argument `force: boolean` to use on the native `DOMTokenList.toggle()` method.
  * Note that the value for `force` will be the same for all classes that are toggled.
  *
+ * @param classes One or multiple classes to toggle.
+ * @param element An element onto which to toggle provided classes.
+ * @param force The optional boolean for force adding / removing the classes (like the native [`DOMTokenList.toggle`](https://developer.mozilla.org/en-US/docs/Web/API/DOMTokenList/toggle))
+ *
  * @example
  *
+ * ```typescript
  * declare const someElement: Element
  * declare const elements: Element[]
  *
@@ -23,6 +28,7 @@
  *
  * // This is like removeClasses:
  * toggleClasses('class-one', 'class-two', '...') (someElement, false)
+ * ```
  */
 export function toggleClasses(...classes: string[]): (element: Element, force?: boolean) => void {
     return (element, force) => classes.forEach((className) => element.classList.toggle(className, force))

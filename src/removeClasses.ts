@@ -4,8 +4,12 @@ import { toggleClasses } from './toggleClasses'
  * Curried function that first takes a list of classes, then returns a new function that
  * takes the element to remove those classes from.
  *
+ * @param classes Rest parameter for one or multiple classes to remove.
+ * @param element The element to remove the classes from.
+ *
  * @example
  *
+ * ```typescript
  * declare const someElement: Element
  * declare const elements: Element[]
  *
@@ -15,6 +19,7 @@ import { toggleClasses } from './toggleClasses'
  *
  * // Or execute removeClasses in one go:
  * removeClasses('class-one', 'class-two', 'even-more-classes')(element)
+ * ```
  */
 export function removeClasses(...classes: string[]): (element: Element) => void {
     return (element) => toggleClasses(...classes)(element, false)

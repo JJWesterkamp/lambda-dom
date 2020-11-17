@@ -4,13 +4,18 @@
  * as return value of `touchElement`. If no element is found, the callback is not invoked, and
  * `null` is returned from `touchElement`.
  *
- * @example
+ * @param selector A CSS-compatible selector to match the searched element against.
+ * @param cb The callback to execute when the element is found.
+ * @param scope An optional scope for the element query.
  *
+ * @example
+ * ```typescript
  * // The callback's return value is returned from touchElement:
  * const inputValue: TheType = touchElement('#my-input', (input: HTMLInputElement): string => input.value)
  *
  * // and because the query for '#my-input' can fail:
  * type TheType = string | null
+ * ```
  */
 export function touchElement<T extends Element, U = any>(selector: string, callback: (element: T) => U, scope: ParentNode = document): U | null {
     const element = scope.querySelector<T>(selector)

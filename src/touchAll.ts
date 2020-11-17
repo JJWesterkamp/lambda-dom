@@ -4,30 +4,42 @@
  *
  * Note: `touchAll` has overloads for tuples of up to 8 selectors.
  *
+ * @param selectors An array of CSS-compatible selectors. For each selector an element will be searched.
+ * @param cb The callback to execute when all elements are found.
+ * @param scope An optional scope for the element queries.
+ *
  * @example
  *
- * declare function doSomething(button: HTMLButtonElement, form: HTMLFormElement): string
- *
+ * ```typescript
  * // Either specify the element types in the callback
+ *
  * const resultA: TheType = touchAll([
  *     '.my-button',
  *     '#the-form',
  * ], (
  *     button: HTMLButtonElement,
  *     form: HTMLFormElement,
- * ) => doSomething(button, form))
+ * ) => {
+ *     // do something with button and form...
+ * })
  *
- * // or provide them as type arguments list, in which case the return type for `touchAll` itself is required:
+ * // or provide them as type arguments list, in which case
+ * // the return type for `touchAll` itself is required:
+ *
  * const resultB: TheType = touchAll<HTMLButtonElement, HTMLFormElement, string>([
  *     '.my-button',
  *     '#the-form',
  * ], (
  *     button,
  *     form,
- * ) => doSomething(button, form))
+ * ) => {
+ *     // do something with button and form...
+ * })
  *
  * // and because the queries can fail:
+ *
  * type TheType = null | string
+ * ```
  */
 export function touchAll<T1 extends Element, U>(selectors: [string], cb: (v1: T1) => U, scope?: ParentNode): U | null
 export function touchAll<T1 extends Element, T2 extends Element, U>(selectors: [string, string], cb: (v1: T1, v2: T2) => U, scope?: ParentNode): U | null

@@ -3,8 +3,11 @@
  * argument denoting the value for style.display. A `null` value will unset any inline
  * attibute for `display` to give back display control to the CSS stylesheet declarations.
  *
- * @example
+ * @param value The display CSS value to use. When `null` any inline display value is removed.
+ * @param element The target element to set the display value on.
  *
+ * @example
+ * ```typescript
  * declare const someElement: Element
  *
  * // This will unset any inline style for `display` and let CSS take over control
@@ -23,6 +26,7 @@
  * // And then use them on any element conditionally:
  * declare const shouldShow: boolean
  * (shouldShow ? showFn : hideFn) (someElement)
+ * ```
  */
 export function display(value: string | null): (element: HTMLElement) => void {
     return (element) => {
