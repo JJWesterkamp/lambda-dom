@@ -1,9 +1,25 @@
 # lambda-dom
 
+[![npm version](https://badge.fury.io/js/lambda-dom.svg)](https://badge.fury.io/js/lambda-dom)
 [![Build Status](https://travis-ci.com/JJWesterkamp/lambda-dom.svg?branch=master)](https://travis-ci.com/JJWesterkamp/lambda-dom)
 [![Coverage Status](https://coveralls.io/repos/github/JJWesterkamp/lambda-dom/badge.svg?branch=master)](https://coveralls.io/github/JJWesterkamp/lambda-dom?branch=master)
 
 Some DOM helper functions for programming web projects in a functional style.
+
+## Installation
+
+Install the package with npm
+```
+npm install --save lambda-dom
+```
+or yarn:
+```
+yarn add lambda-dom
+```
+
+## API
+
+Coming soon! For now the source files are all documented with examples, and their declarations are bundled in the [declaration file].
 
 ## Disclaimer
 
@@ -19,10 +35,6 @@ and `touchElementP` and `touchAllP` (the promise equivalents) that all take a ca
 for one or many selectors HTML elements can be found. This reduces the amount of explicit null-checking
 on element queries and the amount of required intermediate constants that hold element references.
 
-## API
-
-
-
 ## Contributing
 
 I mainly wrote this package for my own convenience. However, if you have suggestions how to improve it, or
@@ -31,4 +43,7 @@ If you like this package and think it is useful don't forget to star it!
 
 ## License
 
-The MIT License (MIT). See [license file](https://github.com/JJWesterkamp/lambda-dom/blob/master/LICENSE) for more information.
+The MIT License (MIT). See [license file] for more information.
+
+[license file]: https://github.com/JJWesterkamp/lambda-dom/blob/master/LICENSE
+[declaration file]: https://github.com/JJWesterkamp/lambda-dom/blob/master/lambda-dom.d.ts
