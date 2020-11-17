@@ -6,10 +6,9 @@
 
 Some DOM helper functions for programming web projects in a functional style.
 
-> **DISCLAIMER**
-
 > This package does not (yet) aim to use the best FP practices, nor to be as pure as it gets. Instead it aims to provide some convenient, practical helpers for DOM manipulation, querying elements, and some continuation patterns to facilitate a slightly more functional style. Many functions are curried (the easy way) but not all of them. There are also some functions that take rest parameters: `(...args)`. It just depends on the situation.
 
+[view Github page][gh] || [view API docs][docs] || [view changelog][changelog]
 
 ## Installation
 
@@ -22,9 +21,17 @@ or yarn:
 yarn add lambda-dom
 ```
 
-## Documentation
+## Usage
 
-Visit the [documentation page](https://jjwesterkamp.github.io/lambda-dom/) for the documentation of this package.
+All functions are exported from one index file. Import the functions you want to use:
+
+```typescript
+import { deferFrames, getMeta, touchAll, ... } from 'lambda-dom'
+```
+
+## API Documentation
+
+Visit the [documentation page][docs] for the API documentation of this package.
 
 ## Contributing
 
@@ -38,3 +45,7 @@ The MIT License (MIT). See [license file] for more information.
 
 [license file]: https://github.com/JJWesterkamp/lambda-dom/blob/master/LICENSE
 [declaration file]: https://github.com/JJWesterkamp/lambda-dom/blob/master/lambda-dom.d.ts
+[npm]: https://www.npmjs.com/package/lambda-dom
+[gh]: https://github.com/JJWesterkamp/lambda-dom
+[docs]: https://jjwesterkamp.github.io/lambda-dom/
+[changelog]: https://github.com/JJWesterkamp/lambda-dom/blob/master/CHANGELOG.md
