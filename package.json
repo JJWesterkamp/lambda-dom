@@ -26,7 +26,7 @@
     "test": "jest",
     "coveralls": "cat ./coverage/lcov.info | coveralls",
     "bump": "npx yarn version --new-version",
-    "preversion": "npm run build:declaration && git reset && git add ./lambda-dom.d.ts ./CHANGELOG.md",
+    "preversion": "npm run build:declaration && npm run build:docs && git reset && git add ./lambda-dom.d.ts ./CHANGELOG.md ./docs/*",
     "prepublishOnly": "npm-run-all test build"
   },
   "repository": {
