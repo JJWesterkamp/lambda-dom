@@ -126,19 +126,40 @@
 			<blockquote>
 				<p>This package does not (yet) aim to use the best FP practices, nor to be as pure as it gets. Instead it aims to provide some convenient, practical helpers for DOM manipulation, querying elements, and some continuation patterns to facilitate a slightly more functional style. Many functions are curried (the easy way) but not all of them. There are also some functions that take rest parameters: <code>(...args)</code>. It just depends on the situation.</p>
 			</blockquote>
-			<p><a href="https://github.com/JJWesterkamp/lambda-dom">view Github page</a> || <a href="https://jjwesterkamp.github.io/lambda-dom/">view API docs</a> || <a href="https://github.com/JJWesterkamp/lambda-dom/blob/master/CHANGELOG.md">view changelog</a></p>
-			<a href="#installation" id="installation" style="color: inherit; text-decoration: none;">
-				<h2>Installation</h2>
+			<a href="#quick-links" id="quick-links" style="color: inherit; text-decoration: none;">
+				<h2>Quick links</h2>
 			</a>
-			<p>Install the package with npm</p>
-			<pre><code>npm install --<span class="hljs-built_in">save</span> <span class="hljs-built_in">lambda</span>-dom</code></pre>
-			<p>or yarn:</p>
-			<pre><code>yarn <span class="hljs-keyword">add</span><span class="bash"> lambda-dom</span></code></pre>
-			<a href="#usage" id="usage" style="color: inherit; text-decoration: none;">
-				<h2>Usage</h2>
+			<ul>
+				<li><a href="https://www.npmjs.com/package/lambda-dom">npm</a></li>
+				<li><a href="https://github.com/JJWesterkamp/lambda-dom">Github</a></li>
+				<li><a href="https://jjwesterkamp.github.io/lambda-dom/">API documentation</a></li>
+				<li><a href="https://github.com/JJWesterkamp/lambda-dom/blob/master/CHANGELOG.md">Changelog</a></li>
+				<li><a href="https://jsfiddle.net/JJWesterkamp/8xh0cLtk/">JSFiddle</a></li>
+				<li><a href="https://www.jsdelivr.com/package/npm/lambda-dom">jsDelivr</a></li>
+			</ul>
+			<a href="#installation-amp-usage" id="installation-amp-usage" style="color: inherit; text-decoration: none;">
+				<h2>Installation &amp; usage</h2>
 			</a>
+			<a href="#npm" id="npm" style="color: inherit; text-decoration: none;">
+				<h3>npm</h3>
+			</a>
+			<p>Install the package with npm or yarn:</p>
+			<pre><code class="language-shell">npm install --save lambda-dom
+<span class="hljs-meta">#</span><span class="bash"><span class="hljs-comment"># or</span></span>
+yarn add lambda-dom</code></pre>
 			<p>All functions are exported from one index file. Import the functions you want to use:</p>
 			<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { deferFrames, getMeta, touchAll, ... } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;lambda-dom&#x27;</span></code></pre>
+			<a href="#cdn" id="cdn" style="color: inherit; text-decoration: none;">
+				<h3>cdn</h3>
+			</a>
+			<p>Alternatively you can grab the UMD bundle from <a href="https://www.jsdelivr.com/package/npm/lambda-dom">a CDN like jsDelivr</a> to get started quickly. The bundle exposes the global variable <code>LD</code> that contains all the functions. <a href="https://jsfiddle.net/JJWesterkamp/8xh0cLtk/">Here&#39;s a fiddle</a> that includes the bundle from jsDelivr.</p>
+			<pre><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://cdn.jsdelivr.net/npm/lambda-dom/umd/lambda-dom.js&quot;</span>&gt;</span><span class="handlebars"><span class="xml">
+
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">
+    LD.deferFrames(<span class="hljs-number">100</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;100 animation frames later...&#x27;</span>);
+    });
+</span></span></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre>
 			<a href="#api-documentation" id="api-documentation" style="color: inherit; text-decoration: none;">
 				<h2>API Documentation</h2>
 			</a>
@@ -147,8 +168,7 @@
 				<h2>Contributing</h2>
 			</a>
 			<p>I mainly wrote this package for my own convenience. However, if you have suggestions how to improve it, or
-				want to contribute by adding new useful functions you&#39;re absolutely welcome to do so. File an issue, or even better, submit a PR.
-			If you like this package and think it is useful don&#39;t forget to star it!</p>
+			want to contribute by adding new useful functions you&#39;re absolutely welcome to do so. File an issue, or even better, submit a PR. If you like this package and think it is useful please leave a star on Github :)</p>
 			<a href="#license" id="license" style="color: inherit; text-decoration: none;">
 				<h2>License</h2>
 			</a>
@@ -201,7 +221,7 @@
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/JJWesterkamp/lambda-dom/blob/d9bc213/src/addClasses.ts#L24">addClasses.ts:24</a></li>
+								<li>Defined in <a href="https://github.com/JJWesterkamp/lambda-dom/blob/5ea6a74/src/addClasses.ts#L24">addClasses.ts:24</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -268,7 +288,7 @@ addClasses(<span class="hljs-string">&#x27;class-one&#x27;</span>, <span class="
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/JJWesterkamp/lambda-dom/blob/d9bc213/src/addClassesForMS.ts#L18">addClassesForMS.ts:18</a></li>
+								<li>Defined in <a href="https://github.com/JJWesterkamp/lambda-dom/blob/5ea6a74/src/addClassesForMS.ts#L18">addClassesForMS.ts:18</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -332,7 +352,7 @@ addClassesForMS(<span class="hljs-number">500</span>, <span class="hljs-string">
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/JJWesterkamp/lambda-dom/blob/d9bc213/src/addClassesForNFrames.ts#L19">addClassesForNFrames.ts:19</a></li>
+								<li>Defined in <a href="https://github.com/JJWesterkamp/lambda-dom/blob/5ea6a74/src/addClassesForNFrames.ts#L19">addClassesForNFrames.ts:19</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -396,7 +416,7 @@ addClassesForNFrames(<span class="hljs-number">10</span>, <span class="hljs-stri
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/JJWesterkamp/lambda-dom/blob/d9bc213/src/deferFrames.ts#L28">deferFrames.ts:28</a></li>
+								<li>Defined in <a href="https://github.com/JJWesterkamp/lambda-dom/blob/5ea6a74/src/deferFrames.ts#L28">deferFrames.ts:28</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -466,7 +486,7 @@ requestAnimationFrame(<span class="hljs-function">() =&gt;</span> requestAnimati
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/JJWesterkamp/lambda-dom/blob/d9bc213/src/deferFramesP.ts#L20">deferFramesP.ts:20</a></li>
+								<li>Defined in <a href="https://github.com/JJWesterkamp/lambda-dom/blob/5ea6a74/src/deferFramesP.ts#L20">deferFramesP.ts:20</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -508,7 +528,7 @@ requestAnimationFrame(<span class="hljs-function">() =&gt;</span> requestAnimati
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/JJWesterkamp/lambda-dom/blob/d9bc213/src/display.ts#L31">display.ts:31</a></li>
+								<li>Defined in <a href="https://github.com/JJWesterkamp/lambda-dom/blob/5ea6a74/src/display.ts#L31">display.ts:31</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -585,7 +605,7 @@ display(<span class="hljs-string">&#x27;none&#x27;</span>) (someElement)
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/JJWesterkamp/lambda-dom/blob/d9bc213/src/getMeta.ts#L42">getMeta.ts:42</a></li>
+								<li>Defined in <a href="https://github.com/JJWesterkamp/lambda-dom/blob/5ea6a74/src/getMeta.ts#L42">getMeta.ts:42</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -625,7 +645,7 @@ display(<span class="hljs-string">&#x27;none&#x27;</span>) (someElement)
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/JJWesterkamp/lambda-dom/blob/d9bc213/src/getMeta.ts#L85">getMeta.ts:85</a></li>
+								<li>Defined in <a href="https://github.com/JJWesterkamp/lambda-dom/blob/5ea6a74/src/getMeta.ts#L85">getMeta.ts:85</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -704,7 +724,7 @@ display(<span class="hljs-string">&#x27;none&#x27;</span>) (someElement)
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/JJWesterkamp/lambda-dom/blob/d9bc213/src/hide.ts#L19">hide.ts:19</a></li>
+								<li>Defined in <a href="https://github.com/JJWesterkamp/lambda-dom/blob/5ea6a74/src/hide.ts#L19">hide.ts:19</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -748,7 +768,7 @@ display(<span class="hljs-string">&#x27;none&#x27;</span>) (someElement)</code><
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/JJWesterkamp/lambda-dom/blob/d9bc213/src/queryAll.ts#L22">queryAll.ts:22</a></li>
+								<li>Defined in <a href="https://github.com/JJWesterkamp/lambda-dom/blob/5ea6a74/src/queryAll.ts#L22">queryAll.ts:22</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -796,7 +816,7 @@ display(<span class="hljs-string">&#x27;none&#x27;</span>) (someElement)</code><
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/JJWesterkamp/lambda-dom/blob/d9bc213/src/queryAll.ts#L23">queryAll.ts:23</a></li>
+								<li>Defined in <a href="https://github.com/JJWesterkamp/lambda-dom/blob/5ea6a74/src/queryAll.ts#L23">queryAll.ts:23</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -819,7 +839,7 @@ display(<span class="hljs-string">&#x27;none&#x27;</span>) (someElement)</code><
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/JJWesterkamp/lambda-dom/blob/d9bc213/src/queryAll.ts#L24">queryAll.ts:24</a></li>
+								<li>Defined in <a href="https://github.com/JJWesterkamp/lambda-dom/blob/5ea6a74/src/queryAll.ts#L24">queryAll.ts:24</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -852,7 +872,7 @@ display(<span class="hljs-string">&#x27;none&#x27;</span>) (someElement)</code><
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/JJWesterkamp/lambda-dom/blob/d9bc213/src/readDataset.ts#L20">readDataset.ts:20</a></li>
+								<li>Defined in <a href="https://github.com/JJWesterkamp/lambda-dom/blob/5ea6a74/src/readDataset.ts#L20">readDataset.ts:20</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -907,7 +927,7 @@ display(<span class="hljs-string">&#x27;none&#x27;</span>) (someElement)</code><
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/JJWesterkamp/lambda-dom/blob/d9bc213/src/readDataset.ts#L30">readDataset.ts:30</a></li>
+								<li>Defined in <a href="https://github.com/JJWesterkamp/lambda-dom/blob/5ea6a74/src/readDataset.ts#L30">readDataset.ts:30</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -990,7 +1010,7 @@ display(<span class="hljs-string">&#x27;none&#x27;</span>) (someElement)</code><
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/JJWesterkamp/lambda-dom/blob/d9bc213/src/removeClasses.ts#L24">removeClasses.ts:24</a></li>
+								<li>Defined in <a href="https://github.com/JJWesterkamp/lambda-dom/blob/5ea6a74/src/removeClasses.ts#L24">removeClasses.ts:24</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -1056,7 +1076,7 @@ removeClasses(<span class="hljs-string">&#x27;class-one&#x27;</span>, <span clas
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/JJWesterkamp/lambda-dom/blob/d9bc213/src/removeClassesForMS.ts#L17">removeClassesForMS.ts:17</a></li>
+								<li>Defined in <a href="https://github.com/JJWesterkamp/lambda-dom/blob/5ea6a74/src/removeClassesForMS.ts#L17">removeClassesForMS.ts:17</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -1120,7 +1140,7 @@ removeClassesForMS(<span class="hljs-number">500</span>, <span class="hljs-strin
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/JJWesterkamp/lambda-dom/blob/d9bc213/src/removeClassesForNFrames.ts#L19">removeClassesForNFrames.ts:19</a></li>
+								<li>Defined in <a href="https://github.com/JJWesterkamp/lambda-dom/blob/5ea6a74/src/removeClassesForNFrames.ts#L19">removeClassesForNFrames.ts:19</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -1184,7 +1204,7 @@ removeClassesForNFrames(<span class="hljs-number">10</span>, <span class="hljs-s
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/JJWesterkamp/lambda-dom/blob/d9bc213/src/setMeta.ts#L21">setMeta.ts:21</a></li>
+								<li>Defined in <a href="https://github.com/JJWesterkamp/lambda-dom/blob/5ea6a74/src/setMeta.ts#L21">setMeta.ts:21</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -1247,7 +1267,7 @@ removeClassesForNFrames(<span class="hljs-number">10</span>, <span class="hljs-s
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/JJWesterkamp/lambda-dom/blob/d9bc213/src/show.ts#L20">show.ts:20</a></li>
+								<li>Defined in <a href="https://github.com/JJWesterkamp/lambda-dom/blob/5ea6a74/src/show.ts#L20">show.ts:20</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -1290,7 +1310,7 @@ display(<span class="hljs-literal">null</span>) (someElement)</code></pre>
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/JJWesterkamp/lambda-dom/blob/d9bc213/src/style.ts#L30">style.ts:30</a></li>
+								<li>Defined in <a href="https://github.com/JJWesterkamp/lambda-dom/blob/5ea6a74/src/style.ts#L30">style.ts:30</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -1359,7 +1379,7 @@ elements.forEach(warningButtonStyle)</code></pre>
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/JJWesterkamp/lambda-dom/blob/d9bc213/src/toggleClasses.ts#L33">toggleClasses.ts:33</a></li>
+								<li>Defined in <a href="https://github.com/JJWesterkamp/lambda-dom/blob/5ea6a74/src/toggleClasses.ts#L33">toggleClasses.ts:33</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -1448,7 +1468,7 @@ toggleClasses(<span class="hljs-string">&#x27;class-one&#x27;</span>, <span clas
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/JJWesterkamp/lambda-dom/blob/d9bc213/src/touchAll.ts#L44">touchAll.ts:44</a></li>
+								<li>Defined in <a href="https://github.com/JJWesterkamp/lambda-dom/blob/5ea6a74/src/touchAll.ts#L44">touchAll.ts:44</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -1543,7 +1563,7 @@ toggleClasses(<span class="hljs-string">&#x27;class-one&#x27;</span>, <span clas
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/JJWesterkamp/lambda-dom/blob/d9bc213/src/touchAll.ts#L45">touchAll.ts:45</a></li>
+								<li>Defined in <a href="https://github.com/JJWesterkamp/lambda-dom/blob/5ea6a74/src/touchAll.ts#L45">touchAll.ts:45</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -1596,7 +1616,7 @@ toggleClasses(<span class="hljs-string">&#x27;class-one&#x27;</span>, <span clas
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/JJWesterkamp/lambda-dom/blob/d9bc213/src/touchAll.ts#L46">touchAll.ts:46</a></li>
+								<li>Defined in <a href="https://github.com/JJWesterkamp/lambda-dom/blob/5ea6a74/src/touchAll.ts#L46">touchAll.ts:46</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -1655,7 +1675,7 @@ toggleClasses(<span class="hljs-string">&#x27;class-one&#x27;</span>, <span clas
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/JJWesterkamp/lambda-dom/blob/d9bc213/src/touchAll.ts#L47">touchAll.ts:47</a></li>
+								<li>Defined in <a href="https://github.com/JJWesterkamp/lambda-dom/blob/5ea6a74/src/touchAll.ts#L47">touchAll.ts:47</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -1720,7 +1740,7 @@ toggleClasses(<span class="hljs-string">&#x27;class-one&#x27;</span>, <span clas
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/JJWesterkamp/lambda-dom/blob/d9bc213/src/touchAll.ts#L48">touchAll.ts:48</a></li>
+								<li>Defined in <a href="https://github.com/JJWesterkamp/lambda-dom/blob/5ea6a74/src/touchAll.ts#L48">touchAll.ts:48</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -1791,7 +1811,7 @@ toggleClasses(<span class="hljs-string">&#x27;class-one&#x27;</span>, <span clas
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/JJWesterkamp/lambda-dom/blob/d9bc213/src/touchAll.ts#L49">touchAll.ts:49</a></li>
+								<li>Defined in <a href="https://github.com/JJWesterkamp/lambda-dom/blob/5ea6a74/src/touchAll.ts#L49">touchAll.ts:49</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -1868,7 +1888,7 @@ toggleClasses(<span class="hljs-string">&#x27;class-one&#x27;</span>, <span clas
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/JJWesterkamp/lambda-dom/blob/d9bc213/src/touchAll.ts#L50">touchAll.ts:50</a></li>
+								<li>Defined in <a href="https://github.com/JJWesterkamp/lambda-dom/blob/5ea6a74/src/touchAll.ts#L50">touchAll.ts:50</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -1951,7 +1971,7 @@ toggleClasses(<span class="hljs-string">&#x27;class-one&#x27;</span>, <span clas
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/JJWesterkamp/lambda-dom/blob/d9bc213/src/touchAll.ts#L51">touchAll.ts:51</a></li>
+								<li>Defined in <a href="https://github.com/JJWesterkamp/lambda-dom/blob/5ea6a74/src/touchAll.ts#L51">touchAll.ts:51</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -2056,7 +2076,7 @@ toggleClasses(<span class="hljs-string">&#x27;class-one&#x27;</span>, <span clas
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/JJWesterkamp/lambda-dom/blob/d9bc213/src/touchAllP.ts#L32">touchAllP.ts:32</a></li>
+								<li>Defined in <a href="https://github.com/JJWesterkamp/lambda-dom/blob/5ea6a74/src/touchAllP.ts#L32">touchAllP.ts:32</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -2108,7 +2128,7 @@ toggleClasses(<span class="hljs-string">&#x27;class-one&#x27;</span>, <span clas
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/JJWesterkamp/lambda-dom/blob/d9bc213/src/touchAllP.ts#L33">touchAllP.ts:33</a></li>
+								<li>Defined in <a href="https://github.com/JJWesterkamp/lambda-dom/blob/5ea6a74/src/touchAllP.ts#L33">touchAllP.ts:33</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -2134,7 +2154,7 @@ toggleClasses(<span class="hljs-string">&#x27;class-one&#x27;</span>, <span clas
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/JJWesterkamp/lambda-dom/blob/d9bc213/src/touchAllP.ts#L34">touchAllP.ts:34</a></li>
+								<li>Defined in <a href="https://github.com/JJWesterkamp/lambda-dom/blob/5ea6a74/src/touchAllP.ts#L34">touchAllP.ts:34</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -2163,7 +2183,7 @@ toggleClasses(<span class="hljs-string">&#x27;class-one&#x27;</span>, <span clas
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/JJWesterkamp/lambda-dom/blob/d9bc213/src/touchAllP.ts#L35">touchAllP.ts:35</a></li>
+								<li>Defined in <a href="https://github.com/JJWesterkamp/lambda-dom/blob/5ea6a74/src/touchAllP.ts#L35">touchAllP.ts:35</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -2195,7 +2215,7 @@ toggleClasses(<span class="hljs-string">&#x27;class-one&#x27;</span>, <span clas
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/JJWesterkamp/lambda-dom/blob/d9bc213/src/touchAllP.ts#L36">touchAllP.ts:36</a></li>
+								<li>Defined in <a href="https://github.com/JJWesterkamp/lambda-dom/blob/5ea6a74/src/touchAllP.ts#L36">touchAllP.ts:36</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -2230,7 +2250,7 @@ toggleClasses(<span class="hljs-string">&#x27;class-one&#x27;</span>, <span clas
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/JJWesterkamp/lambda-dom/blob/d9bc213/src/touchAllP.ts#L37">touchAllP.ts:37</a></li>
+								<li>Defined in <a href="https://github.com/JJWesterkamp/lambda-dom/blob/5ea6a74/src/touchAllP.ts#L37">touchAllP.ts:37</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -2268,7 +2288,7 @@ toggleClasses(<span class="hljs-string">&#x27;class-one&#x27;</span>, <span clas
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/JJWesterkamp/lambda-dom/blob/d9bc213/src/touchAllP.ts#L38">touchAllP.ts:38</a></li>
+								<li>Defined in <a href="https://github.com/JJWesterkamp/lambda-dom/blob/5ea6a74/src/touchAllP.ts#L38">touchAllP.ts:38</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -2309,7 +2329,7 @@ toggleClasses(<span class="hljs-string">&#x27;class-one&#x27;</span>, <span clas
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/JJWesterkamp/lambda-dom/blob/d9bc213/src/touchAllP.ts#L39">touchAllP.ts:39</a></li>
+								<li>Defined in <a href="https://github.com/JJWesterkamp/lambda-dom/blob/5ea6a74/src/touchAllP.ts#L39">touchAllP.ts:39</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -2362,7 +2382,7 @@ toggleClasses(<span class="hljs-string">&#x27;class-one&#x27;</span>, <span clas
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/JJWesterkamp/lambda-dom/blob/d9bc213/src/touchElement.ts#L20">touchElement.ts:20</a></li>
+								<li>Defined in <a href="https://github.com/JJWesterkamp/lambda-dom/blob/5ea6a74/src/touchElement.ts#L20">touchElement.ts:20</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -2441,7 +2461,7 @@ toggleClasses(<span class="hljs-string">&#x27;class-one&#x27;</span>, <span clas
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/JJWesterkamp/lambda-dom/blob/d9bc213/src/touchElementP.ts#L17">touchElementP.ts:17</a></li>
+								<li>Defined in <a href="https://github.com/JJWesterkamp/lambda-dom/blob/5ea6a74/src/touchElementP.ts#L17">touchElementP.ts:17</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -2492,7 +2512,7 @@ toggleClasses(<span class="hljs-string">&#x27;class-one&#x27;</span>, <span clas
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/JJWesterkamp/lambda-dom/blob/d9bc213/src/writeDataset.ts#L17">writeDataset.ts:17</a></li>
+								<li>Defined in <a href="https://github.com/JJWesterkamp/lambda-dom/blob/5ea6a74/src/writeDataset.ts#L17">writeDataset.ts:17</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
