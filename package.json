@@ -1,6 +1,6 @@
 {
   "name": "lambda-dom",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "Some DOM helper functions for programming web projects in a functional style.",
   "keywords": [
     "dom",
