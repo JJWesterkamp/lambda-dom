@@ -5,7 +5,7 @@
  * `null` is returned from `touchElement`.
  *
  * @param selector A CSS-compatible selector to match the searched element against.
- * @param cb The callback to execute when the element is found.
+ * @param callback The callback to execute when the element is found.
  * @param scope An optional scope for the element query.
  *
  * @example
