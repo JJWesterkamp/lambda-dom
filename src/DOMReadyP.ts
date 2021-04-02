@@ -6,10 +6,12 @@
  *
  * @return {Promise<void>}
  */
-export const DOMReadyP = () => new Promise<void>((resolve) => {
-    if (document.readyState !== 'loading') {
-        resolve()
-    } else {
-        window.addEventListener('DOMContentLoaded', () => resolve())
-    }
-})
+export function DOMReadyP(): Promise<void> {
+    return new Promise((resolve) => {
+        if (document.readyState !== 'loading') {
+            resolve()
+        } else {
+            window.addEventListener('DOMContentLoaded', () => resolve())
+        }
+    })
+}

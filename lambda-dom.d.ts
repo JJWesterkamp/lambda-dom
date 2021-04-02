@@ -97,15 +97,6 @@ export declare function deferFrames(n: number, handler: () => any): void;
  */
 export declare function deferFramesP(n: number): Promise<void>;
 /**
- * Returns a promise that resolves as soon as possible after the window is loaded.
- * If the {@link https://developer.mozilla.org/en-US/docs/Web/API/Document/readyState `document.readyState`}
- * is `'interactive'` or `'complete'` at call-time, the returned promise resolves immediately, otherwise it resolves upon
- * the DOMContentLoaded event.
- *
- * @return {Promise<void>}
- */
-export declare const DOMReadyP: () => Promise<void>;
-/**
  * Shows given element through the style.display property. Optionally takes a second
  * argument denoting the value for style.display. A `null` value will unset any inline
  * attibute for `display` to give back display control to the CSS stylesheet declarations.
@@ -136,6 +127,15 @@ export declare const DOMReadyP: () => Promise<void>;
  * ```
  */
 export declare function display(value: string | null): (element: HTMLElement) => void;
+/**
+ * Returns a promise that resolves as soon as possible after the window is loaded.
+ * If the {@link https://developer.mozilla.org/en-US/docs/Web/API/Document/readyState `document.readyState`}
+ * is `'interactive'` or `'complete'` at call-time, the returned promise resolves immediately, otherwise it resolves upon
+ * the DOMContentLoaded event.
+ *
+ * @return {Promise<void>}
+ */
+export declare function DOMReadyP(): Promise<void>;
 /**
  * Get the value of the content attribute for the first (and presumably only)
  * `<meta>` element with given `name` as the value for its name attribute.
@@ -722,7 +722,7 @@ export declare function touchElementP<T extends Element>(selector: string, scope
  *
  * @return {Promise<void>}
  */
-export declare const windowLoadP: () => Promise<void>;
+export declare function windowLoadP(): Promise<void>;
 /**
  * Write dataset values. Takes a key, and returns a new function that takes the value, which in turn
  * returns the last function that takes the element to write the key-value pair to.

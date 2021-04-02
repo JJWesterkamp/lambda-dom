@@ -6,10 +6,12 @@
  *
  * @return {Promise<void>}
  */
-export const windowLoadP = () => new Promise<void>((resolve) => {
-    if (document.readyState === 'complete') {
-        resolve()
-    } else {
-        window.addEventListener('load', () => resolve())
-    }
-})
+export function windowLoadP(): Promise<void> {
+    return new Promise((resolve) => {
+        if (document.readyState === 'complete') {
+            resolve()
+        } else {
+            window.addEventListener('load', () => resolve())
+        }
+    })
+}
