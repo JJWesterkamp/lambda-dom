@@ -10,4 +10,5 @@ test
 jest.config.js
 package-lock.json
 tsconfig.json
+typedoc.json
 webpack.config.js
