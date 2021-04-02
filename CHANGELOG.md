@@ -5,6 +5,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.1.1] (2021-04-02)
+
+### Changed
+
+- Minor internal refactoring that only improves the declaration file.
+- Cleans up the contents of published packages, omitting unneeded files.
+
 ## [1.1.0] (2021-04-02)
 
 ### Added
@@ -59,7 +66,8 @@ This is merely a documentation update.
 
 [docs]: https://jjwesterkamp.github.io/lambda-dom/
 
-[Unreleased]: https://github.com/JJWesterkamp/lambda-dom/compare/v1.1.0...HEAD
+[Unreleased]: https://github.com/JJWesterkamp/lambda-dom/compare/v1.1.1...HEAD
+[1.1.1]: https://github.com/JJWesterkamp/lambda-dom/compare/v1.1.0...v1.1.1
 [1.1.0]: https://github.com/JJWesterkamp/lambda-dom/compare/v1.0.1...v1.1.0
 [1.0.1]: https://github.com/JJWesterkamp/lambda-dom/compare/v1.0.0...v1.0.1
 [1.0.0]: https://github.com/JJWesterkamp/lambda-dom/compare/v1.0.0-beta1...v1.0.0
