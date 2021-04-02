@@ -9,8 +9,7 @@ jest.mock('../src/touchElement', () => ({
     touchElement: spy,
 }))
 
-import { touchElementP, touchElement } from '../src'
-touchElement
+import { touchElementP } from '../src'
 
 describe('touchElementP()', () => {
 
