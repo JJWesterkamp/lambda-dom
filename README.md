@@ -48,9 +48,116 @@ Alternatively you can grab the UMD bundle from [a CDN like jsDelivr][jsdelivr] t
 </script>
 ```
 
-## API Documentation
+## Available functions
 
-Visit the [documentation page][docs] for the API documentation of this package.
+Below is an overview of the included functions. Visit the [documentation page][docs] for the full documentation of this package, including type signatures and examples.
+
+- ### `DOMReadyP` [full docs](https://jjwesterkamp.github.io/lambda-dom/globals.html#domreadyp) | [source](https://github.com/JJWesterkamp/lambda-dom/blob/master/src/DOMReadyP.ts)
+
+  Returns a promise that resolves as soon as possible after the window is loaded. If the `document.readyState` is
+  `'interactive'` or `'complete'` at call-time, the returned promise resolves immediately, otherwise it resolves upon the DOMContentLoaded event.
+
+- ### `addClasses` [full docs](https://jjwesterkamp.github.io/lambda-dom/globals.html#addclasses) | [source](https://github.com/JJWesterkamp/lambda-dom/blob/master/src/addClasses.ts)
+
+  Curried function that first takes a list of classes, then returns a new function that takes the element to add those classes to.
+
+- ### `addClassesForMS` [full docs](https://jjwesterkamp.github.io/lambda-dom/globals.html#addclassesforms) | [source](https://github.com/JJWesterkamp/lambda-dom/blob/master/src/addClassesForMS.ts)
+
+  Adds classes to an element for a given amount of milliseconds.
+
+- ### `addClassesForNFrames` [full docs](https://jjwesterkamp.github.io/lambda-dom/globals.html#addclassesfornframes) | [source](https://github.com/JJWesterkamp/lambda-dom/blob/master/src/addClassesForNFrames.ts)
+
+  Adds classes to an element for a given amount of animation frames.
+
+- ### `deferFrames` [full docs](https://jjwesterkamp.github.io/lambda-dom/globals.html#deferframes) | [source](https://github.com/JJWesterkamp/lambda-dom/blob/master/src/deferFrames.ts)
+
+  Takes a positive (>= 0) integer `n` and a callback function, and executes the callback function after n animation frames have passed.
+
+- ### `deferFramesP` [full docs](https://jjwesterkamp.github.io/lambda-dom/globals.html#deferframesp) | [source](https://github.com/JJWesterkamp/lambda-dom/blob/master/src/deferFramesP.ts)
+
+  Returns a `Promise<void>` that resolves after n animation frames have passed. Like `deferFrames` but 'portable', so that many callbacks can subscribe to the 'event' of n frames having passed.
+
+- ### `display` [full docs](https://jjwesterkamp.github.io/lambda-dom/globals.html#display) | [source](https://github.com/JJWesterkamp/lambda-dom/blob/master/src/display.ts)
+
+  Shows given element through the `style.display` property. Optionally takes a second argument denoting the value for style.display. A null value will unset any inline attribute for display to give back display control to the CSS stylesheet declarations.
+
+- ### `getMeta` [full docs](https://jjwesterkamp.github.io/lambda-dom/globals.html#getmeta) | [source](https://github.com/JJWesterkamp/lambda-dom/blob/master/src/getMeta.ts)
+
+  Get the value of the content attribute for the first (and presumably only) `<meta>` element with given name as the value for its name attribute. Optionally takes a transformer to deserialize string values.
+
+- ### `hide` [full docs](https://jjwesterkamp.github.io/lambda-dom/globals.html#hide) | [source](https://github.com/JJWesterkamp/lambda-dom/blob/master/src/hide.ts)
+
+  Hide the given element through the `style.display` property.
+
+- ### `onDOMReady` [full docs](https://jjwesterkamp.github.io/lambda-dom/globals.html#ondomready) | [source](https://github.com/JJWesterkamp/lambda-dom/blob/master/src/onDOMReady.ts)
+
+  Takes a callback that is executed as soon as possible after the DOM content is loaded. If the `document.readyState` is either `'interactive'` or `'complete'` at call-time, the callback is called immediately, otherwise it is called upon the DOMContentLoaded event.
+
+- ### `onWindowLoad` [full docs](https://jjwesterkamp.github.io/lambda-dom/globals.html#onwindowload) | [source](https://github.com/JJWesterkamp/lambda-dom/blob/master/src/onWindowLoad.ts)
+
+  Takes a callback that is executed as soon as possible after the window is loaded. If the `document.readyState` is `'complete'` at call-time, the callback is called immediately, otherwise it is called upon the window load event.
+
+- ### `queryAll` [full docs](https://jjwesterkamp.github.io/lambda-dom/globals.html#queryall) | [source](https://github.com/JJWesterkamp/lambda-dom/blob/master/src/queryAll.ts)
+
+  Calls `querySelectorAll` with given selector on given scope, or on `document` by default when the scope is omitted. Returns an array containing the found elements.
+
+- ### `readDataset` [full docs](https://jjwesterkamp.github.io/lambda-dom/globals.html#readdataset) | [source](https://github.com/JJWesterkamp/lambda-dom/blob/master/src/readDataset.ts)
+
+  Read dataset values. Takes a dataset key and optionally a transformer for the corresponding value, and returns a new function that takes the element to read the dataset key from.
+
+- ### `removeClasses` [full docs](https://jjwesterkamp.github.io/lambda-dom/globals.html#removeclasses) | [source](https://github.com/JJWesterkamp/lambda-dom/blob/master/src/removeClasses.ts)
+
+  Curried function that first takes a list of classes, then returns a new function that takes the element to remove those classes from.
+
+- ### `removeClassesForMS` [full docs](https://jjwesterkamp.github.io/lambda-dom/globals.html#removeclassesforms) | [source](https://github.com/JJWesterkamp/lambda-dom/blob/master/src/removeClassesForMS.ts)
+
+  Removes classes from an element for a given amount of milliseconds.
+
+- ### `removeClassesForNFrames` [full docs](https://jjwesterkamp.github.io/lambda-dom/globals.html#removeclassesfornframes) | [source](https://github.com/JJWesterkamp/lambda-dom/blob/master/src/removeClassesForNFrames.ts)
+
+  Removes classes from an element for a given amount of animation frames.
+
+- ### `setMeta` [full docs](https://jjwesterkamp.github.io/lambda-dom/globals.html#setmeta) | [source](https://github.com/JJWesterkamp/lambda-dom/blob/master/src/setMeta.ts)
+
+  Takes a string name and returns a new function that takes a string content, and then updates the `<meta>` tag with the given name if it exists, or otherwise creates a new one. The meta element to which the content value was set is returned for reference. When a new element is created it will be appended to the end of `<head>`.
+
+- ### `show` [full docs](https://jjwesterkamp.github.io/lambda-dom/globals.html#show) | [source](https://github.com/JJWesterkamp/lambda-dom/blob/master/src/show.ts)
+
+  Shows the given element by unsetting any inline `style.display` value, assuming no display: none rule is set in CSS.
+
+- ### `style` [full docs](https://jjwesterkamp.github.io/lambda-dom/globals.html#style) | [source](https://github.com/JJWesterkamp/lambda-dom/blob/master/src/style.ts)
+
+  Takes an object of style attribute values, and returns a new function that takes an element to apply those styles to.
+
+- ### `toggleClasses` [full docs](https://jjwesterkamp.github.io/lambda-dom/globals.html#toggleclasses) | [source](https://github.com/JJWesterkamp/lambda-dom/blob/master/src/toggleClasses.ts)
+
+  Curried function that first takes a list of classes, then returns a new function that takes the element on which to toggle those classes. The second function optionally takes the second argument `force: boolean` to use on the native `DOMTokenList.toggle()` method. Note that the value for force will be the same for all classes that are toggled.
+
+- ### `touchAll` [full docs](https://jjwesterkamp.github.io/lambda-dom/globals.html#touchall) | [source](https://github.com/JJWesterkamp/lambda-dom/blob/master/src/touchAll.ts)
+
+  Takes an array of selectors and a callback function. When for all selectors an element is found, the callback is called with each found element in order. Optionally takes a scope as third argument to use for the element search.
+
+- ### `touchAllP` [full docs](https://jjwesterkamp.github.io/lambda-dom/globals.html#touchallp) | [source](https://github.com/JJWesterkamp/lambda-dom/blob/master/src/touchAllP.ts)
+
+  Takes an array of selectors. Returns a promise that will only resolve when for all selectors an element is found. The promise value is an array of the elements in the order of the selector array. Optionally takes a scope as third argument to use for the element search.
+
+  This function is useful as an alternative for `touchAll` in async functions. When awaited it'll block all further execution of the function when not all elements are found.
+
+- ### `touchElement` [full docs](https://jjwesterkamp.github.io/lambda-dom/globals.html#touchelement) | [source](https://github.com/JJWesterkamp/lambda-dom/blob/master/src/touchElement.ts)
+
+  Finds the first element within the set scope that matches selector. If found the element is applied to the given callback function, and the function's return value will be propagated as return value of `touchElement`. If no element is found, the callback is not invoked, and `null` is returned from `touchElement`.
+
+- ### `touchElementP` [full docs](https://jjwesterkamp.github.io/lambda-dom/globals.html#touchelementp) | [source](https://github.com/JJWesterkamp/lambda-dom/blob/master/src/touchElementP.ts)
+
+  Finds the first element within the set scope that matches a given selector. If found the returned promise resolves with the element. If no element is found, the promise will never resolve. Like `touchElement` but 'portable', so that many callbacks can subscribe to the 'event' of the element being found.
+
+- ### `windowLoadP` [full docs](https://jjwesterkamp.github.io/lambda-dom/globals.html#windowloadp) | [source](https://github.com/JJWesterkamp/lambda-dom/blob/master/src/windowLoadP.ts)
+
+  Returns a promise that resolves as soon as possible after the window is loaded. If the `document.readyState` is `'complete'` at call-time, the returned promise resolves immediately, otherwise it resolves upon the window load event.
+
+- ### `writeDataset` [full docs](https://jjwesterkamp.github.io/lambda-dom/globals.html#writedataset) | [source](https://github.com/JJWesterkamp/lambda-dom/blob/master/src/writeDataset.ts)
+
+  Write dataset values. Takes a key, and returns a new function that takes the value, which in turn returns the last function that takes the element to write the key-value pair to.
 
 ## Contributing
 
