@@ -97,6 +97,15 @@ export declare function deferFrames(n: number, handler: () => any): void;
  */
 export declare function deferFramesP(n: number): Promise<void>;
 /**
+ * Returns a promise that resolves as soon as possible after the window is loaded.
+ * If the {@link https://developer.mozilla.org/en-US/docs/Web/API/Document/readyState `document.readyState`}
+ * is `'interactive'` or `'complete'` at call-time, the returned promise resolves immediately, otherwise it resolves upon
+ * the DOMContentLoaded event.
+ *
+ * @return {Promise<void>}
+ */
+export declare const DOMReadyP: () => Promise<void>;
+/**
  * Shows given element through the style.display property. Optionally takes a second
  * argument denoting the value for style.display. A `null` value will unset any inline
  * attibute for `display` to give back display control to the CSS stylesheet declarations.
@@ -229,6 +238,26 @@ export declare function getMeta<T>(name: string, transformer: (content: string) 
  * ```
  */
 export declare function hide(element: HTMLElement): void;
+/**
+ * Takes a callback that is executed as soon as possible after the DOM content is loaded.
+ * If the {@link https://developer.mozilla.org/en-US/docs/Web/API/Document/readyState `document.readyState`}
+ * is either `'interactive'` or `'complete'` at call-time, the callback is called immediately,
+ * otherwise it is called upon the DOMContentLoaded event.
+ *
+ * @param {Function} fn
+ * @return {Promise} A promise that resolves with the eventual return value of given callback.
+ */
+export declare function onDOMReady<T>(fn: () => T): Promise<T>;
+/**
+ * Takes a callback that is executed as soon as possible after the window is loaded.
+ * If the {@link https://developer.mozilla.org/en-US/docs/Web/API/Document/readyState `document.readyState`}
+ * is `'complete'` at call-time, the callback is called immediately, otherwise it is called upon
+ * the window load event.
+ *
+ * @param {Function} fn
+ * @return {Promise} A promise that resolves with the eventual return value of given callback.
+ */
+export declare function onWindowLoad<T>(fn: () => T): Promise<T>;
 /**
  * Calls `querySelectorAll` with given `selector` on given `scope`, or on `document` by default when the
  * scope is omitted. Returns an array containing the found elements.
@@ -657,7 +686,7 @@ export declare function touchAllP<T1 extends Element, T2 extends Element, T3 ext
  * `null` is returned from `touchElement`.
  *
  * @param selector A CSS-compatible selector to match the searched element against.
- * @param cb The callback to execute when the element is found.
+ * @param callback The callback to execute when the element is found.
  * @param scope An optional scope for the element query.
  *
  * @example
@@ -685,6 +714,15 @@ export declare function touchElement<T extends Element, U = any>(selector: strin
  * ```
  */
 export declare function touchElementP<T extends Element>(selector: string, scope?: ParentNode): Promise<T>;
+/**
+ * Returns a promise that resolves as soon as possible after the window is loaded.
+ * If the {@link https://developer.mozilla.org/en-US/docs/Web/API/Document/readyState `document.readyState`}
+ * is `'complete'` at call-time, the returned promise resolves immediately, otherwise it resolves upon
+ * the window load event.
+ *
+ * @return {Promise<void>}
+ */
+export declare const windowLoadP: () => Promise<void>;
 /**
  * Write dataset values. Takes a key, and returns a new function that takes the value, which in turn
  * returns the last function that takes the element to write the key-value pair to.

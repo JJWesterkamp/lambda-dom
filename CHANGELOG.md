@@ -5,6 +5,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- promise factory `DOMReadyP`
+- function `onDOMReady`
+- promise factory `windowLoadP`
+- function `onWindowLoad`
+
 ## [1.0.1] (2020-11-19)
 
 This is merely a documentation update.
