@@ -20,5 +20,6 @@ describe('remove()', () => {
     test('skips silently if the given element is not inserted', () => {
         const child = createElement('class-a')
         remove(child)
+        // No errors should be thrown.
     })
 })
