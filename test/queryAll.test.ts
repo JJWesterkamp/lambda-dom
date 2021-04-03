@@ -1,10 +1,5 @@
 import { queryAll } from '../src'
-
-const createElement = (className: string) => {
-    const element = document.createElement('div')
-    element.classList.add(className)
-    return element
-}
+import { createElement } from './helpers'
 
 describe('queryAll()', () => {
 
