@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - function `queryWithin`
 - function `remove`
+- function `showIf`
+- function `displayIf`
 
 ## [1.1.2] (2021-04-02)
 
