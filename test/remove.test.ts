@@ -1,4 +1,4 @@
-import { remove } from '../src/remove'
+import { remove } from '../src'
 import { createElement } from './helpers'
 
 describe('remove()', () => {
