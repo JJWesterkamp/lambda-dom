@@ -128,6 +128,17 @@ export declare function deferFramesP(n: number): Promise<void>;
  */
 export declare function display(value: string | null): (element: HTMLElement) => void;
 /**
+ * Sets the `style.display` value to `displayValue` on given element if `cond` is truthy.
+ * Otherwise given element is being hidden. Uses {@link display display()} and {@link hide hide()}
+ * under the hood.
+ *
+ * @param cond         The condition for showing given element
+ * @param displayValue The `style.display` value to use. Also accepts (and defaults to) `null` for flexibility.
+ *                     See {@link showIf showIf()} for situations where `displayValue` should always be `null`.
+ * @param element      The element to conditionally display
+ */
+export declare function displayIf(cond: boolean, displayValue?: string | null): (element: HTMLElement) => void;
+/**
  * Returns a promise that resolves as soon as possible after the window is loaded.
  * If the {@link https://developer.mozilla.org/en-US/docs/Web/API/Document/readyState `document.readyState`}
  * is `'interactive'` or `'complete'` at call-time, the returned promise resolves immediately, otherwise it resolves upon
@@ -259,6 +270,52 @@ export declare function onDOMReady<T>(fn: () => T): Promise<T>;
  */
 export declare function onWindowLoad<T>(fn: () => T): Promise<T>;
 /**
+ * The call signatures for functions returned from {@link queryWithin `queryWithin()`}.
+ */
+export interface ScopedCssQueryFunction {
+	/**
+	 * @param {K} selector - An HTML element selector
+	 * @return {HTMLElementTagNameMap[K][]}
+	 */
+	<K extends keyof HTMLElementTagNameMap>(selector: K): HTMLElementTagNameMap[K][];
+	/**
+	 * @param {K} selector - An SVG element selector
+	 * @return {SVGElementTagNameMap[K][]}
+	 */
+	<K extends keyof SVGElementTagNameMap>(selector: K): SVGElementTagNameMap[K][];
+	/**
+	 * @param {string} selector - A non-element CSS selector
+	 * @return {T[]}
+	 */
+	<T extends Element>(selector: string): T[];
+}
+/**
+ * Takes an element as scope for CSS selector queries. Returns a function that takes
+ * selectors to query elements for within the given scope.
+ *
+ * @example
+ * ```typescript
+ * declare const scope: HTMLElement
+ * const queryFn = queryWithin(scope)
+ *
+ * // Recognizes keys of HTMLElementTagNameMap - links: HTMLAnchorElement[]
+ * const links = queryFn('a')
+ *
+ * // Recognizes keys of SVGElementTagNameMap - paths: SVGPathElement[]
+ * const paths = queryFn('path')
+ *
+ * // takes an explicit element type for other selectors - buttons: HTMLButtonElement[]
+ * const buttons = queryFn<HTMLButtonElement>('.button')
+ *
+ * // defaults to Element for element types - others: Element[]
+ * const others = queryFn('.other')
+ *
+ * // You can call queryWithin in one go, and still provide type arguments:
+ * const buttons2 = queryWithin(scope)<HTMLButtonElement>('.button')
+ * ```
+ */
+export declare function queryWithin(scope: ParentNode): ScopedCssQueryFunction;
+/**
  * Calls `querySelectorAll` with given `selector` on given `scope`, or on `document` by default when the
  * scope is omitted. Returns an array containing the found elements.
  *
@@ -312,6 +369,11 @@ export declare function readDataset(key: string): (element: HTMLElement) => stri
  *
  */
 export declare function readDataset<T>(key: string, transform: (value: string) => T): (element: HTMLElement) => T | undefined;
+/**
+ * Removes given element from the DOM if it's currently in it.
+ * @param {Element} element
+ */
+export declare function remove(element: Element): void;
 /**
  * Curried function that first takes a list of classes, then returns a new function that
  * takes the element to remove those classes from.
@@ -402,6 +464,14 @@ export declare function setMeta(name: string): (content: string) => HTMLMetaElem
  * ```
  */
 export declare function show(element: HTMLElement): void;
+/**
+ * Shows given element if `cond` is truthy. Otherwise given element is being hidden.
+ * Uses {@link show show()} and {@link hide hide()} under the hood.
+ *
+ * @param cond         The condition for showing given element
+ * @param element      The element to conditionally display
+ */
+export declare function showIf(cond: boolean): (element: HTMLElement) => void;
 /**
  * Takes an object of style attribute values, and returns a new function that takes an
  * element to apply those styles to.

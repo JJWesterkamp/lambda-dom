@@ -80,7 +80,11 @@ Below is an overview of the included functions. Visit the [documentation page][d
 - ### `display` [full docs](https://jjwesterkamp.github.io/lambda-dom/modules.html#display) | [source](https://github.com/JJWesterkamp/lambda-dom/blob/master/src/display.ts)
 
   Shows given element through the `style.display` property. Optionally takes a second argument denoting the value for style.display. A null value will unset any inline attribute for display to give back display control to the CSS stylesheet declarations.
+  
+- ### `displayIf` [full docs](https://jjwesterkamp.github.io/lambda-dom/modules.html#displayif) | [source](https://github.com/JJWesterkamp/lambda-dom/blob/master/src/displayIf.ts)
 
+  Sets the `style.display` value on elements if a given condition is truthy. Otherwise given elements are being hidden. Uses `display()` and `hide()` under the hood.
+  
 - ### `getMeta` [full docs](https://jjwesterkamp.github.io/lambda-dom/modules.html#getmeta) | [source](https://github.com/JJWesterkamp/lambda-dom/blob/master/src/getMeta.ts)
 
   Get the value of the content attribute for the first (and presumably only) `<meta>` element with given name as the value for its name attribute. Optionally takes a transformer to deserialize string values.
@@ -101,10 +105,18 @@ Below is an overview of the included functions. Visit the [documentation page][d
 
   Calls `querySelectorAll` with given selector on given scope, or on `document` by default when the scope is omitted. Returns an array containing the found elements.
 
+- ### `queryWithin` [full docs](https://jjwesterkamp.github.io/lambda-dom/modules.html#querywithin) | [source](https://github.com/JJWesterkamp/lambda-dom/blob/master/src/queryWithin.ts)
+
+  Takes an element as scope for CSS selector queries. Returns a function that takes selectors to query elements for within the given scope.
+  
 - ### `readDataset` [full docs](https://jjwesterkamp.github.io/lambda-dom/modules.html#readdataset) | [source](https://github.com/JJWesterkamp/lambda-dom/blob/master/src/readDataset.ts)
 
   Read dataset values. Takes a dataset key and optionally a transformer for the corresponding value, and returns a new function that takes the element to read the dataset key from.
 
+- ### `remove` [full docs](https://jjwesterkamp.github.io/lambda-dom/modules.html#remove) | [source](https://github.com/JJWesterkamp/lambda-dom/blob/master/src/remove.ts)
+
+  Removes given element from the DOM if it's currently in it.
+  
 - ### `removeClasses` [full docs](https://jjwesterkamp.github.io/lambda-dom/modules.html#removeclasses) | [source](https://github.com/JJWesterkamp/lambda-dom/blob/master/src/removeClasses.ts)
 
   Curried function that first takes a list of classes, then returns a new function that takes the element to remove those classes from.
@@ -124,6 +136,10 @@ Below is an overview of the included functions. Visit the [documentation page][d
 - ### `show` [full docs](https://jjwesterkamp.github.io/lambda-dom/modules.html#show) | [source](https://github.com/JJWesterkamp/lambda-dom/blob/master/src/show.ts)
 
   Shows the given element by unsetting any inline `style.display` value, assuming no display: none rule is set in CSS.
+
+- ### `showIf` [full docs](https://jjwesterkamp.github.io/lambda-dom/modules.html#showif) | [source](https://github.com/JJWesterkamp/lambda-dom/blob/master/src/showIf.ts)
+
+  Shows given element if cond is truthy. Otherwise given element is being hidden. Uses show() and hide() under the hood.
 
 - ### `style` [full docs](https://jjwesterkamp.github.io/lambda-dom/modules.html#style) | [source](https://github.com/JJWesterkamp/lambda-dom/blob/master/src/style.ts)
 

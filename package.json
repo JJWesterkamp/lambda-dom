@@ -1,6 +1,6 @@
 {
   "name": "lambda-dom",
-  "version": "1.1.2",
+  "version": "1.2.0",
   "description": "Some DOM helper functions for programming web projects in a functional style.",
   "keywords": [
     "dom",
@@ -27,7 +27,7 @@
     "test": "jest",
     "coveralls": "cat ./coverage/lcov.info | coveralls",
     "bump": "npx yarn version --new-version",
-    "preversion": "npm run build:declaration && npm run build:docs && git reset && git add ./lambda-dom.d.ts ./CHANGELOG.md ./docs/*",
+    "preversion": "npm run build:declaration && npm run build:docs && git reset && git add ./lambda-dom.d.ts ./CHANGELOG.md ./README.md ./docs/*",
     "prepublishOnly": "npm-run-all test build"
   },
   "repository": {
