@@ -54,7 +54,7 @@ Below is an overview of the included functions. Visit the [documentation page][d
 
 - ### `DOMReadyP` [full docs](https://jjwesterkamp.github.io/lambda-dom/modules.html#domreadyp) | [source](https://github.com/JJWesterkamp/lambda-dom/blob/master/src/DOMReadyP.ts)
 
-  Returns a promise that resolves as soon as possible after the window is loaded. If the `document.readyState` is
+  Returns a promise that resolves as soon as possible after the DOM content is loaded. If the `document.readyState` is
   `'interactive'` or `'complete'` at call-time, the returned promise resolves immediately, otherwise it resolves upon the DOMContentLoaded event.
 
 - ### `addClasses` [full docs](https://jjwesterkamp.github.io/lambda-dom/modules.html#addclasses) | [source](https://github.com/JJWesterkamp/lambda-dom/blob/master/src/addClasses.ts)

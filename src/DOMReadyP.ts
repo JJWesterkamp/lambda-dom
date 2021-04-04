@@ -1,5 +1,5 @@
 /**
- * Returns a promise that resolves as soon as possible after the window is loaded.
+ * Returns a promise that resolves as soon as possible after the DOM content is loaded.
  * If the {@link https://developer.mozilla.org/en-US/docs/Web/API/Document/readyState `document.readyState`}
  * is `'interactive'` or `'complete'` at call-time, the returned promise resolves immediately, otherwise it resolves upon
  * the DOMContentLoaded event.
