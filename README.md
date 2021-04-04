@@ -91,7 +91,7 @@ Below is an overview of the included functions. Visit the [documentation page][d
 
 - ### `hide` [full docs](https://jjwesterkamp.github.io/lambda-dom/modules.html#hide) | [source](https://github.com/JJWesterkamp/lambda-dom/blob/master/src/hide.ts)
 
-  Hide the given element through the `style.display` property.
+  Hide the given element through the `style.display` property. This is a specialisation of `display()` that always sets display to `'none'`.
 
 - ### `onDOMReady` [full docs](https://jjwesterkamp.github.io/lambda-dom/modules.html#ondomready) | [source](https://github.com/JJWesterkamp/lambda-dom/blob/master/src/onDOMReady.ts)
 
