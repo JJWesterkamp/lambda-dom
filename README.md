@@ -135,7 +135,7 @@ Below is an overview of the included functions. Visit the [documentation page][d
 
 - ### `show` [full docs](https://jjwesterkamp.github.io/lambda-dom/modules.html#show) | [source](https://github.com/JJWesterkamp/lambda-dom/blob/master/src/show.ts)
 
-  Shows the given element by unsetting any inline `style.display` value, assuming no display: none rule is set in CSS.
+  Shows the given element by unsetting any inline `style.display` value. This is a specialisation of `display()` that always unsets inline display.
 
 - ### `showIf` [full docs](https://jjwesterkamp.github.io/lambda-dom/modules.html#showif) | [source](https://github.com/JJWesterkamp/lambda-dom/blob/master/src/showIf.ts)
 
