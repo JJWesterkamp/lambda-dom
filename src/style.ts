@@ -1,14 +1,8 @@
-/**
- * @ignore
- */
-const toPairs = (object: { [key: string]: any }) => Object.keys(object).map((key: string) => [key, object[key]])
+import { StylableElement } from './_types'
 
 /**
  * Takes an object of style attribute values, and returns a new function that takes an
  * element to apply those styles to.
- *
- * @param styles An object with inline styles to set.
- * @param element An element to apply the inline styles to.
  *
  * @example
  *
@@ -26,11 +20,10 @@ const toPairs = (object: { [key: string]: any }) => Object.keys(object).map((key
  * declare const elements: HTMLElement[]
  * elements.forEach(warningButtonStyle)
  * ```
+ *
+ * @param styles An object with inline styles to set.
+ * @param element An element to apply the inline styles to.
  */
-export function style(styles: Partial<CSSStyleDeclaration>): (element: HTMLElement) => void {
-    return (element) => {
-        for (const [key, val] of toPairs(styles)) {
-            element.style[key] = val
-        }
-    }
+export function style(styles: Partial<CSSStyleDeclaration>): (element: StylableElement) => void {
+    return (element) => Object.assign(element.style, styles)
 }
