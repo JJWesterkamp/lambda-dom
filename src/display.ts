@@ -1,3 +1,5 @@
+import { CssDisplayValue, StylableElement } from './_types'
+
 /**
  * Shows given element through the style.display property. Optionally takes a second
  * argument denoting the value for style.display. A `null` value will unset any inline
@@ -28,7 +30,7 @@
  * (shouldShow ? showFn : hideFn) (someElement)
  * ```
  */
-export function display(value: string | null): (element: HTMLElement) => void {
+export function display(value: CssDisplayValue): (element: StylableElement) => void {
     return (element) => {
         element.style.display = value || ''
     }
