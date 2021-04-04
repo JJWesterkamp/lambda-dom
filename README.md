@@ -139,7 +139,7 @@ Below is an overview of the included functions. Visit the [documentation page][d
 
 - ### `showIf` [full docs](https://jjwesterkamp.github.io/lambda-dom/modules.html#showif) | [source](https://github.com/JJWesterkamp/lambda-dom/blob/master/src/showIf.ts)
 
-  Shows given element if cond is truthy. Otherwise given element is being hidden. Uses show() and hide() under the hood.
+  Takes a boolean condition, and returns a function that takes elements. The returned function will unset `style.display` onto a given element if the given condition is `true`. If the condition is `false`, `style.display` is set to `'none'`.
 
 - ### `style` [full docs](https://jjwesterkamp.github.io/lambda-dom/modules.html#style) | [source](https://github.com/JJWesterkamp/lambda-dom/blob/master/src/style.ts)
 
