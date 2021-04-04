@@ -17,7 +17,7 @@
  * type U = undefined | number
  * ```
  */
-export function readDataset(key: string): (element: HTMLElement) => string | undefined
+export function readDataset(key: string): (element: HTMLOrSVGElement) => string | undefined
 /**
  * Read dataset values. Takes a dataset key and optionally a transformer for the corresponding value,
  * and returns a new function that takes the element to read the dataset key from.
@@ -27,9 +27,9 @@ export function readDataset(key: string): (element: HTMLElement) => string | und
  * @param element The element to read the dataset value from.
  *
  */
-export function readDataset<T>(key: string, transform: (value: string) => T): (element: HTMLElement) => T | undefined
+export function readDataset<T>(key: string, transform: (value: string) => T): (element: HTMLOrSVGElement) => T | undefined
 export function readDataset(key: string, transform = (x: string) => x) {
-    return (element: HTMLElement) => {
+    return (element: HTMLOrSVGElement) => {
        const value = element.dataset[key]
         return value === undefined ? undefined : transform(value)
     }
