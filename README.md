@@ -83,8 +83,8 @@ Below is an overview of the included functions. Visit the [documentation page][d
   
 - ### `displayIf` [full docs](https://jjwesterkamp.github.io/lambda-dom/modules.html#displayif) | [source](https://github.com/JJWesterkamp/lambda-dom/blob/master/src/displayIf.ts)
 
-  Sets the `style.display` value on elements if a given condition is truthy. Otherwise given elements are being hidden. Uses `display()` and `hide()` under the hood.
-  
+  Takes a boolean condition and a CSS display value, and returns a function that takes elements. The returned function will set `style.display` onto given elements to either given value or to `'none'` based on the given cond boolean.
+
 - ### `getMeta` [full docs](https://jjwesterkamp.github.io/lambda-dom/modules.html#getmeta) | [source](https://github.com/JJWesterkamp/lambda-dom/blob/master/src/getMeta.ts)
 
   Get the value of the content attribute for the first (and presumably only) `<meta>` element with given name as the value for its name attribute. Optionally takes a transformer to deserialize string values.
