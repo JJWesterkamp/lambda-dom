@@ -1,9 +1,9 @@
 import { CssDisplayValue, StylableElement } from './_types'
 
 /**
- * Shows given element through the style.display property. Optionally takes a second
- * argument denoting the value for style.display. A `null` value will unset any inline
- * attibute for `display` to give back display control to the CSS stylesheet declarations.
+ * Takes a {@link CssDisplayValue CSS display value} and returns a function that takes
+ * {@link StylableElement elements}. When applied to an element the returned function
+ * assigns the given display value to the given element's `style.display` property.
  *
  * @param value The display CSS value to use. When `null` any inline display value is removed.
  * @param element The target element to set the display value on.

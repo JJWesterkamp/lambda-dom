@@ -31,7 +31,7 @@ yarn add lambda-dom
 All functions are exported from one index file. Import the functions you want to use:
 
 ```typescript
-import { deferFrames, getMeta, touchAll, ... } from 'lambda-dom'
+import { deferFrames, getMeta, touchAll ... } from 'lambda-dom'
 ```
 
 ### cdn
@@ -79,7 +79,7 @@ Below is an overview of the included functions. Visit the [documentation page][d
 
 - ### `display` [full docs](https://jjwesterkamp.github.io/lambda-dom/modules.html#display) | [source](https://github.com/JJWesterkamp/lambda-dom/blob/master/src/display.ts)
 
-  Shows given element through the `style.display` property. Optionally takes a second argument denoting the value for style.display. A null value will unset any inline attribute for display to give back display control to the CSS stylesheet declarations.
+  Takes a CSS display value and returns a function that takes elements. When applied to an element the returned function assigns the given display value to the given element's `style.display` property.
   
 - ### `displayIf` [full docs](https://jjwesterkamp.github.io/lambda-dom/modules.html#displayif) | [source](https://github.com/JJWesterkamp/lambda-dom/blob/master/src/displayIf.ts)
 
