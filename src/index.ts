@@ -1,3 +1,4 @@
+export * from './_types'
 export { addClasses } from './addClasses'
 export { addClassesForMS } from './addClassesForMS'
 export { addClassesForNFrames } from './addClassesForNFrames'
