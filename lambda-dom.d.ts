@@ -1,4 +1,18 @@
 /**
+ * Autocomplete list for the most commonly used `style.display` values.
+ * Includes the generic `string` type for compatibility and special syntax,
+ * as well as `null | undefined` which are used by lambda-dom as a signal to unset inline
+ * display values.
+ */
+export declare type CssDisplayValue = null | undefined | string | "block" | "contents" | "flex" | "grid" | "inherit" | "initial" | "inline" | "inline-block" | "inline-flex" | "inline-grid" | "inline-table" | "list-item" | "none" | "run-in" | "table" | "table-caption" | "table-cell" | "table-column" | "table-column-group" | "table-footer-group" | "table-header-group" | "table-row" | "table-row-group";
+/**
+ * Type alias for {@link https://developer.mozilla.org/en-US/docs/Web/API/ElementCSSInlineStyle ElementCSSInlineStyle}
+ * (objects with a style property of type
+ * {@link https://developer.mozilla.org/en-US/docs/Web/API/CSSStyleDeclaration `CSSStyleDeclaration`},
+ * most commonly elements)
+ */
+export declare type StylableElement = ElementCSSInlineStyle;
+/**
  * Curried function that first takes a list of classes, then returns a new function that
  * takes the element to add those classes to.
  *
@@ -97,9 +111,9 @@ export declare function deferFrames(n: number, handler: () => any): void;
  */
 export declare function deferFramesP(n: number): Promise<void>;
 /**
- * Shows given element through the style.display property. Optionally takes a second
- * argument denoting the value for style.display. A `null` value will unset any inline
- * attibute for `display` to give back display control to the CSS stylesheet declarations.
+ * Takes a {@link CssDisplayValue CSS display value} and returns a function that takes
+ * {@link StylableElement elements}. When applied to an element the returned function
+ * assigns the given display value to the given element's `style.display` property.
  *
  * @param value The display CSS value to use. When `null` any inline display value is removed.
  * @param element The target element to set the display value on.
@@ -126,20 +140,56 @@ export declare function deferFramesP(n: number): Promise<void>;
  * (shouldShow ? showFn : hideFn) (someElement)
  * ```
  */
-export declare function display(value: string | null): (element: HTMLElement) => void;
+export declare function display(value: CssDisplayValue): (element: StylableElement) => void;
 /**
- * Sets the `style.display` value to `displayValue` on given element if `cond` is truthy.
- * Otherwise given element is being hidden. Uses {@link display display()} and {@link hide hide()}
- * under the hood.
+ * Takes a `boolean` condition and a {@link CssDisplayValue CSS display value}, and returns a function
+ * that takes elements. The returned function will set `style.display` onto given elements to either given
+ * value or to `'none'` based on the given `cond` boolean.
  *
- * @param cond         The condition for showing given element
- * @param displayValue The `style.display` value to use. Also accepts (and defaults to) `null` for flexibility.
- *                     See {@link showIf showIf()} for situations where `displayValue` should always be `null`.
- * @param element      The element to conditionally display
+ * Note that the condition is constant for all future calls to the returned function.
+ * See {@link displayUsing displayUsing()} for cases where the boolean condition should
+ * be determined for each element individually.
+ *
+ * @example
+ * ```typescript
+ * declare const checkboxes: HTMLInputElement[]
+ * declare const myCondition: boolean
+ *
+ * // Sets display: 'flex' to all checkboxes if myCondition is true
+ * // Sets display: 'none' to all checkboxes otherwise
+ * checkboxes.foreach(displayIf(myCondition, 'flex'))
+ * ```
+ *
+ * @param cond         The condition for showing elements
+ * @param displayValue The `style.display` value to use
+ * @return {(element: T) => void}
  */
-export declare function displayIf(cond: boolean, displayValue?: string | null): (element: HTMLElement) => void;
+export declare function displayIf(cond: boolean, displayValue?: CssDisplayValue): (element: StylableElement) => void;
 /**
- * Returns a promise that resolves as soon as possible after the window is loaded.
+ * Takes a predicate function for elements and a {@link CssDisplayValue CSS display value}, and returns
+ * a function that takes elements. The returned function will set `style.display` onto given elements to either
+ * given value or to `'none'` based on the result of applying the predicate to those elements.
+ *
+ * @example
+ * ```typescript
+ * declare const checkboxes: HTMLInputElement[]
+ * const isChecked = (checkbox: HTMLInputElement) => checkbox.checked
+ *
+ * // Sets display: 'flex' to all checkboxes that are checked
+ * // Sets display: 'none' to all other checkboxes.
+ * checkboxes.foreach(displayUsing(isChecked, 'flex'))
+ *
+ * // This is equivalent to following usage of displayIf():
+ * checkboxes.foreach((checkbox) => displayIf(isChecked(checkbox), 'flex')(checkbox))
+ * ```
+ *
+ * @param {(element: T) => boolean} pred
+ * @param {string | null} displayValue
+ * @return {(element: T) => void}
+ */
+export declare function displayUsing<T extends StylableElement>(pred: (element: T) => boolean, displayValue: CssDisplayValue): (element: T) => void;
+/**
+ * Returns a promise that resolves as soon as possible after the DOM content is loaded.
  * If the {@link https://developer.mozilla.org/en-US/docs/Web/API/Document/readyState `document.readyState`}
  * is `'interactive'` or `'complete'` at call-time, the returned promise resolves immediately, otherwise it resolves upon
  * the DOMContentLoaded event.
@@ -234,6 +284,7 @@ export declare function getMeta(name: string): string | null;
 export declare function getMeta<T>(name: string, transformer: (content: string) => T): T | null;
 /**
  * Hide the given element through the style.display property.
+ * This is a specialisation of {@link display display()} that always sets display to `'none'`.
  *
  * @param element The element to hide.
  * @example
@@ -248,7 +299,7 @@ export declare function getMeta<T>(name: string, transformer: (content: string) 
  * display('none') (someElement)
  * ```
  */
-export declare function hide(element: HTMLElement): void;
+export declare function hide(element: StylableElement): void;
 /**
  * Takes a callback that is executed as soon as possible after the DOM content is loaded.
  * If the {@link https://developer.mozilla.org/en-US/docs/Web/API/Document/readyState `document.readyState`}
@@ -358,7 +409,7 @@ export declare function queryAll<T extends Element>(selector: string, scope?: Pa
  * type U = undefined | number
  * ```
  */
-export declare function readDataset(key: string): (element: HTMLElement) => string | undefined;
+export declare function readDataset(key: string): (element: HTMLOrSVGElement) => string | undefined;
 /**
  * Read dataset values. Takes a dataset key and optionally a transformer for the corresponding value,
  * and returns a new function that takes the element to read the dataset key from.
@@ -368,7 +419,7 @@ export declare function readDataset(key: string): (element: HTMLElement) => stri
  * @param element The element to read the dataset value from.
  *
  */
-export declare function readDataset<T>(key: string, transform: (value: string) => T): (element: HTMLElement) => T | undefined;
+export declare function readDataset<T>(key: string, transform: (value: string) => T): (element: HTMLOrSVGElement) => T | undefined;
 /**
  * Removes given element from the DOM if it's currently in it.
  * @param {Element} element
@@ -447,37 +498,86 @@ export declare function removeClassesForNFrames(n: number, ...classes: string[])
  */
 export declare function setMeta(name: string): (content: string) => HTMLMetaElement;
 /**
- * Shows the given element by unsetting any inline `style.display` value, assuming no
- * `display: none` rule is set in CSS.
+ * Shows the given element by unsetting any inline `style.display` value.
+ * This is a specialisation of {@link display display()} that always unsets inline display.
  *
- * @param element The element to unset the inline display value for.
+ * **Note**
+ *
+ * This function assumes that given elements are shown by default - ie. there's no CSS rule that has
+ * set the element's display to 'none'.
  *
  * @example
  * ```typescript
  * declare const someElement: Element
  *
- * // Shows (or unhides) the given element, if it has no display: none set in CSS
  * show(someElement)
  *
  * // This is equivalent to:
  * display(null) (someElement)
  * ```
- */
-export declare function show(element: HTMLElement): void;
-/**
- * Shows given element if `cond` is truthy. Otherwise given element is being hidden.
- * Uses {@link show show()} and {@link hide hide()} under the hood.
  *
- * @param cond         The condition for showing given element
- * @param element      The element to conditionally display
+ * @param element The element to unset the inline display value for.
  */
-export declare function showIf(cond: boolean): (element: HTMLElement) => void;
+export declare function show(element: StylableElement): void;
+/**
+ * Takes a `boolean` condition, and returns a function that takes elements. The returned function
+ * will unset `style.display` onto a given element if the given condition is `true`. If the condition
+ * is `false`, `style.display` is set to `'none'`.
+ *
+ * **Note**
+ *
+ * This function assumes that given elements are shown by default - ie. there's no CSS rule that has
+ * set the element's display to 'none'.
+ *
+ * **Note**
+ *
+ * The condition is constant for all future calls to the returned function.
+ * See {@link showUsing showUsing()} for cases where the boolean condition should
+ * be determined for each element individually.
+ *
+ * @example
+ * ```typescript
+ * declare const checkboxes: HTMLInputElement[]
+ * declare const myCondition: boolean
+ *
+ * // Unsets inline display to all checkboxes if myCondition is true
+ * // Sets display: 'none' to all checkboxes otherwise
+ * checkboxes.foreach(showIf(myCondition))
+ * ```
+ *
+ * @param cond The condition for showing elements
+ * @return {(element: HTMLElement) => void}
+ */
+export declare function showIf(cond: boolean): (element: StylableElement) => void;
+/**
+ * Takes a predicate function for elements and returns a function that takes elements
+ * to conditionally show depending on the result of applying the predicate function to given elements.
+ *
+ * **Note**
+ *
+ * This function assumes that given elements are shown by default - ie. there's no CSS rule that has
+ * set the element's display to 'none'.
+ *
+ * @example
+ * ```typescript
+ * declare const checkboxes: HTMLInputElement[]
+ * const isChecked = (input: HTMLInputElement) => input.checked
+ *
+ * // Unsets inline display of all checkboxes that are checked
+ * // Sets display: 'none' to all other checkboxes.
+ * checkboxes.foreach(showUsing(isChecked))
+ *
+ * // This is equivalent to following usage of showIf():
+ * checkboxes.foreach((checkbox) => showIf(isChecked(checkbox))(checkbox))
+ * ```
+ *
+ * @param {(element: T) => boolean} pred
+ * @return {(element: T) => void}
+ */
+export declare function showUsing<T extends StylableElement>(pred: (element: T) => boolean): (element: T) => void;
 /**
  * Takes an object of style attribute values, and returns a new function that takes an
  * element to apply those styles to.
- *
- * @param styles An object with inline styles to set.
- * @param element An element to apply the inline styles to.
  *
  * @example
  *
@@ -495,8 +595,11 @@ export declare function showIf(cond: boolean): (element: HTMLElement) => void;
  * declare const elements: HTMLElement[]
  * elements.forEach(warningButtonStyle)
  * ```
+ *
+ * @param styles An object with inline styles to set.
+ * @param element An element to apply the inline styles to.
  */
-export declare function style(styles: Partial<CSSStyleDeclaration>): (element: HTMLElement) => void;
+export declare function style(styles: Partial<CSSStyleDeclaration>): (element: StylableElement) => void;
 /**
  * Curried function that first takes a list of classes, then returns a new function that
  * takes the element on which to toggle those classes. The second function optionally takes
@@ -809,7 +912,7 @@ export declare function windowLoadP(): Promise<void>;
  * writeDataset('someKey') ('someValue') (someElement)
  * ```
  */
-export declare function writeDataset(key: string): (value: string) => (element: HTMLElement) => void;
+export declare function writeDataset(key: string): (value: string) => (element: HTMLOrSVGElement) => void;
 
 export as namespace LD;
 

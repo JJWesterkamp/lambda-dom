@@ -85,6 +85,10 @@ Below is an overview of the included functions. Visit the [documentation page][d
 
   Takes a boolean condition and a CSS display value, and returns a function that takes elements. The returned function will set `style.display` onto given elements to either given value or to `'none'` based on the given cond boolean.
 
+- ### `displayUsing` [full docs](https://jjwesterkamp.github.io/lambda-dom/modules.html#displayusing) | [source](https://github.com/JJWesterkamp/lambda-dom/blob/master/src/displayUsing.ts)
+
+  Takes a predicate function for elements and a CSS display value, and returns a function that takes elements. The returned function will set `style.display` onto given elements to either given value or to `'none'` based on the result of applying the predicate to those elements.
+  
 - ### `getMeta` [full docs](https://jjwesterkamp.github.io/lambda-dom/modules.html#getmeta) | [source](https://github.com/JJWesterkamp/lambda-dom/blob/master/src/getMeta.ts)
 
   Get the value of the content attribute for the first (and presumably only) `<meta>` element with given name as the value for its name attribute. Optionally takes a transformer to deserialize string values.
@@ -137,10 +141,26 @@ Below is an overview of the included functions. Visit the [documentation page][d
 
   Shows the given element by unsetting any inline `style.display` value. This is a specialisation of `display()` that always unsets inline display.
 
+  **Note**
+
+  This function assumes that given elements are shown by default - ie. there's no CSS rule that has set the element's display to `'none'`.
+
 - ### `showIf` [full docs](https://jjwesterkamp.github.io/lambda-dom/modules.html#showif) | [source](https://github.com/JJWesterkamp/lambda-dom/blob/master/src/showIf.ts)
 
   Takes a boolean condition, and returns a function that takes elements. The returned function will unset `style.display` onto a given element if the given condition is `true`. If the condition is `false`, `style.display` is set to `'none'`.
 
+  **Note**
+
+  This function assumes that given elements are shown by default - ie. there's no CSS rule that has set the element's display to `'none'`.
+  
+- ### `showUsing` [full docs](https://jjwesterkamp.github.io/lambda-dom/modules.html#showusing) | [source](https://github.com/JJWesterkamp/lambda-dom/blob/master/src/showUsing.ts)
+
+  Takes a predicate function for elements and returns a function that takes elements to conditionally show depending on the result of applying the predicate function to given elements.
+
+  **Note**
+
+  This function assumes that given elements are shown by default - ie. there's no CSS rule that has set the element's display to `'none'`.
+  
 - ### `style` [full docs](https://jjwesterkamp.github.io/lambda-dom/modules.html#style) | [source](https://github.com/JJWesterkamp/lambda-dom/blob/master/src/style.ts)
 
   Takes an object of style attribute values, and returns a new function that takes an element to apply those styles to.
