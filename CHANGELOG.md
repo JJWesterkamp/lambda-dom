@@ -9,6 +9,33 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - function `displayUsing`
 - function `showUsing`
+- type `StylableElement`
+- type `CssdisplayValue`
+  
+### Changed
+
+- Changed `string | null` types for `style.display` values in CSS display functions to `CssDisplayValue` to
+  provide an autocompletion list of the most commonly used display values.
+  
+  **Affects:**
+  - `display`
+  - `displayIf`
+  - `displayUsing` (new)
+    
+  
+- Loosened `HTMLElement` type constraints to `ElementCSSInlineStyle` (aliased as `StylableElement`) for 
+  CSS style related functions. This allows for usage of these functions to other supported elements as well, 
+  such as SVG elements.
+  
+  **Affects:**
+  - `display`
+  - `show`
+  - `hide`
+  - `displayIf`
+  - `showIf`
+  - `style`
+  - `displayUsing` (new)
+  - `showUsing` (new)
 
 ## [1.2.0] (2021-04-03)
 
