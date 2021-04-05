@@ -14,6 +14,6 @@
  * writeDataset('someKey') ('someValue') (someElement)
  * ```
  */
-export function writeDataset(key: string): (value: string) => (element: HTMLElement) => void {
+export function writeDataset(key: string): (value: string) => (element: HTMLOrSVGElement) => void {
     return (value) => (element) => void (element.dataset[key] = value)
 }
