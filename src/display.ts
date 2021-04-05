@@ -1,4 +1,5 @@
 import { CssDisplayValue, StylableElement } from './_types'
+import { style } from './style'
 
 /**
  * Takes a {@link CssDisplayValue CSS display value} and returns a function that takes
@@ -31,7 +32,5 @@ import { CssDisplayValue, StylableElement } from './_types'
  * ```
  */
 export function display(value: CssDisplayValue): (element: StylableElement) => void {
-    return (element) => {
-        element.style.display = value || ''
-    }
+    return style({ display: value || '' })
 }
