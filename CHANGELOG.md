@@ -24,7 +24,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     
   
 - Loosened `HTMLElement` type constraints to `ElementCSSInlineStyle` (aliased as `StylableElement`) for 
-  CSS style related functions. This allows for usage of these functions to other supported elements as well, 
+  CSS style related functions. This allows for usage of these functions with other supported elements as well, 
   such as SVG elements.
   
   **Affects:**
@@ -36,6 +36,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - `style`
   - `displayUsing` (new)
   - `showUsing` (new)
+
+
+- Loosened `HTMLElement` type constraints to `HTMLOrSVGElement` for dataset functions to allow usage of these
+  functions with SVG elements as well.
+  
+  **Affects:**
+  - `readDataset`
+  - `writeDataset`
 
 ## [1.2.0] (2021-04-03)
 
