@@ -4,7 +4,7 @@ import { queryAll } from './queryAll'
 /**
  * The call signatures for functions returned from {@link queryWithin `queryWithin()`}.
  */
-export interface ScopedCssQueryFunction {
+export interface QueryAllWithinSelector {
     <S extends string>(selector: S): ParseSelector<S>[]
     <T extends Element>(selector: string): T[]
 }
@@ -16,7 +16,7 @@ export interface ScopedCssQueryFunction {
  * @example
  * ```typescript
  * declare const scope: HTMLElement
- * const queryFn = queryWithin(scope)
+ * const queryFn = queryAllWithin(scope)
  *
  * // Automatically attempts to parse CSS selectors into an element type.
  * const headings = queryFn('h2.large-heading, h3.medium-heading') // HTMLHeadingElement[]
@@ -28,9 +28,9 @@ export interface ScopedCssQueryFunction {
  * const buttons = queryFn<HTMLButtonElement>('.button')
  *
  * // You can call queryWithin in one go, and still provide type arguments:
- * const buttons2 = queryWithin(scope)<HTMLButtonElement>('.button')
+ * const buttons2 = queryAllWithin(scope)<HTMLButtonElement>('.button')
  * ```
  */
-export function queryWithin(scope: ParentNode): ScopedCssQueryFunction {
+export function queryAllWithin(scope: ParentNode): QueryAllWithinSelector {
     return (selector: string) => queryAll(selector, scope)
 }

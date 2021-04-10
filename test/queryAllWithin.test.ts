@@ -1,7 +1,7 @@
 import { createElement } from './helpers'
-import { queryWithin } from '../src'
+import { queryAllWithin } from '../src'
 
-describe('queryWithin()', () => {
+describe('queryAllWithin()', () => {
     test('looks within given scope for elements matching a selector', () => {
         const elementA = createElement('class-a')
         const elementB = createElement('class-a')
@@ -20,7 +20,7 @@ describe('queryWithin()', () => {
         scope.appendChild(elementF)
         document.body.appendChild(scope)
 
-        const result = queryWithin(scope)('.class-a')
+        const result = queryAllWithin(scope)('.class-a')
 
         expect(result).toEqual([elementD, elementE, elementF])
     })

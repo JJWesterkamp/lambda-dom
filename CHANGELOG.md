@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### BREAKING CHANGES
 
 - Minimal typescript version is now 4.2 due to the dependency to [typed-query-selector](https://github.com/g-plane/typed-query-selector).
+- Renamed `queryWithin()` to `queryAllWithin()`
 
 ### Changed
 

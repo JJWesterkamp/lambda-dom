@@ -109,10 +109,10 @@ Below is an overview of the included functions. Visit the [documentation page][d
 
   Calls `querySelectorAll` with given selector on given scope, or on `document` by default when the scope is omitted. Returns an array containing the found elements.
 
-- ### `queryWithin` [full docs](https://jjwesterkamp.github.io/lambda-dom/modules.html#querywithin) | [source](https://github.com/JJWesterkamp/lambda-dom/blob/master/src/queryWithin.ts)
+- ### `queryAllWithin` [full docs](https://jjwesterkamp.github.io/lambda-dom/modules.html#queryallwithin) | [source](https://github.com/JJWesterkamp/lambda-dom/blob/master/src/queryAllWithin.ts)
 
-  Takes an element as scope for CSS selector queries. Returns a function that takes selectors to query elements for within the given scope.
-  
+  Takes an element as scope for CSS selector queries. Returns a function that takes selectors to query elements for within the set scope.
+
 - ### `readDataset` [full docs](https://jjwesterkamp.github.io/lambda-dom/modules.html#readdataset) | [source](https://github.com/JJWesterkamp/lambda-dom/blob/master/src/readDataset.ts)
 
   Read dataset values. Takes a dataset key and optionally a transformer for the corresponding value, and returns a new function that takes the element to read the dataset key from.
