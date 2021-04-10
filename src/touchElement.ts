@@ -56,5 +56,3 @@ export function touchElement(selector: string, callback: (element: Element) => a
     const element = scope.querySelector(selector)
     return element && callback(element)
 }
-
-touchElement('input#my-input', (input) => {})
