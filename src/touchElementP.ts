@@ -12,7 +12,28 @@ import { touchElement } from './touchElement'
  *
  * @example
  * ```typescript
- * const button = await touchElementP<HTMLButtonElement>('#my-button')
+ * // -------------------------------------------------------------------------
+ * // Automatically attempts to parse CSS selectors into element types, which
+ * // should work for tag-qualified CSS selectors
+ * // -------------------------------------------------------------------------
+ *
+ * touchElementP('form.my-form button#my-button')
+ * // Promise<HTMLButtonElement>
+ *
+ * // -------------------------------------------------------------------------
+ * // When using non-recognised selectors the element type defaults to `Element`
+ * // -------------------------------------------------------------------------
+ *
+ * touchElementP<HTMLButtonElement>('#my-button')
+ * // Promise<Element>
+ *
+ * // -------------------------------------------------------------------------
+ * // When it fails to infer the element types from given CSS selector you can
+ * // specify the type explicitly
+ * // -------------------------------------------------------------------------
+ *
+ * touchElementP<HTMLButtonElement>('#my-button')
+ * // Promise<HTMLButtonElement>
  * ```
  */
 export function touchElementP<S extends string>(selector: S, scope?: ParentNode): Promise<ParseSelector<S>>

@@ -1,3 +1,5 @@
+import { ParseSelector, ParseSelector as P } from 'typed-query-selector/parser';
+
 /**
  * Autocomplete list for the most commonly used `style.display` values.
  * Includes the generic `string` type for compatibility and special syntax,
@@ -324,20 +326,7 @@ export declare function onWindowLoad<T>(fn: () => T): Promise<T>;
  * The call signatures for functions returned from {@link queryWithin `queryWithin()`}.
  */
 export interface ScopedCssQueryFunction {
-	/**
-	 * @param {K} selector - An HTML element selector
-	 * @return {HTMLElementTagNameMap[K][]}
-	 */
-	<K extends keyof HTMLElementTagNameMap>(selector: K): HTMLElementTagNameMap[K][];
-	/**
-	 * @param {K} selector - An SVG element selector
-	 * @return {SVGElementTagNameMap[K][]}
-	 */
-	<K extends keyof SVGElementTagNameMap>(selector: K): SVGElementTagNameMap[K][];
-	/**
-	 * @param {string} selector - A non-element CSS selector
-	 * @return {T[]}
-	 */
+	<S extends string>(selector: S): ParseSelector<S>[];
 	<T extends Element>(selector: string): T[];
 }
 /**
@@ -349,17 +338,14 @@ export interface ScopedCssQueryFunction {
  * declare const scope: HTMLElement
  * const queryFn = queryWithin(scope)
  *
- * // Recognizes keys of HTMLElementTagNameMap - links: HTMLAnchorElement[]
- * const links = queryFn('a')
- *
- * // Recognizes keys of SVGElementTagNameMap - paths: SVGPathElement[]
- * const paths = queryFn('path')
- *
- * // takes an explicit element type for other selectors - buttons: HTMLButtonElement[]
- * const buttons = queryFn<HTMLButtonElement>('.button')
+ * // Automatically attempts to parse CSS selectors into an element type.
+ * const headings = queryFn('h2.large-heading, h3.medium-heading') // HTMLHeadingElement[]
  *
  * // defaults to Element for element types - others: Element[]
  * const others = queryFn('.other')
+ *
+ * // takes an explicit element type for other selectors - buttons: HTMLButtonElement[]
+ * const buttons = queryFn<HTMLButtonElement>('.button')
  *
  * // You can call queryWithin in one go, and still provide type arguments:
  * const buttons2 = queryWithin(scope)<HTMLButtonElement>('.button')
@@ -368,7 +354,8 @@ export interface ScopedCssQueryFunction {
 export declare function queryWithin(scope: ParentNode): ScopedCssQueryFunction;
 /**
  * Calls `querySelectorAll` with given `selector` on given `scope`, or on `document` by default when the
- * scope is omitted. Returns an array containing the found elements.
+ * scope is omitted. Returns an array containing the found elements. Attempts to parse the given CSS selector
+ * to determine the element type.
  *
  * @param selector The selector to match elements against.
  * @param scope The scope of the element query. When omitted `queryAll` performs a global search.
@@ -376,19 +363,17 @@ export declare function queryWithin(scope: ParentNode): ScopedCssQueryFunction;
  * @example
  *
  * ```typescript
- * // Recognizes keys of HTMLElementTagNameMap:
- * const anchors = queryAll('a') // HTMLAnchorElement[]
+ * // Automatically attempts to parse CSS selectors into an element type.
+ * const headings = queryAll('h2.large-heading, h3.medium-heading') // HTMLHeadingElement[]
  *
- * // Recognizes keys of SVGElementTagNameMap:
- * const paths = queryAll('path') // SVGPathElement[]
+ * // Defaults to Element for unrecognised selectors:
+ * const components = queryAll('custom-web-component')              // Element[]
  *
- * // Defaults to Element, or accepts an explicit type argument for the searched elements:
- * const elements = queryAll('.some-element') // Element[]
- * const buttons = queryAll<HTMLButtonElement>('.my-button') // HTMLButtonElement[]
+ * // Accepts an explicit type argument for the searched elements:
+ * const components = queryAll<MyComponent>('custom-web-component') // MyComponent[]
  * ```
  */
-export declare function queryAll<K extends keyof HTMLElementTagNameMap>(selector: K, scope?: ParentNode): HTMLElementTagNameMap[K][];
-export declare function queryAll<K extends keyof SVGElementTagNameMap>(selector: K, scope?: ParentNode): SVGElementTagNameMap[K][];
+export declare function queryAll<S extends string>(selector: S, scope?: ParentNode): ParseSelector<S>[];
 export declare function queryAll<T extends Element>(selector: string, scope?: ParentNode): T[];
 /**
  * Read dataset values. Takes a dataset key and optionally a transformer for the corresponding value,
@@ -634,74 +619,128 @@ export declare function style(styles: Partial<CSSStyleDeclaration>): (element: S
  */
 export declare function toggleClasses(...classes: string[]): (element: Element, force?: boolean) => void;
 /**
- * Takes an array of selectors and a callback function. When for all selectors an element is found, the callback
- * is called with each found element in order. Optionally takes a scope as third argument to use for the element search.
+ * Takes an array of CSS-style element selectors and a callback function. When for all selectors an element is found,
+ * the callback is called with each found element in order. Optionally takes a scope as third argument to use for the
+ * element search.
  *
  * Note: `touchAll` has overloads for tuples of up to 8 selectors.
  *
- * @param selectors An array of CSS-compatible selectors. For each selector an element will be searched.
+ * @param selectors An array of CSS-style selectors. For each selector an element will be searched.
  * @param cb The callback to execute when all elements are found.
  * @param scope An optional scope for the element queries.
  *
  * @example
  *
  * ```typescript
- * // Either specify the element types in the callback
+ * // -------------------------------------------------------------------------
+ * // Automatically attempts to parse CSS selectors into element types, which
+ * // should work for tag-qualified CSS selectors
+ * // -------------------------------------------------------------------------
  *
- * const resultA: TheType = touchAll([
- *     '.my-button',
- *     '#the-form',
- * ], (
- *     button: HTMLButtonElement,
- *     form: HTMLFormElement,
- * ) => {
- *     // do something with button and form...
+ * const resultA = touchAll([
+ *     'button.my-button',
+ *     '.article form#the-form',
+ * ], (button, form) => {
+ *     // button is HTMLButtonElement
+ *     // form is HTMLFormElement
  * })
  *
- * // or provide them as type arguments list, in which case
- * // the return type for `touchAll` itself is required:
+ * // -------------------------------------------------------------------------
+ * // When using non-recognised selectors all element types default to `Element`
+ * // -------------------------------------------------------------------------
  *
- * const resultB: TheType = touchAll<HTMLButtonElement, HTMLFormElement, string>([
+ * const resultB = touchAll([
  *     '.my-button',
- *     '#the-form',
- * ], (
- *     button,
- *     form,
- * ) => {
- *     // do something with button and form...
+ *     '.article #the-form',
+ * ], (button, form) => {
+ *     // button is Element
+ *     // form is Element
  * })
  *
- * // and because the queries can fail:
+ * // -------------------------------------------------------------------------
+ * // When it fails to infer the element types from given CSS selectors you can
+ * // specify the types explicitly
+ * // -------------------------------------------------------------------------
  *
- * type TheType = null | string
+ * // Either let the callback specify the element types, this also works for
+ * // referenced functions that satisfy the expected signature:
+ *
+ * const resultC = touchAll([
+ *     '.my-button',
+ *     '.article #the-form',
+ * ], (button: HTMLButtonElement, form: HTMLFormElement) => {
+ *     // ...
+ * })
+ *
+ * // or provide the element types as type arguments list:
+ *
+ * const resultD = touchAll<HTMLButtonElement, HTMLFormElement>([
+ *     '.my-button',
+ *     '.article #the-form',
+ * ], (button, form) => {
+ *     // ...
+ * })
  * ```
  */
-export declare function touchAll<T1 extends Element, U>(selectors: [
+export declare function touchAll<S1 extends string, U = any>(selectors: [
+	S1
+], cb: (v1: P<S1>) => U, scope?: ParentNode): U | null;
+export declare function touchAll<T1 extends Element, U = any>(selectors: [
 	string
 ], cb: (v1: T1) => U, scope?: ParentNode): U | null;
-export declare function touchAll<T1 extends Element, T2 extends Element, U>(selectors: [
+export declare function touchAll<S1 extends string, S2 extends string, U = any>(selectors: [
+	S1,
+	S2
+], cb: (v1: P<S1>, v2: P<S2>) => U, scope?: ParentNode): U | null;
+export declare function touchAll<T1 extends Element, T2 extends Element, U = any>(selectors: [
 	string,
 	string
 ], cb: (v1: T1, v2: T2) => U, scope?: ParentNode): U | null;
-export declare function touchAll<T1 extends Element, T2 extends Element, T3 extends Element, U>(selectors: [
+export declare function touchAll<S1 extends string, S2 extends string, S3 extends string, U = any>(selectors: [
+	S1,
+	S2,
+	S3
+], cb: (v1: P<S1>, v2: P<S2>, v3: P<S3>) => U, scope?: ParentNode): U | null;
+export declare function touchAll<T1 extends Element, T2 extends Element, T3 extends Element, U = any>(selectors: [
 	string,
 	string,
 	string
 ], cb: (v1: T1, v2: T2, v3: T3) => U, scope?: ParentNode): U | null;
-export declare function touchAll<T1 extends Element, T2 extends Element, T3 extends Element, T4 extends Element, U>(selectors: [
+export declare function touchAll<S1 extends string, S2 extends string, S3 extends string, S4 extends string, U = any>(selectors: [
+	S1,
+	S2,
+	S3,
+	S4
+], cb: (v1: P<S1>, v2: P<S2>, v3: P<S3>, v4: P<S4>) => U, scope?: ParentNode): U | null;
+export declare function touchAll<T1 extends Element, T2 extends Element, T3 extends Element, T4 extends Element, U = any>(selectors: [
 	string,
 	string,
 	string,
 	string
 ], cb: (v1: T1, v2: T2, v3: T3, v4: T4) => U, scope?: ParentNode): U | null;
-export declare function touchAll<T1 extends Element, T2 extends Element, T3 extends Element, T4 extends Element, T5 extends Element, U>(selectors: [
+export declare function touchAll<S1 extends string, S2 extends string, S3 extends string, S4 extends string, S5 extends string, U = any>(selectors: [
+	S1,
+	S2,
+	S3,
+	S4,
+	S5
+], cb: (v1: P<S1>, v2: P<S2>, v3: P<S3>, v4: P<S4>, v5: P<S5>) => U, scope?: ParentNode): U | null;
+export declare function touchAll<T1 extends Element, T2 extends Element, T3 extends Element, T4 extends Element, T5 extends Element, U = any>(selectors: [
 	string,
 	string,
 	string,
 	string,
 	string
 ], cb: (v1: T1, v2: T2, v3: T3, v4: T4, v5: T5) => U, scope?: ParentNode): U | null;
-export declare function touchAll<T1 extends Element, T2 extends Element, T3 extends Element, T4 extends Element, T5 extends Element, T6 extends Element, U>(selectors: [
+export declare function touchAll<S1 extends string, S2 extends string, S3 extends string, S4 extends string, S5 extends string, S6 extends string, U = any>(selectors: [
+	S1,
+	S2,
+	S3,
+	S4,
+	S5,
+	S6
+], cb: (v1: P<S1>, v2: P<S2>, v3: P<S3>, v4: P<S4>, v5: P<S5>, v6: P<S6>) => U, scope?: ParentNode): U | null;
+export declare function touchAll<T1 extends Element, T2 extends Element, T3 extends Element, T4 extends Element, T5 extends Element, T6 extends Element, U = any>(selectors: [
 	string,
 	string,
 	string,
@@ -709,7 +748,16 @@ export declare function touchAll<T1 extends Element, T2 extends Element, T3 exte
 	string,
 	string
 ], cb: (v1: T1, v2: T2, v3: T3, v4: T4, v5: T5, v6: T6) => U, scope?: ParentNode): U | null;
-export declare function touchAll<T1 extends Element, T2 extends Element, T3 extends Element, T4 extends Element, T5 extends Element, T6 extends Element, T7 extends Element, U>(selectors: [
+export declare function touchAll<S1 extends string, S2 extends string, S3 extends string, S4 extends string, S5 extends string, S6 extends string, S7 extends string, U = any>(selectors: [
+	S1,
+	S2,
+	S3,
+	S4,
+	S5,
+	S6,
+	S7
+], cb: (v1: P<S1>, v2: P<S2>, v3: P<S3>, v4: P<S4>, v5: P<S5>, v6: P<S6>, v7: P<S7>) => U, scope?: ParentNode): U | null;
+export declare function touchAll<T1 extends Element, T2 extends Element, T3 extends Element, T4 extends Element, T5 extends Element, T6 extends Element, T7 extends Element, U = any>(selectors: [
 	string,
 	string,
 	string,
@@ -718,7 +766,17 @@ export declare function touchAll<T1 extends Element, T2 extends Element, T3 exte
 	string,
 	string
 ], cb: (v1: T1, v2: T2, v3: T3, v4: T4, v5: T5, v6: T6, v7: T7) => U, scope?: ParentNode): U | null;
-export declare function touchAll<T1 extends Element, T2 extends Element, T3 extends Element, T4 extends Element, T5 extends Element, T6 extends Element, T7 extends Element, T8 extends Element, U>(selectors: [
+export declare function touchAll<S1 extends string, S2 extends string, S3 extends string, S4 extends string, S5 extends string, S6 extends string, S7 extends string, S8 extends string, U = any>(selectors: [
+	S1,
+	S2,
+	S3,
+	S4,
+	S5,
+	S6,
+	S7,
+	S8
+], cb: (v1: P<S1>, v2: P<S2>, v3: P<S3>, v4: P<S4>, v5: P<S5>, v6: P<S6>, v7: P<S7>, v8: P<S8>) => U, scope?: ParentNode): U | null;
+export declare function touchAll<T1 extends Element, T2 extends Element, T3 extends Element, T4 extends Element, T5 extends Element, T6 extends Element, T7 extends Element, T8 extends Element, U = any>(selectors: [
 	string,
 	string,
 	string,
@@ -729,37 +787,61 @@ export declare function touchAll<T1 extends Element, T2 extends Element, T3 exte
 	string
 ], cb: (v1: T1, v2: T2, v3: T3, v4: T4, v5: T5, v6: T6, v7: T7, v8: T8) => U, scope?: ParentNode): U | null;
 /**
- * Takes an array of selectors. Returns a promise that will only resolve when for all selectors an element is found.
+ * Takes an array of CSS-style selectors. Returns a promise that will only resolve when for all selectors an element is found.
  * The promise value is an array of the elements in the order of the selector array. Optionally takes a scope as
  * third argument to use for the element search.
- *
- * This function is useful as an alternative for `touchAll` in async functions. When `await`ed  it'll block
- * all further execution of the function when not all elements are found.
  *
  * Note: `touchAllP` has overloads for tuples of up to 8 selectors.
  *
  * Like {@linkcode touchAll} but 'portable', so that many callbacks can subscribe
  * to the 'event' of the elements being found.
  *
- * @param selectors An array of CSS-compatible selectors. For each selector an element will be searched.
+ * @param selectors An array of CSS-style selectors. For each selector an element will be searched.
  * @param scope An optional scope for the element queries.
  *
  * @example
  *
  * ```typescript
- * // Without explicit type arguments:
- * const elementsPA = touchAllP(['.my-button', '#the-form'])
+ * // -------------------------------------------------------------------------
+ * // Automatically attempts to parse CSS selectors into element types, which
+ * // should work for tag-qualified CSS selectors
+ * // -------------------------------------------------------------------------
+ *
+ * const elementsPA = touchAllP(['button.my-button', 'form#the-form'])
+ * // > Promise<[HTMLButtonElement, HTMLFormElement]>
+ *
+ * // -------------------------------------------------------------------------
+ * // When using non-recognised selectors all element types default to `Element`
+ * // -------------------------------------------------------------------------
+ *
+ * const elementsPB = touchAllP(['.my-button', '#the-form'])
  * // > Promise<[Element, Element]>
  *
- * // With explicit type arguments:
+ * // -------------------------------------------------------------------------
+ * // When it fails to infer the element types from given CSS selectors you can
+ * // specify the types explicitly
+ * // -------------------------------------------------------------------------
+ *
  * const elementsPB = touchAllP<HTMLButtonElement, HTMLFormElement>(['.my-button', '#the-form'])
  * // > Promise<[HTMLButtonElement, HTMLFormElement]>
  * ```
  */
+export declare function touchAllP<S1 extends string>(selectors: [
+	S1
+], scope?: ParentNode): Promise<[
+	P<S1>
+]>;
 export declare function touchAllP<T1 extends Element>(selectors: [
 	string
 ], scope?: ParentNode): Promise<[
 	T1
+]>;
+export declare function touchAllP<S1 extends string, S2 extends string>(selectors: [
+	S1,
+	S2
+], scope?: ParentNode): Promise<[
+	P<S1>,
+	P<S2>
 ]>;
 export declare function touchAllP<T1 extends Element, T2 extends Element>(selectors: [
 	string,
@@ -767,6 +849,15 @@ export declare function touchAllP<T1 extends Element, T2 extends Element>(select
 ], scope?: ParentNode): Promise<[
 	T1,
 	T2
+]>;
+export declare function touchAllP<S1 extends string, S2 extends string, S3 extends string>(selectors: [
+	S1,
+	S2,
+	S3
+], scope?: ParentNode): Promise<[
+	P<S1>,
+	P<S2>,
+	P<S3>
 ]>;
 export declare function touchAllP<T1 extends Element, T2 extends Element, T3 extends Element>(selectors: [
 	string,
@@ -776,6 +867,17 @@ export declare function touchAllP<T1 extends Element, T2 extends Element, T3 ext
 	T1,
 	T2,
 	T3
+]>;
+export declare function touchAllP<S1 extends string, S2 extends string, S3 extends string, S4 extends string>(selectors: [
+	S1,
+	S2,
+	S3,
+	S4
+], scope?: ParentNode): Promise<[
+	P<S1>,
+	P<S2>,
+	P<S3>,
+	P<S4>
 ]>;
 export declare function touchAllP<T1 extends Element, T2 extends Element, T3 extends Element, T4 extends Element>(selectors: [
 	string,
@@ -787,6 +889,19 @@ export declare function touchAllP<T1 extends Element, T2 extends Element, T3 ext
 	T2,
 	T3,
 	T4
+]>;
+export declare function touchAllP<S1 extends string, S2 extends string, S3 extends string, S4 extends string, S5 extends string>(selectors: [
+	S1,
+	S2,
+	S3,
+	S4,
+	S5
+], scope?: ParentNode): Promise<[
+	P<S1>,
+	P<S2>,
+	P<S3>,
+	P<S4>,
+	P<S5>
 ]>;
 export declare function touchAllP<T1 extends Element, T2 extends Element, T3 extends Element, T4 extends Element, T5 extends Element>(selectors: [
 	string,
@@ -800,6 +915,21 @@ export declare function touchAllP<T1 extends Element, T2 extends Element, T3 ext
 	T3,
 	T4,
 	T5
+]>;
+export declare function touchAllP<S1 extends string, S2 extends string, S3 extends string, S4 extends string, S5 extends string, S6 extends string>(selectors: [
+	S1,
+	S2,
+	S3,
+	S4,
+	S5,
+	S6
+], scope?: ParentNode): Promise<[
+	P<S1>,
+	P<S2>,
+	P<S3>,
+	P<S4>,
+	P<S5>,
+	P<S6>
 ]>;
 export declare function touchAllP<T1 extends Element, T2 extends Element, T3 extends Element, T4 extends Element, T5 extends Element, T6 extends Element>(selectors: [
 	string,
@@ -815,6 +945,23 @@ export declare function touchAllP<T1 extends Element, T2 extends Element, T3 ext
 	T4,
 	T5,
 	T6
+]>;
+export declare function touchAllP<S1 extends string, S2 extends string, S3 extends string, S4 extends string, S5 extends string, S6 extends string, S7 extends string>(selectors: [
+	S1,
+	S2,
+	S3,
+	S4,
+	S5,
+	S6,
+	S7
+], scope?: ParentNode): Promise<[
+	P<S1>,
+	P<S2>,
+	P<S3>,
+	P<S4>,
+	P<S5>,
+	P<S6>,
+	P<S7>
 ]>;
 export declare function touchAllP<T1 extends Element, T2 extends Element, T3 extends Element, T4 extends Element, T5 extends Element, T6 extends Element, T7 extends Element>(selectors: [
 	string,
@@ -832,6 +979,25 @@ export declare function touchAllP<T1 extends Element, T2 extends Element, T3 ext
 	T5,
 	T6,
 	T7
+]>;
+export declare function touchAllP<S1 extends string, S2 extends string, S3 extends string, S4 extends string, S5 extends string, S6 extends string, S7 extends string, S8 extends string>(selectors: [
+	S1,
+	S2,
+	S3,
+	S4,
+	S5,
+	S6,
+	S7,
+	S8
+], scope?: ParentNode): Promise<[
+	P<S1>,
+	P<S2>,
+	P<S3>,
+	P<S4>,
+	P<S5>,
+	P<S6>,
+	P<S7>,
+	P<S8>
 ]>;
 export declare function touchAllP<T1 extends Element, T2 extends Element, T3 extends Element, T4 extends Element, T5 extends Element, T6 extends Element, T7 extends Element, T8 extends Element>(selectors: [
 	string,
@@ -864,13 +1030,45 @@ export declare function touchAllP<T1 extends Element, T2 extends Element, T3 ext
  *
  * @example
  * ```typescript
- * // The callback's return value is returned from touchElement:
- * const inputValue: TheType = touchElement('#my-input', (input: HTMLInputElement): string => input.value)
+ * // -------------------------------------------------------------------------
+ * // Automatically attempts to parse CSS selectors into element types, which
+ * // should work for tag-qualified CSS selectors
+ * // -------------------------------------------------------------------------
  *
- * // and because the query for '#my-input' can fail:
+ * touchElement('input#my-input', (input) => {
+ *     // input is HTMLInputElement
+ * })
+ *
+ * // -------------------------------------------------------------------------
+ * // When using non-recognised selectors the element type defaults to `Element`
+ * // -------------------------------------------------------------------------
+ *
+ * touchElement('#my-input', (input) => {
+ *     // input is Element
+ * })
+ *
+ * // -------------------------------------------------------------------------
+ * // When it fails to infer the element types from given CSS selector you can
+ * // specify the type explicitly
+ * // -------------------------------------------------------------------------
+ *
+ * // Either let the callback specify the element types:
+ * touchElement('#my-input', (input: HTMLElement) => { ... })
+ *
+ * // or provide the element type as type argument:
+ * touchElement<HTMLElement>('#my-input', (input) => { ... })
+ *
+ * // -------------------------------------------------------------------------
+ * // The callback's return value is returned from touchElement:
+ * // -------------------------------------------------------------------------
+ *
+ * const result: TheType = touchElement('input#my-input', (input) => input.value)
+ *
+ * // and because the query for 'input#my-input' can fail to find an element:
  * type TheType = string | null
  * ```
  */
+export declare function touchElement<S extends string, U = any>(selector: S, callback: (element: ParseSelector<S>) => U, scope?: ParentNode): U | null;
 export declare function touchElement<T extends Element, U = any>(selector: string, callback: (element: T) => U, scope?: ParentNode): U | null;
 /**
  * Finds the first element within the set scope that matches `selector`. If found the returned
@@ -883,9 +1081,31 @@ export declare function touchElement<T extends Element, U = any>(selector: strin
  *
  * @example
  * ```typescript
- * const button = await touchElementP<HTMLButtonElement>('#my-button')
+ * // -------------------------------------------------------------------------
+ * // Automatically attempts to parse CSS selectors into element types, which
+ * // should work for tag-qualified CSS selectors
+ * // -------------------------------------------------------------------------
+ *
+ * touchElementP('form.my-form button#my-button')
+ * // Promise<HTMLButtonElement>
+ *
+ * // -------------------------------------------------------------------------
+ * // When using non-recognised selectors the element type defaults to `Element`
+ * // -------------------------------------------------------------------------
+ *
+ * touchElementP<HTMLButtonElement>('#my-button')
+ * // Promise<Element>
+ *
+ * // -------------------------------------------------------------------------
+ * // When it fails to infer the element types from given CSS selector you can
+ * // specify the type explicitly
+ * // -------------------------------------------------------------------------
+ *
+ * touchElementP<HTMLButtonElement>('#my-button')
+ * // Promise<HTMLButtonElement>
  * ```
  */
+export declare function touchElementP<S extends string>(selector: S, scope?: ParentNode): Promise<ParseSelector<S>>;
 export declare function touchElementP<T extends Element>(selector: string, scope?: ParentNode): Promise<T>;
 /**
  * Returns a promise that resolves as soon as possible after the window is loaded.
