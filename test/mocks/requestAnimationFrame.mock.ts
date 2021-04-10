@@ -36,5 +36,7 @@ class RequestAnimationFrameMockSession {
 
 export const requestAnimationFrameMock = new RequestAnimationFrameMockSession();
 
+// @ts-ignore
 window.requestAnimationFrame = requestAnimationFrameMock.requestAnimationFrame.bind(requestAnimationFrameMock);
+// @ts-ignore
 window.cancelAnimationFrame = requestAnimationFrameMock.cancelAnimationFrame.bind(requestAnimationFrameMock);
