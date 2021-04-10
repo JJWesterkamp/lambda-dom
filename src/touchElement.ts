@@ -1,3 +1,5 @@
+import { ParseSelector } from 'typed-query-selector/parser'
+
 /**
  * Finds the first element within the set scope that matches `selector`. If found the element
  * is applied to the given callback function, and the function's return value will be propagated
@@ -17,7 +19,9 @@
  * type TheType = string | null
  * ```
  */
-export function touchElement<T extends Element, U = any>(selector: string, callback: (element: T) => U, scope: ParentNode = document): U | null {
-    const element = scope.querySelector<T>(selector)
+export function touchElement<S extends string, U = any>(selector: S, callback: (element: ParseSelector<S>) => U, scope?: ParentNode): U | null
+export function touchElement<T extends Element, U = any>(selector: string, callback: (element: T) => U, scope?: ParentNode): U | null
+export function touchElement(selector: string, callback: (element: Element) => any, scope: ParentNode = document) {
+    const element = scope.querySelector(selector)
     return element && callback(element)
 }
