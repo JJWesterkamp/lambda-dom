@@ -2,7 +2,8 @@ import { ParseSelector } from 'typed-query-selector/parser'
 import { queryAll } from './queryAll'
 
 /**
- * The call signatures for functions returned from {@link queryWithin `queryWithin()`}.
+ * The call signatures for functions returned from {@link queryAllWithin `queryAllWithin()`}.
+ * Returns an array of all matched elements.
  */
 export interface QueryAllWithinSelector {
     <S extends string>(selector: S): ParseSelector<S>[]
@@ -11,7 +12,8 @@ export interface QueryAllWithinSelector {
 
 /**
  * Takes an element as scope for CSS selector queries. Returns a function that takes
- * selectors to query elements for within the given scope.
+ * selectors to query elements for within the set scope. The returned function finds
+ * all elements matching given selector and returns them in an array.
  *
  * @example
  * ```typescript
