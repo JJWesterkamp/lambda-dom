@@ -12,10 +12,41 @@ import { ParseSelector } from 'typed-query-selector/parser'
  *
  * @example
  * ```typescript
- * // The callback's return value is returned from touchElement:
- * const inputValue: TheType = touchElement('#my-input', (input: HTMLInputElement): string => input.value)
+ * // -------------------------------------------------------------------------
+ * // Automatically attempts to parse CSS selectors into element types, which
+ * // should work for tag-qualified CSS selectors
+ * // -------------------------------------------------------------------------
  *
- * // and because the query for '#my-input' can fail:
+ * touchElement('input#my-input', (input) => {
+ *     // input is HTMLInputElement
+ * })
+ *
+ * // -------------------------------------------------------------------------
+ * // When using non-recognised selectors the element type defaults to `Element`
+ * // -------------------------------------------------------------------------
+ *
+ * touchElement('#my-input', (input) => {
+ *     // input is Element
+ * })
+ *
+ * // -------------------------------------------------------------------------
+ * // When it fails to infer the element types from given CSS selector you can
+ * // specify the type explicitly
+ * // -------------------------------------------------------------------------
+ *
+ * // Either let the callback specify the element types:
+ * touchElement('#my-input', (input: HTMLElement) => { ... })s
+ *
+ * // or provide the element type as type argument:
+ * touchElement<HTMLElement>('#my-input', (input) => { ... })
+ *
+ * // -------------------------------------------------------------------------
+ * // The callback's return value is returned from touchElement:
+ * // -------------------------------------------------------------------------
+ *
+ * const result: TheType = touchElement('input#my-input', (input) => input.value)
+ *
+ * // and because the query for 'input#my-input' can fail to find an element:
  * type TheType = string | null
  * ```
  */
@@ -25,3 +56,5 @@ export function touchElement(selector: string, callback: (element: Element) => a
     const element = scope.querySelector(selector)
     return element && callback(element)
 }
+
+touchElement('input#my-input', (input) => {})
