@@ -1,25 +1,11 @@
+import { ParseSelector } from 'typed-query-selector/parser'
 import { queryAll } from './queryAll'
 
 /**
  * The call signatures for functions returned from {@link queryWithin `queryWithin()`}.
  */
 export interface ScopedCssQueryFunction {
-    /**
-     * @param {K} selector - An HTML element selector
-     * @return {HTMLElementTagNameMap[K][]}
-     */
-    <K extends keyof HTMLElementTagNameMap>(selector: K): HTMLElementTagNameMap[K][]
-
-    /**
-     * @param {K} selector - An SVG element selector
-     * @return {SVGElementTagNameMap[K][]}
-     */
-    <K extends keyof SVGElementTagNameMap>(selector: K): SVGElementTagNameMap[K][]
-
-    /**
-     * @param {string} selector - A non-element CSS selector
-     * @return {T[]}
-     */
+    <S extends string>(selector: S): ParseSelector<S>[]
     <T extends Element>(selector: string): T[]
 }
 
