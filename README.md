@@ -113,6 +113,10 @@ Below is an overview of the included functions. Visit the [documentation page][d
 
   Takes an element as scope for CSS selector queries. Returns a function that takes selectors to query elements for within the set scope. The returned function finds all elements matching given selector and returns them in an array.
 
+- ### `queryOne` [full docs](https://jjwesterkamp.github.io/lambda-dom/modules.html#queryone) | [source](https://github.com/JJWesterkamp/lambda-dom/blob/master/src/queryOne.ts)
+
+  Calls `querySelector` with given `selector` on given `scope`, or on `document` by default when the scope is omitted. Returns the first element matching given selector if any exists, or `null` otherwise. Attempts to parse the given CSS selector to determine the element type.
+
 - ### `queryOneWithin` [full docs](https://jjwesterkamp.github.io/lambda-dom/modules.html#queryonewithin) | [source](https://github.com/JJWesterkamp/lambda-dom/blob/master/src/queryOneWithin.ts)
 
   Takes an element as scope for CSS selector queries. Returns a function that takes selectors to query elements for within the set scope. The returned function finds the first element matching given selector and returns it. Returns `null` if no matching element exists.
