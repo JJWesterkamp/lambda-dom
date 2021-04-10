@@ -26,5 +26,3 @@ export function queryOne<T extends Element>(selector: string, scope?: ParentNode
 export function queryOne(selector: string, scope: ParentNode = document) {
     return scope.querySelector(selector)
 }
-
-queryOne('form')
