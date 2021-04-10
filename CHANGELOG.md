@@ -18,6 +18,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Added type-level CSS selector parsing to all functions that query the DOM with given selectors ([PR](https://github.com/JJWesterkamp/lambda-dom/pull/5))
 
+  **affects:**
+  - queryAll()
+  - queryWithin()
+  - touchAll()
+  - touchAllP()
+  - touchElement()
+  - touchElementP()
+
 ## [1.3.1] (2021-04-05)
 
 ### Fixed
