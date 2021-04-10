@@ -25,7 +25,7 @@ describe('queryOne()', () => {
             document.body.appendChild(elementB)
             document.body.appendChild(elementC)
 
-            expect(queryOne('a.class-a')).toEqual(elementA)
+            expect(queryOne('.class-a')).toEqual(elementA)
         })
     })
 
