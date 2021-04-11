@@ -41,6 +41,7 @@
   },
   "homepage": "https://github.com/JJWesterkamp/lambda-dom#readme",
   "devDependencies": {
+    "@jjwesterkamp/typedoc-theme": "^1.0.0",
     "@types/jest": "^26.0.15",
     "@types/jsdom": "^16.2.5",
     "@types/webpack-env": "^1.15.3",
