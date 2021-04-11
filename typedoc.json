@@ -1,6 +1,6 @@
 {
     "out": "docs",
-    "theme": "minimal",
+    "theme": "./docs-theme",
     "readme": "./TYPEDOC-README.md",
-    "highlightTheme": "min-light"
+    "highlightTheme": "nord"
 }
