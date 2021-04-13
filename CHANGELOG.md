@@ -8,24 +8,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### BREAKING CHANGES
 
 - Minimal typescript version is now 4.2 due to the dependency to [typed-query-selector](https://github.com/g-plane/typed-query-selector).
-- Renamed `queryWithin()` to `queryAllWithin()`
+- Renamed `queryWithin` to `queryAllWithin`
 
 ### Added
 
-- function `queryOne()`
-- function `queryOneWithin()`
+- function `queryOne`
+- function `queryOneWithin`
 
 ### Changed
 
 - Added type-level CSS selector parsing to all functions that query the DOM with given selectors ([PR](https://github.com/JJWesterkamp/lambda-dom/pull/5))
 
   **affects:**
-  - queryAll()
-  - queryWithin()
-  - touchAll()
-  - touchAllP()
-  - touchElement()
-  - touchElementP()
+  - `queryAll`
+  - `queryWithin`
+  - `touchAll`
+  - `touchAllP`
+  - `touchElement`
+  - `touchElementP`
 
 ## [1.3.1] (2021-04-05)
 
