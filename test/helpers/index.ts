@@ -24,8 +24,8 @@ export const dispatchWindowLoadEvent = () => window.dispatchEvent(new Event(`loa
 
 export const deferredValue = <T>(ms: number, value: T): Promise<T> => new Promise((resolve) => setTimeout(() => resolve(value), ms))
 
-export const createElement = (className: string) => {
+export const createElement = (className?: string) => {
     const element = document.createElement('div')
-    element.classList.add(className)
+    className && element.classList.add(className)
     return element
 }
