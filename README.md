@@ -99,11 +99,11 @@ Below is an overview of the included functions. Visit the [documentation page][d
 
 - ### `innerHTML` [full docs](https://jjwesterkamp.github.io/lambda-dom/modules.html#innerhtml) | [source](https://github.com/JJWesterkamp/lambda-dom/blob/master/src/innerHTML.ts)
 
-  Takes an HTML string or `null`, and returns a function that takes elements. Sets `innerHTML` of given elements to the given string, or to an empty string if given `null`.
+  Takes an HTML string or `null`, and returns a function that takes `Element` objects. Sets `innerHTML` of given elements to the given string, or to an empty string if given `null`.
 
 - ### `innerText` [full docs](https://jjwesterkamp.github.io/lambda-dom/modules.html#innertext) | [source](https://github.com/JJWesterkamp/lambda-dom/blob/master/src/innerText.ts)
 
-  Takes a string or `null`, and returns a function that takes elements. Sets `innerText` of given elements to the given string, or to an empty string if given `null`.
+  Takes a string or `null`, and returns a function that takes `HTMLElement` objects. Sets `innerText` of given elements to the given string, or to an empty string if given `null`.
   
 - ### `onDOMReady` [full docs](https://jjwesterkamp.github.io/lambda-dom/modules.html#ondomready) | [source](https://github.com/JJWesterkamp/lambda-dom/blob/master/src/onDOMReady.ts)
 
