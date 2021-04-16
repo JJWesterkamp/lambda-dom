@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>ScopedCssQueryFunction | lambda-dom</title>
+	<title>QueryAllWithinSelector | lambda-dom</title>
 	<meta name="description" content="Documentation for lambda-dom">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -55,10 +55,10 @@
 					<a href="../modules.html">lambda-dom</a>
 				</li>
 				<li>
-					<a href="scopedcssqueryfunction.html">ScopedCssQueryFunction</a>
+					<a href="queryallwithinselector.html">QueryAllWithinSelector</a>
 				</li>
 			</ul>
-			<h1>Interface ScopedCssQueryFunction</h1>
+			<h1>Interface QueryAllWithinSelector</h1>
 		</div>
 	</div>
 </header>
@@ -68,7 +68,8 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>The call signatures for functions returned from <a href="../modules.html#querywithin"><code>queryWithin()</code></a>.</p>
+						<p>The call signatures for functions returned from <a href="../modules.html#queryallwithin"><code>queryAllWithin()</code></a>.
+						Returns an array of all matched elements.</p>
 					</div>
 				</div>
 			</section>
@@ -76,83 +77,53 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">ScopedCssQueryFunction</span>
+						<span class="target">QueryAllWithinSelector</span>
 					</li>
 				</ul>
 			</section>
 			<section class="tsd-panel">
 				<h3 class="tsd-before-signature">Callable</h3>
 				<ul class="tsd-signatures tsd-kind-interface tsd-has-type-parameter">
-					<li class="tsd-signature tsd-kind-icon">Scoped<wbr>Css<wbr>Query<wbr>Function&lt;K&gt;<span class="tsd-signature-symbol">(</span>selector<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">HTMLElementTagNameMap</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">[]</span></li>
-					<li class="tsd-signature tsd-kind-icon">Scoped<wbr>Css<wbr>Query<wbr>Function&lt;K&gt;<span class="tsd-signature-symbol">(</span>selector<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">SVGElementTagNameMap</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">[]</span></li>
-					<li class="tsd-signature tsd-kind-icon">Scoped<wbr>Css<wbr>Query<wbr>Function&lt;T&gt;<span class="tsd-signature-symbol">(</span>selector<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span></li>
+					<li class="tsd-signature tsd-kind-icon">Query<wbr>All<wbr>Within<wbr>Selector&lt;S&gt;<span class="tsd-signature-symbol">(</span>selector<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">S</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ParseSelector</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">S</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">Element</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[]</span></li>
+					<li class="tsd-signature tsd-kind-icon">Query<wbr>All<wbr>Within<wbr>Selector&lt;T&gt;<span class="tsd-signature-symbol">(</span>selector<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span></li>
 				</ul>
 				<ul class="tsd-descriptions">
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/JJWesterkamp/lambda-dom/blob/c36baf0/src/queryWithin.ts#L6">queryWithin.ts:6</a></li>
+								<li>Defined in <a href="https://github.com/JJWesterkamp/lambda-dom/blob/93ec09f/src/queryAllWithin.ts#L8">queryAllWithin.ts:8</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
 							<div class="lead">
-								<p>The call signatures for functions returned from <a href="../modules.html#querywithin"><code>queryWithin()</code></a>.</p>
+								<p>The call signatures for functions returned from <a href="../modules.html#queryallwithin"><code>queryAllWithin()</code></a>.
+								Returns an array of all matched elements.</p>
 							</div>
 						</div>
 						<h4 class="tsd-type-parameters-title">Type parameters</h4>
 						<ul class="tsd-type-parameters">
 							<li>
-								<h4>K<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">keyof </span><span class="tsd-signature-type">HTMLElementTagNameMap</span></h4>
+								<h4>S<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h4>
 							</li>
 						</ul>
 						<h4 class="tsd-parameters-title">Parameters</h4>
 						<ul class="tsd-parameters">
 							<li>
-								<h5>selector: <span class="tsd-signature-type">K</span></h5>
-								<div class="tsd-comment tsd-typography">
-									<p>An HTML element selector</p>
-								</div>
+								<h5>selector: <span class="tsd-signature-type">S</span></h5>
 							</li>
 						</ul>
-						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">HTMLElementTagNameMap</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">[]</span></h4>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">ParseSelector</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">S</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">Element</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[]</span></h4>
 					</li>
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/JJWesterkamp/lambda-dom/blob/c36baf0/src/queryWithin.ts#L11">queryWithin.ts:11</a></li>
+								<li>Defined in <a href="https://github.com/JJWesterkamp/lambda-dom/blob/93ec09f/src/queryAllWithin.ts#L9">queryAllWithin.ts:9</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
 							<div class="lead">
-								<p>The call signatures for functions returned from <a href="../modules.html#querywithin"><code>queryWithin()</code></a>.</p>
-							</div>
-						</div>
-						<h4 class="tsd-type-parameters-title">Type parameters</h4>
-						<ul class="tsd-type-parameters">
-							<li>
-								<h4>K<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">keyof </span><span class="tsd-signature-type">SVGElementTagNameMap</span></h4>
-							</li>
-						</ul>
-						<h4 class="tsd-parameters-title">Parameters</h4>
-						<ul class="tsd-parameters">
-							<li>
-								<h5>selector: <span class="tsd-signature-type">K</span></h5>
-								<div class="tsd-comment tsd-typography">
-									<p>An SVG element selector</p>
-								</div>
-							</li>
-						</ul>
-						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">SVGElementTagNameMap</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">[]</span></h4>
-					</li>
-					<li class="tsd-description">
-						<aside class="tsd-sources">
-							<ul>
-								<li>Defined in <a href="https://github.com/JJWesterkamp/lambda-dom/blob/c36baf0/src/queryWithin.ts#L17">queryWithin.ts:17</a></li>
-							</ul>
-						</aside>
-						<div class="tsd-comment tsd-typography">
-							<div class="lead">
-								<p>The call signatures for functions returned from <a href="../modules.html#querywithin"><code>queryWithin()</code></a>.</p>
+								<p>The call signatures for functions returned from <a href="../modules.html#queryallwithin"><code>queryAllWithin()</code></a>.
+								Returns an array of all matched elements.</p>
 							</div>
 						</div>
 						<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -165,9 +136,6 @@
 						<ul class="tsd-parameters">
 							<li>
 								<h5>selector: <span class="tsd-signature-type">string</span></h5>
-								<div class="tsd-comment tsd-typography">
-									<p>A non-element CSS selector</p>
-								</div>
 							</li>
 						</ul>
 						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span></h4>
@@ -188,10 +156,13 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface tsd-has-type-parameter">
-						<a href="scopedcssqueryfunction.html" class="tsd-kind-icon">Scoped<wbr>Css<wbr>Query<wbr>Function</a>
+						<a href="queryallwithinselector.html" class="tsd-kind-icon">Query<wbr>All<wbr>Within<wbr>Selector</a>
 					</li>
 				</ul>
 				<ul class="after-current">
+					<li class=" tsd-kind-interface tsd-has-type-parameter">
+						<a href="queryonewithinselector.html" class="tsd-kind-icon">Query<wbr>One<wbr>Within<wbr>Selector</a>
+					</li>
 					<li class=" tsd-kind-type-alias">
 						<a href="../modules.html#cssdisplayvalue" class="tsd-kind-icon">Css<wbr>Display<wbr>Value</a>
 					</li>
@@ -231,6 +202,12 @@
 					<li class=" tsd-kind-function">
 						<a href="../modules.html#hide" class="tsd-kind-icon">hide</a>
 					</li>
+					<li class=" tsd-kind-function">
+						<a href="../modules.html#innerhtml" class="tsd-kind-icon">innerHTML</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="../modules.html#innertext" class="tsd-kind-icon">inner<wbr>Text</a>
+					</li>
 					<li class=" tsd-kind-function tsd-has-type-parameter">
 						<a href="../modules.html#ondomready" class="tsd-kind-icon">onDOMReady</a>
 					</li>
@@ -241,7 +218,13 @@
 						<a href="../modules.html#queryall" class="tsd-kind-icon">query<wbr>All</a>
 					</li>
 					<li class=" tsd-kind-function">
-						<a href="../modules.html#querywithin" class="tsd-kind-icon">query<wbr>Within</a>
+						<a href="../modules.html#queryallwithin" class="tsd-kind-icon">query<wbr>All<wbr>Within</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="../modules.html#queryone" class="tsd-kind-icon">query<wbr>One</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="../modules.html#queryonewithin" class="tsd-kind-icon">query<wbr>One<wbr>Within</a>
 					</li>
 					<li class=" tsd-kind-function tsd-has-type-parameter">
 						<a href="../modules.html#readdataset" class="tsd-kind-icon">read<wbr>Dataset</a>

@@ -303,6 +303,42 @@ export declare function getMeta<T>(name: string, transformer: (content: string) 
  */
 export declare function hide(element: StylableElement): void;
 /**
+ * Takes a string or `null`, and returns a function that takes `HTMLElement` elements. Sets `innerText` of
+ * given elements to the given string, or to an empty string if given `null`.
+ *
+ * @example
+ * ```typescript
+ * // to set inner text
+ * innerText('foo')(element)
+ *
+ * // to clear inner text
+ * innerText(null)(element)
+ *
+ * // batch-clear contents:
+ * declare const elements: HTMLElement[]
+ * elements.forEach(innerText(null))
+ * ```
+ */
+export declare function innerText(text: string | null): (element: HTMLElement) => void;
+/**
+ * Takes an HTML string or `null`, and returns a function that takes `Element` objects. Sets `innerHTML` of
+ * given elements to the given string, or to an empty string if given `null`.
+ *
+ * @example
+ * ```typescript
+ * // to set inner HTML
+ * innerHTML('<span>foo</span>')(element)
+ *
+ * // to clear inner HTML
+ * innerHTML(null)(element)
+ *
+ * // batch-clear contents:
+ * declare const elements: Element[]
+ * elements.forEach(innerHTML(null))
+ * ```
+ */
+export declare function innerHTML(html: string | null): (element: Element) => void;
+/**
  * Takes a callback that is executed as soon as possible after the DOM content is loaded.
  * If the {@link https://developer.mozilla.org/en-US/docs/Web/API/Document/readyState `document.readyState`}
  * is either `'interactive'` or `'complete'` at call-time, the callback is called immediately,
@@ -322,36 +358,6 @@ export declare function onDOMReady<T>(fn: () => T): Promise<T>;
  * @return {Promise} A promise that resolves with the eventual return value of given callback.
  */
 export declare function onWindowLoad<T>(fn: () => T): Promise<T>;
-/**
- * The call signatures for functions returned from {@link queryWithin `queryWithin()`}.
- */
-export interface ScopedCssQueryFunction {
-	<S extends string>(selector: S): ParseSelector<S>[];
-	<T extends Element>(selector: string): T[];
-}
-/**
- * Takes an element as scope for CSS selector queries. Returns a function that takes
- * selectors to query elements for within the given scope.
- *
- * @example
- * ```typescript
- * declare const scope: HTMLElement
- * const queryFn = queryWithin(scope)
- *
- * // Automatically attempts to parse CSS selectors into an element type.
- * const headings = queryFn('h2.large-heading, h3.medium-heading') // HTMLHeadingElement[]
- *
- * // defaults to Element for element types - others: Element[]
- * const others = queryFn('.other')
- *
- * // takes an explicit element type for other selectors - buttons: HTMLButtonElement[]
- * const buttons = queryFn<HTMLButtonElement>('.button')
- *
- * // You can call queryWithin in one go, and still provide type arguments:
- * const buttons2 = queryWithin(scope)<HTMLButtonElement>('.button')
- * ```
- */
-export declare function queryWithin(scope: ParentNode): ScopedCssQueryFunction;
 /**
  * Calls `querySelectorAll` with given `selector` on given `scope`, or on `document` by default when the
  * scope is omitted. Returns an array containing the found elements. Attempts to parse the given CSS selector
@@ -375,6 +381,94 @@ export declare function queryWithin(scope: ParentNode): ScopedCssQueryFunction;
  */
 export declare function queryAll<S extends string>(selector: S, scope?: ParentNode): ParseSelector<S>[];
 export declare function queryAll<T extends Element>(selector: string, scope?: ParentNode): T[];
+/**
+ * The call signatures for functions returned from {@link queryAllWithin `queryAllWithin()`}.
+ * Returns an array of all matched elements.
+ */
+export interface QueryAllWithinSelector {
+	<S extends string>(selector: S): ParseSelector<S>[];
+	<T extends Element>(selector: string): T[];
+}
+/**
+ * Takes an element as scope for CSS selector queries. Returns a function that takes
+ * selectors to query elements for within the set scope. The returned function finds
+ * all elements matching given selector and returns them in an array.
+ *
+ * @example
+ * ```typescript
+ * declare const scope: HTMLElement
+ * const queryFn = queryAllWithin(scope)
+ *
+ * // Automatically attempts to parse CSS selectors into an element type.
+ * const headings = queryFn('h2.large-heading, h3.medium-heading') // HTMLHeadingElement[]
+ *
+ * // defaults to Element for element types - others: Element[]
+ * const others = queryFn('.other')
+ *
+ * // takes an explicit element type for other selectors - buttons: HTMLButtonElement[]
+ * const buttons = queryFn<HTMLButtonElement>('.button')
+ *
+ * // You can call queryWithin in one go, and still provide type arguments:
+ * const buttons2 = queryAllWithin(scope)<HTMLButtonElement>('.button')
+ * ```
+ */
+export declare function queryAllWithin(scope: ParentNode): QueryAllWithinSelector;
+/**
+ * Calls `querySelector` with given `selector` on given `scope`, or on `document` by default when the
+ * scope is omitted. Returns the first element matching given selector if any exists, or `null` otherwise.
+ * Attempts to parse the given CSS selector to determine the element type.
+ *
+ * @param selector The selector to match elements against.
+ * @param scope The scope of the element query. When omitted `queryOne` performs a global search.
+ *
+ * @example
+ *
+ * ```typescript
+ * // Automatically attempts to parse CSS selectors into an element type.
+ * const heading = queryOne('h2.large-heading, h3.medium-heading') // HTMLHeadingElement | null
+ *
+ * // Defaults to Element for unrecognised selectors:
+ * const component = queryOne('custom-web-component')              // Element | null
+ *
+ * // Accepts an explicit type argument for the searched elements:
+ * const component = queryOne<MyComponent>('custom-web-component') // MyComponent | null
+ * ```
+ */
+export declare function queryOne<S extends string>(selector: S, scope?: ParentNode): ParseSelector<S> | null;
+export declare function queryOne<T extends Element>(selector: string, scope?: ParentNode): T | null;
+/**
+ * The call signatures for functions returned from {@link queryOneWithin `queryOneWithin()`}.
+ * Returns a matched element or `null`.
+ */
+export interface QueryOneWithinSelector {
+	<S extends string>(selector: S): ParseSelector<S> | null;
+	<T extends Element>(selector: string): T | null;
+}
+/**
+ * Takes an element as scope for CSS selector queries. Returns a function that takes
+ * selectors to query elements for within the set scope. The returned function finds
+ * the first element matching given selector and returns it. Returns `null` if no
+ * matching element exists.
+ *
+ * @example
+ * ```typescript
+ * declare const scope: HTMLElement
+ * const queryFn = queryOneWithin(scope)
+ *
+ * // Automatically attempts to parse CSS selectors into an element type.
+ * const headings = queryFn('h2.large-heading') // HTMLHeadingElement | null
+ *
+ * // defaults to Element for element types - other: Element | null
+ * const other = queryFn('.other')
+ *
+ * // takes an explicit element type for other selectors - button: HTMLButtonElement | null
+ * const button = queryFn<HTMLButtonElement>('.button')
+ *
+ * // You can call queryOneWithin in one go, and still provide type arguments:
+ * const button2 = queryOneWithin(scope)<HTMLButtonElement>('.button')
+ * ```
+ */
+export declare function queryOneWithin(scope: ParentNode): QueryOneWithinSelector;
 /**
  * Read dataset values. Takes a dataset key and optionally a transformer for the corresponding value,
  * and returns a new function that takes the element to read the dataset key from.
@@ -1053,7 +1147,7 @@ export declare function touchAllP<T1 extends Element, T2 extends Element, T3 ext
  * // -------------------------------------------------------------------------
  *
  * // Either let the callback specify the element types:
- * touchElement('#my-input', (input: HTMLElement) => { ... })
+ * touchElement('#my-input', (input: HTMLElement) => { ... })s
  *
  * // or provide the element type as type argument:
  * touchElement<HTMLElement>('#my-input', (input) => { ... })
