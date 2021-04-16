@@ -30,7 +30,7 @@ export function readDataset(key: string): (element: HTMLOrSVGElement) => string 
 export function readDataset<T>(key: string, transform: (value: string) => T): (element: HTMLOrSVGElement) => T | undefined
 export function readDataset(key: string, transform = (x: string) => x) {
     return (element: HTMLOrSVGElement) => {
-       const value = element.dataset[key]
+        const value = element.dataset[key]
         return value === undefined ? undefined : transform(value)
     }
 }

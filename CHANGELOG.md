@@ -5,6 +5,30 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### BREAKING CHANGES
+
+- Minimal typescript version is now 4.2 due to the dependency to [typed-query-selector](https://github.com/g-plane/typed-query-selector).
+- Renamed `queryWithin` to `queryAllWithin`
+
+### Added
+
+- function `innerText`
+- function `innerHTML`
+- function `queryOne`
+- function `queryOneWithin`
+
+### Changed
+
+- Added type-level CSS selector parsing to all functions that query the DOM with given selectors ([PR](https://github.com/JJWesterkamp/lambda-dom/pull/5))
+
+  **affects:**
+  - `queryAll`
+  - `queryWithin`
+  - `touchAll`
+  - `touchAllP`
+  - `touchElement`
+  - `touchElementP`
+
 ## [1.3.1] (2021-04-05)
 
 ### Fixed
@@ -19,22 +43,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - function `showUsing`
 - type `StylableElement`
 - type `CssdisplayValue`
-  
+
 ### Changed
 
 - Changed `string | null` types for `style.display` values in CSS display functions to `CssDisplayValue` to
   provide an autocompletion list of the most commonly used display values.
-  
+
   **Affects:**
   - `display`
   - `displayIf`
   - `displayUsing` (new)
-    
-  
-- Loosened `HTMLElement` type constraints to `ElementCSSInlineStyle` (aliased as `StylableElement`) for 
-  CSS style related functions. This allows for usage of these functions with other supported elements as well, 
+
+
+- Loosened `HTMLElement` type constraints to `ElementCSSInlineStyle` (aliased as `StylableElement`) for
+  CSS style related functions. This allows for usage of these functions with other supported elements as well,
   such as SVG elements.
-  
+
   **Affects:**
   - `display`
   - `show`
@@ -48,7 +72,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Loosened `HTMLElement` type constraints to `HTMLOrSVGElement` for dataset functions to allow usage of these
   functions with SVG elements as well.
-  
+
   **Affects:**
   - `readDataset`
   - `writeDataset`
