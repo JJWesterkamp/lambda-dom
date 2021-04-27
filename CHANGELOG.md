@@ -14,6 +14,7 @@ compatible with ES5 environments.
 
 ### Added
 - `"exports"` field in package.json, defining the available exports from the package.
+- Added UMD file pointers for CDN services to package.json.
 
 ## [2.0.0] (2021-04-16)
 

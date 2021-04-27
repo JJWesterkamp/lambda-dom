@@ -22,6 +22,8 @@
       "default": "./esm/index.js"
     }
   },
+  "unpkg": "umd/lambda-dom.js",
+  "jsdelivr": "umd/lambda-dom.js",
   "scripts": {
     "dev": "run-p \"build:** -- --watch\"",
     "build": "npm run clean:dist && run-p build:**",
