@@ -15,6 +15,13 @@
   "module": "./esm/index.js",
   "types": "./lambda-dom.d.ts",
   "sideEffects": false,
+  "exports": {
+    ".": {
+      "require": "./cjs/index.js",
+      "import": "./esm/index.js",
+      "default": "./esm/index.js"
+    }
+  },
   "scripts": {
     "dev": "run-p \"build:** -- --watch\"",
     "build": "npm run clean:dist && run-p build:**",

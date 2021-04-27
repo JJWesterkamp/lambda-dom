@@ -11,6 +11,10 @@ compatible with ES5 environments.
 
 ### Changed
 - Major improvement to UMD bundle size by letting Typescript default to ES2015 module output.
+
+### Added
+- `"exports"` field in package.json, defining the available exports from the package.
+
 ## [2.0.0] (2021-04-16)
 
 ### BREAKING CHANGES
