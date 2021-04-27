@@ -18,8 +18,8 @@
   "scripts": {
     "dev": "run-p \"build:** -- --watch\"",
     "build": "npm run clean:dist && run-p build:**",
-    "build:cjs": "tsc",
-    "build:esm": "tsc -m es6 --outDir esm",
+    "build:cjs": "tsc --outDir cjs -m CommonJS",
+    "build:esm": "tsc --outDir esm -m es6",
     "build:umd": "webpack",
     "build:declaration": "dts-bundle-generator -o lambda-dom.d.ts src/index.ts --umd-module-name LD --no-banner",
     "docs": "typedoc src/index.ts",

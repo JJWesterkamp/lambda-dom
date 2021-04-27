@@ -5,6 +5,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+- ES2015 syntax in UMD bundle. By adding the `target: "es5"` setting to the webpack config UMD bundles are now
+compatible with ES5 environments.
+
+### Changed
+- Major improvement to UMD bundle size by letting Typescript default to ES2015 module output.
 ## [2.0.0] (2021-04-16)
 
 ### BREAKING CHANGES

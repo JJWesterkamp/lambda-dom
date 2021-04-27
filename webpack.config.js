@@ -2,6 +2,7 @@ const { resolve } = require('path');
 
 module.exports = {
     mode: "production",
+    target: 'es5',
     entry: {
         "lambda-dom": "./src/index.ts",
     },
