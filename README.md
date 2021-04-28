@@ -20,29 +20,44 @@ Some DOM helper functions for programming web projects in a functional style.
 
 ### npm
 
-Install the package with npm or yarn:
+Install the package with npm:
 
-```shell
+```text
 npm install --save lambda-dom
-## or
-yarn add lambda-dom
 ```
 
 All functions are exported from one index file. Import the functions you want to use:
 
 ```typescript
-import { deferFrames, getMeta, touchAll ... } from 'lambda-dom'
+import { deferFrames, getMeta, touchAll, ... } from 'lambda-dom'
 ```
 
 ### cdn
 
-[![UMD bundle](https://badgen.net/badgesize/gzip/file-url/https/cdn.jsdelivr.net/npm/lambda-dom/umd/lambda-dom.js?color=cyan&label=download%20size%20-%20gzipped&cache=600)][jsdelivr]
+[![UMD bundle](https://badgen.net/badgesize/gzip/file-url/https/cdn.jsdelivr.net/npm/lambda-dom/umd/lambda-dom.min.js?color=cyan&label=download%20size%20-%20gzipped&cache=600)][jsdelivr]
 
-Alternatively you can grab the UMD bundle from [a CDN like jsDelivr][jsdelivr] to get started quickly. The bundle exposes the global variable `LD` that contains all the functions. [Here's a fiddle][fiddle] that includes the bundle from jsDelivr.
+Alternatively you can grab the UMD bundle from [a CDN like jsDelivr][jsdelivr] to get started quickly:
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/lambda-dom/umd/lambda-dom.js">
+<!-- VERSIONED (safe) -->
+<!-- Minified - Extended URL has sourcemaps support -->
+<script src="https://cdn.jsdelivr.net/npm/lambda-dom@2.0.2"></script>
+<script src="https://cdn.jsdelivr.net/npm/lambda-dom@2.0.2/umd/lambda-dom.min.js"></script>
 
+<!-- Non-minified -->
+<script src="https://cdn.jsdelivr.net/npm/lambda-dom@2.0.2/umd/lambda-dom.js"></script>
+
+<!-- LATEST (risky in terms of potential breaking changes) -->
+<!-- Minified - Extended URL version has sourcemaps support -->
+<script src="https://cdn.jsdelivr.net/npm/lambda-dom"></script>
+<script src="https://cdn.jsdelivr.net/npm/lambda-dom/umd/lambda-dom.min.js"></script>
+
+<!-- Non-minified -->
+<script src="https://cdn.jsdelivr.net/npm/lambda-dom/umd/lambda-dom.js"></script>
+```
+[Here's a jsfiddle][fiddle] that includes the bundle from jsDelivr. The bundle exposes the global variable `LD` that contains all the functions:
+
+```html
 <script>
     LD.deferFrames(100, function() {
         console.log('100 animation frames later...');
