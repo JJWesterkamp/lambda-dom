@@ -36,6 +36,8 @@ import { deferFrames, getMeta, touchAll ... } from 'lambda-dom'
 
 ### cdn
 
+[![UMD bundle](https://badgen.net/badgesize/gzip/file-url/https/cdn.jsdelivr.net/npm/lambda-dom/umd/lambda-dom.js?color=cyan&label=download%20size%20-%20gzipped&cache=600)][jsdelivr]
+
 Alternatively you can grab the UMD bundle from [a CDN like jsDelivr][jsdelivr] to get started quickly. The bundle exposes the global variable `LD` that contains all the functions. [Here's a fiddle][fiddle] that includes the bundle from jsDelivr.
 
 ```html
@@ -104,7 +106,7 @@ Below is an overview of the included functions. Visit the [documentation page][d
 - ### `innerText` [full docs](https://jjwesterkamp.github.io/lambda-dom/modules.html#innertext) | [source](https://github.com/JJWesterkamp/lambda-dom/blob/master/src/innerText.ts)
 
   Takes a string or `null`, and returns a function that takes `HTMLElement` objects. Sets `innerText` of given elements to the given string, or to an empty string if given `null`.
-  
+
 - ### `onDOMReady` [full docs](https://jjwesterkamp.github.io/lambda-dom/modules.html#ondomready) | [source](https://github.com/JJWesterkamp/lambda-dom/blob/master/src/onDOMReady.ts)
 
   Takes a callback that is executed as soon as possible after the DOM content is loaded. If the `document.readyState` is either `'interactive'` or `'complete'` at call-time, the callback is called immediately, otherwise it is called upon the DOMContentLoaded event.

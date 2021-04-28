@@ -5,14 +5,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.0.1] (2021-04-28)
+
 ### Fixed
+
 - ES2015 syntax in UMD bundle. By adding the `target: "es5"` setting to the webpack config UMD bundles are now
 compatible with ES5 environments.
 
 ### Changed
+
 - Major improvement to UMD bundle size by letting Typescript default to ES2015 module output.
 
 ### Added
+
 - `"exports"` field in package.json, defining the available exports from the package.
 - Added UMD file pointers for CDN services to package.json.
 
@@ -164,7 +169,8 @@ This is merely a documentation update.
 
 [docs]: https://jjwesterkamp.github.io/lambda-dom/
 
-[Unreleased]: https://github.com/JJWesterkamp/lambda-dom/compare/v2.0.0...HEAD
+[Unreleased]: https://github.com/JJWesterkamp/lambda-dom/compare/v2.0.1...HEAD
+[2.0.1]: https://github.com/JJWesterkamp/lambda-dom/compare/v2.0.0...v2.0.1
 [2.0.0]: https://github.com/JJWesterkamp/lambda-dom/compare/v1.3.1...v2.0.0
 [1.3.1]: https://github.com/JJWesterkamp/lambda-dom/compare/v1.3.0...v1.3.1
 [1.3.0]: https://github.com/JJWesterkamp/lambda-dom/compare/v1.2.0...v1.3.0
