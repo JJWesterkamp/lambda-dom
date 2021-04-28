@@ -5,9 +5,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.0.2] (2021-04-28)
+
 ### Added
 
-- Minified and non-minified UMD bundles
+- Provides option for non-minified UMD bundles.
 
 ## [2.0.1] (2021-04-28)
 
@@ -173,7 +175,8 @@ This is merely a documentation update.
 
 [docs]: https://jjwesterkamp.github.io/lambda-dom/
 
-[Unreleased]: https://github.com/JJWesterkamp/lambda-dom/compare/v2.0.1...HEAD
+[Unreleased]: https://github.com/JJWesterkamp/lambda-dom/compare/v2.0.2...HEAD
+[2.0.2]: https://github.com/JJWesterkamp/lambda-dom/compare/v2.0.1...v2.0.2
 [2.0.1]: https://github.com/JJWesterkamp/lambda-dom/compare/v2.0.0...v2.0.1
 [2.0.0]: https://github.com/JJWesterkamp/lambda-dom/compare/v1.3.1...v2.0.0
 [1.3.1]: https://github.com/JJWesterkamp/lambda-dom/compare/v1.3.0...v1.3.1
