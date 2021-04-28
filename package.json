@@ -2,6 +2,16 @@
   "name": "lambda-dom",
   "version": "2.0.1",
   "description": "Some DOM helper functions for programming web projects in a functional style.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JJWesterkamp/lambda-dom.git"
+  },
+  "author": "Jeffrey Westerkamp",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/JJWesterkamp/lambda-dom/issues"
+  },
+  "homepage": "https://jjwesterkamp.github.io/lambda-dom/",
   "keywords": [
     "dom",
     "library",
@@ -22,8 +32,8 @@
       "default": "./esm/index.js"
     }
   },
-  "unpkg": "umd/lambda-dom.js",
-  "jsdelivr": "umd/lambda-dom.js",
+  "unpkg": "umd/lambda-dom.min.js",
+  "jsdelivr": "umd/lambda-dom.min.js",
   "scripts": {
     "dev": "run-p \"build:** -- --watch\"",
     "build": "npm run clean:dist && run-p build:**",
@@ -39,16 +49,6 @@
     "preversion": "npm run build:declaration && npm run docs && git reset && git add ./lambda-dom.d.ts ./CHANGELOG.md ./README.md ./docs/*",
     "prepublishOnly": "npm-run-all test build"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/JJWesterkamp/lambda-dom.git"
-  },
-  "author": "Jeffrey Westerkamp",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/JJWesterkamp/lambda-dom/issues"
-  },
-  "homepage": "https://github.com/JJWesterkamp/lambda-dom#readme",
   "devDependencies": {
     "@jjwesterkamp/typedoc-theme": "^1.0.0",
     "@types/jest": "^26.0.15",
