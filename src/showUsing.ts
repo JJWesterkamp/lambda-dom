@@ -19,10 +19,10 @@ import { StylableElement } from './_types'
  *
  * // Unsets inline display of all checkboxes that are checked
  * // Sets display: 'none' to all other checkboxes.
- * checkboxes.foreach(showUsing(isChecked))
+ * checkboxes.forEach(showUsing(isChecked))
  *
  * // This is equivalent to following usage of showIf():
- * checkboxes.foreach((checkbox) => showIf(isChecked(checkbox))(checkbox))
+ * checkboxes.forEach((checkbox) => showIf(isChecked(checkbox))(checkbox))
  * ```
  *
  * @param {(element: T) => boolean} pred

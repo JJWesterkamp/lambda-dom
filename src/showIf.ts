@@ -25,7 +25,7 @@ import { StylableElement } from './_types'
  *
  * // Unsets inline display to all checkboxes if myCondition is true
  * // Sets display: 'none' to all checkboxes otherwise
- * checkboxes.foreach(showIf(myCondition))
+ * checkboxes.forEach(showIf(myCondition))
  * ```
  *
  * @param cond The condition for showing elements

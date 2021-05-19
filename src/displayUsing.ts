@@ -15,10 +15,10 @@ import { CssDisplayValue, StylableElement } from './_types'
  *
  * // Sets display: 'flex' to all checkboxes that are checked
  * // Sets display: 'none' to all other checkboxes.
- * checkboxes.foreach(displayUsing(isChecked, 'flex'))
+ * checkboxes.forEach(displayUsing(isChecked, 'flex'))
  *
  * // This is equivalent to following usage of displayIf():
- * checkboxes.foreach((checkbox) => displayIf(isChecked(checkbox), 'flex')(checkbox))
+ * checkboxes.forEach((checkbox) => displayIf(isChecked(checkbox), 'flex')(checkbox))
  * ```
  *
  * @param {(element: T) => boolean} pred

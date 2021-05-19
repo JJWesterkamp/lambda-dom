@@ -18,7 +18,7 @@ import { CssDisplayValue, StylableElement } from './_types'
  *
  * // Sets display: 'flex' to all checkboxes if myCondition is true
  * // Sets display: 'none' to all checkboxes otherwise
- * checkboxes.foreach(displayIf(myCondition, 'flex'))
+ * checkboxes.forEach(displayIf(myCondition, 'flex'))
  * ```
  *
  * @param cond         The condition for showing elements
