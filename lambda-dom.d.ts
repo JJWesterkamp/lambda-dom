@@ -159,7 +159,7 @@ export declare function display(value: CssDisplayValue): (element: StylableEleme
  *
  * // Sets display: 'flex' to all checkboxes if myCondition is true
  * // Sets display: 'none' to all checkboxes otherwise
- * checkboxes.foreach(displayIf(myCondition, 'flex'))
+ * checkboxes.forEach(displayIf(myCondition, 'flex'))
  * ```
  *
  * @param cond         The condition for showing elements
@@ -179,10 +179,10 @@ export declare function displayIf(cond: boolean, displayValue?: CssDisplayValue)
  *
  * // Sets display: 'flex' to all checkboxes that are checked
  * // Sets display: 'none' to all other checkboxes.
- * checkboxes.foreach(displayUsing(isChecked, 'flex'))
+ * checkboxes.forEach(displayUsing(isChecked, 'flex'))
  *
  * // This is equivalent to following usage of displayIf():
- * checkboxes.foreach((checkbox) => displayIf(isChecked(checkbox), 'flex')(checkbox))
+ * checkboxes.forEach((checkbox) => displayIf(isChecked(checkbox), 'flex')(checkbox))
  * ```
  *
  * @param {(element: T) => boolean} pred
@@ -358,6 +358,18 @@ export declare function onDOMReady<T>(fn: () => T): Promise<T>;
  * @return {Promise} A promise that resolves with the eventual return value of given callback.
  */
 export declare function onWindowLoad<T>(fn: () => T): Promise<T>;
+/**
+ * Takes events and calls their `.preventDefault()` method.
+ *
+ * @param event - The event instance to call the method on.
+ * @example
+ *
+ * ```typescript
+ * declare const event: Event
+ * preventDefault(event)
+ * ```
+ */
+export declare function preventDefault(event: Event): void;
 /**
  * Calls `querySelectorAll` with given `selector` on given `scope`, or on `document` by default when the
  * scope is omitted. Returns an array containing the found elements. Attempts to parse the given CSS selector
@@ -621,7 +633,7 @@ export declare function show(element: StylableElement): void;
  *
  * // Unsets inline display to all checkboxes if myCondition is true
  * // Sets display: 'none' to all checkboxes otherwise
- * checkboxes.foreach(showIf(myCondition))
+ * checkboxes.forEach(showIf(myCondition))
  * ```
  *
  * @param cond The condition for showing elements
@@ -644,10 +656,10 @@ export declare function showIf(cond: boolean): (element: StylableElement) => voi
  *
  * // Unsets inline display of all checkboxes that are checked
  * // Sets display: 'none' to all other checkboxes.
- * checkboxes.foreach(showUsing(isChecked))
+ * checkboxes.forEach(showUsing(isChecked))
  *
  * // This is equivalent to following usage of showIf():
- * checkboxes.foreach((checkbox) => showIf(isChecked(checkbox))(checkbox))
+ * checkboxes.forEach((checkbox) => showIf(isChecked(checkbox))(checkbox))
  * ```
  *
  * @param {(element: T) => boolean} pred
