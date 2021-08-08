@@ -61,10 +61,12 @@
 				<a href="#lambda-dom" id="lambda-dom" style="color: inherit; text-decoration: none;">
 					<h1>lambda-dom</h1>
 				</a>
+				<p><strong>Functions for browser development that help with programming web projects in a functional style.</strong></p>
 				<p><a href="https://badge.fury.io/js/lambda-dom"><img src="https://badge.fury.io/js/lambda-dom.svg" alt="npm version"></a>
 					<a href="https://travis-ci.com/JJWesterkamp/lambda-dom"><img src="https://travis-ci.com/JJWesterkamp/lambda-dom.svg?branch=master" alt="Build Status"></a>
 				<a href="https://coveralls.io/github/JJWesterkamp/lambda-dom?branch=master"><img src="https://coveralls.io/repos/github/JJWesterkamp/lambda-dom/badge.svg?branch=master" alt="Coverage Status"></a></p>
-				<p>Some DOM helper functions for programming web projects in a functional style.</p>
+				<p>This package aims to provide some convenient, practical helpers for DOM manipulation and interaction, querying elements and implementing safe continuation patterns to facilitate a slightly more functional programming style in vanilla web projects.</p>
+				<p>Many functions are curried, <a href="https://github.com/sanctuary-js/sanctuary#-currying">the Sanctuary JS way</a>, but not all of them. There are also some functions that take rest parameters: <code>(...args)</code>. It just depends on the situation.</p>
 				<a href="#quick-links" id="quick-links" style="color: inherit; text-decoration: none;">
 					<h2>Quick links</h2>
 				</a>
@@ -75,6 +77,63 @@
 					<li><a href="https://jsfiddle.net/JJWesterkamp/8xh0cLtk/">JSFiddle</a></li>
 					<li><a href="https://www.jsdelivr.com/package/npm/lambda-dom">jsDelivr</a></li>
 				</ul>
+				<a href="#installation-amp-usage" id="installation-amp-usage" style="color: inherit; text-decoration: none;">
+					<h2>Installation &amp; usage</h2>
+				</a>
+				<a href="#npm" id="npm" style="color: inherit; text-decoration: none;">
+					<h3>npm</h3>
+				</a>
+				<p>Install the package with npm:</p>
+				<pre><code class="language-text">npm install --save lambda-dom
+</code></pre>
+				<p>All functions are exported from one index file. Import the functions you want to use:</p>
+				<pre><code class="language-typescript"><span style="color: #81A1C1">import</span><span style="color: #D8DEE9FF"> </span><span style="color: #ECEFF4">{</span><span style="color: #D8DEE9FF"> </span><span style="color: #D8DEE9">deferFrames</span><span style="color: #ECEFF4">,</span><span style="color: #D8DEE9FF"> </span><span style="color: #D8DEE9">getMeta</span><span style="color: #ECEFF4">,</span><span style="color: #D8DEE9FF"> </span><span style="color: #D8DEE9">touchAll</span><span style="color: #ECEFF4">,</span><span style="color: #D8DEE9FF"> ... </span><span style="color: #ECEFF4">}</span><span style="color: #D8DEE9FF"> </span><span style="color: #81A1C1">from</span><span style="color: #D8DEE9FF"> </span><span style="color: #ECEFF4">&#039;</span><span style="color: #A3BE8C">lambda-dom</span><span style="color: #ECEFF4">&#039;</span>
+</code></pre>
+				<a href="#cdn" id="cdn" style="color: inherit; text-decoration: none;">
+					<h3>cdn</h3>
+				</a>
+				<p><a href="https://www.jsdelivr.com/package/npm/lambda-dom"><img src="https://badgen.net/badgesize/gzip/file-url/https/cdn.jsdelivr.net/npm/lambda-dom/umd/lambda-dom.min.js?color=cyan&label=download%20size%20-%20gzipped&cache=600" alt="UMD bundle"></a></p>
+				<p>Alternatively you can grab the UMD bundle from <a href="https://www.jsdelivr.com/package/npm/lambda-dom">a CDN like jsDelivr</a> to get started quickly:</p>
+				<pre><code class="language-html"><span style="color: #616E88">&lt;!-- VERSIONED (safe) --&gt;</span>
+<span style="color: #616E88">&lt;!-- Minified - Extended URL has sourcemaps support --&gt;</span>
+<span style="color: #81A1C1">&lt;script</span><span style="color: #D8DEE9FF"> </span><span style="color: #8FBCBB">src</span><span style="color: #ECEFF4">=</span><span style="color: #ECEFF4">&quot;</span><span style="color: #A3BE8C">https://cdn.jsdelivr.net/npm/lambda-dom@2.0.2</span><span style="color: #ECEFF4">&quot;</span><span style="color: #81A1C1">&gt;&lt;/script&gt;</span>
+<span style="color: #81A1C1">&lt;script</span><span style="color: #D8DEE9FF"> </span><span style="color: #8FBCBB">src</span><span style="color: #ECEFF4">=</span><span style="color: #ECEFF4">&quot;</span><span style="color: #A3BE8C">https://cdn.jsdelivr.net/npm/lambda-dom@2.0.2/umd/lambda-dom.min.js</span><span style="color: #ECEFF4">&quot;</span><span style="color: #81A1C1">&gt;&lt;/script&gt;</span>
+
+<span style="color: #616E88">&lt;!-- Non-minified --&gt;</span>
+<span style="color: #81A1C1">&lt;script</span><span style="color: #D8DEE9FF"> </span><span style="color: #8FBCBB">src</span><span style="color: #ECEFF4">=</span><span style="color: #ECEFF4">&quot;</span><span style="color: #A3BE8C">https://cdn.jsdelivr.net/npm/lambda-dom@2.0.2/umd/lambda-dom.js</span><span style="color: #ECEFF4">&quot;</span><span style="color: #81A1C1">&gt;&lt;/script&gt;</span>
+
+<span style="color: #616E88">&lt;!-- LATEST (risky in terms of potential breaking changes) --&gt;</span>
+<span style="color: #616E88">&lt;!-- Minified - Extended URL version has sourcemaps support --&gt;</span>
+<span style="color: #81A1C1">&lt;script</span><span style="color: #D8DEE9FF"> </span><span style="color: #8FBCBB">src</span><span style="color: #ECEFF4">=</span><span style="color: #ECEFF4">&quot;</span><span style="color: #A3BE8C">https://cdn.jsdelivr.net/npm/lambda-dom</span><span style="color: #ECEFF4">&quot;</span><span style="color: #81A1C1">&gt;&lt;/script&gt;</span>
+<span style="color: #81A1C1">&lt;script</span><span style="color: #D8DEE9FF"> </span><span style="color: #8FBCBB">src</span><span style="color: #ECEFF4">=</span><span style="color: #ECEFF4">&quot;</span><span style="color: #A3BE8C">https://cdn.jsdelivr.net/npm/lambda-dom/umd/lambda-dom.min.js</span><span style="color: #ECEFF4">&quot;</span><span style="color: #81A1C1">&gt;&lt;/script&gt;</span>
+
+<span style="color: #616E88">&lt;!-- Non-minified --&gt;</span>
+<span style="color: #81A1C1">&lt;script</span><span style="color: #D8DEE9FF"> </span><span style="color: #8FBCBB">src</span><span style="color: #ECEFF4">=</span><span style="color: #ECEFF4">&quot;</span><span style="color: #A3BE8C">https://cdn.jsdelivr.net/npm/lambda-dom/umd/lambda-dom.js</span><span style="color: #ECEFF4">&quot;</span><span style="color: #81A1C1">&gt;&lt;/script&gt;</span>
+</code></pre>
+				<p><a href="https://jsfiddle.net/JJWesterkamp/8xh0cLtk/">Here&#39;s a jsfiddle</a> that includes the bundle from jsDelivr. The bundle exposes the global variable <code>LD</code> that contains all the functions:</p>
+				<pre><code class="language-html"><span style="color: #81A1C1">&lt;script&gt;</span>
+<span style="color: #D8DEE9FF">    </span><span style="color: #D8DEE9">LD</span><span style="color: #ECEFF4">.</span><span style="color: #88C0D0">deferFrames</span><span style="color: #D8DEE9FF">(</span><span style="color: #B48EAD">100</span><span style="color: #ECEFF4">,</span><span style="color: #D8DEE9FF"> </span><span style="color: #81A1C1">function</span><span style="color: #ECEFF4">()</span><span style="color: #D8DEE9FF"> </span><span style="color: #ECEFF4">{</span>
+<span style="color: #D8DEE9FF">        </span><span style="color: #D8DEE9">console</span><span style="color: #ECEFF4">.</span><span style="color: #88C0D0">log</span><span style="color: #D8DEE9FF">(</span><span style="color: #ECEFF4">&#039;</span><span style="color: #A3BE8C">100 animation frames later...</span><span style="color: #ECEFF4">&#039;</span><span style="color: #D8DEE9FF">)</span><span style="color: #81A1C1">;</span>
+<span style="color: #D8DEE9FF">    </span><span style="color: #ECEFF4">}</span><span style="color: #D8DEE9FF">)</span><span style="color: #81A1C1">;</span>
+<span style="color: #81A1C1">&lt;/script&gt;</span>
+</code></pre>
+				<a href="#contributing" id="contributing" style="color: inherit; text-decoration: none;">
+					<h2>Contributing</h2>
+				</a>
+				<p>If you have suggestions how to improve this package, or
+				want to contribute by adding new useful functions you&#39;re absolutely welcome to do so. File an issue, or even better, submit a PR. If you like this package and think it is useful please leave a star on Github 😃</p>
+				<a href="#development-and-testing" id="development-and-testing" style="color: inherit; text-decoration: none;">
+					<h2>Development and testing</h2>
+				</a>
+				<p><strong>Install (This package requires <code>yarn v1</code> for dependency management)</strong> - To get started, clone the repository and install the dependencies. If you don&#39;t have yarn installed you can use <code>npx</code> to install:</p>
+				<pre><code><span style="color: #D8DEE9">npx</span><span style="color: #D8DEE9FF"> </span><span style="color: #D8DEE9">yarn</span>
+</code></pre>
+				<p><strong>Build</strong> - There are 3 builds for the package: ES modules, CommonJS modules, and UMD bundles. The package can be built with:</p>
+				<pre><code><span style="color: #D8DEE9">npm</span><span style="color: #D8DEE9FF"> </span><span style="color: #D8DEE9">run</span><span style="color: #D8DEE9FF"> </span><span style="color: #D8DEE9">build</span>
+</code></pre>
+				<p><strong>Testing</strong> - The test suite is built with Jest and run with <code>ts-jest</code>, and can be run with:</p>
+				<pre><code><span style="color: #D8DEE9">npm</span><span style="color: #D8DEE9FF"> </span><span style="color: #D8DEE9">run</span><span style="color: #D8DEE9FF"> </span><span style="color: #D8DEE9">test</span>
+</code></pre>
 				<a href="#license" id="license" style="color: inherit; text-decoration: none;">
 					<h2>License</h2>
 				</a>
