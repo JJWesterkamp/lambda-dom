@@ -1,6 +1,6 @@
 {
   "name": "lambda-dom",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "Functions for browser development that help with programming web projects in a functional style.",
   "repository": {
     "type": "git",
