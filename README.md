@@ -130,6 +130,10 @@ Below is an overview of the included functions. Visit the [documentation page][d
 
   Takes a callback that is executed as soon as possible after the window is loaded. If the `document.readyState` is `'complete'` at call-time, the callback is called immediately, otherwise it is called upon the window load event.
 
+- ### `preventDefault` [full docs](https://jjwesterkamp.github.io/lambda-dom/modules.html#preventdefault) | [source](https://github.com/JJWesterkamp/lambda-dom/blob/master/src/preventDefault.ts)
+
+  Takes events and calls their `.preventDefault()` method.
+
 - ### `queryAll` [full docs](https://jjwesterkamp.github.io/lambda-dom/modules.html#queryall) | [source](https://github.com/JJWesterkamp/lambda-dom/blob/master/src/queryAll.ts)
 
   Calls `querySelectorAll` with given selector on given scope, or on `document` by default when the scope is omitted. Returns an array containing the found elements.

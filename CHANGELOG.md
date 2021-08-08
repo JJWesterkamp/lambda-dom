@@ -5,6 +5,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.1.0] (2021-08-08)
+
 ### Added
 - function `preventDefault`
 
@@ -178,7 +180,8 @@ This is merely a documentation update.
 
 [docs]: https://jjwesterkamp.github.io/lambda-dom/
 
-[Unreleased]: https://github.com/JJWesterkamp/lambda-dom/compare/v2.0.2...HEAD
+[Unreleased]: https://github.com/JJWesterkamp/lambda-dom/compare/v2.1.0...HEAD
+[2.0.2]: https://github.com/JJWesterkamp/lambda-dom/compare/v2.0.2...v2.1.0
 [2.0.2]: https://github.com/JJWesterkamp/lambda-dom/compare/v2.0.1...v2.0.2
 [2.0.1]: https://github.com/JJWesterkamp/lambda-dom/compare/v2.0.0...v2.0.1
 [2.0.0]: https://github.com/JJWesterkamp/lambda-dom/compare/v1.3.1...v2.0.0
