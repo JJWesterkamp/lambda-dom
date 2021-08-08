@@ -1,7 +1,7 @@
 {
   "name": "lambda-dom",
   "version": "2.1.0",
-  "description": "Some DOM helper functions for programming web projects in a functional style.",
+  "description": "Functions for browser development that help with programming web projects in a functional style.",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/JJWesterkamp/lambda-dom.git"

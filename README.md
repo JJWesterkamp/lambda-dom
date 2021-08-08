@@ -1,12 +1,14 @@
 # lambda-dom
 
+**Functions for browser development that help with programming web projects in a functional style.**
+
 [![npm version](https://badge.fury.io/js/lambda-dom.svg)](https://badge.fury.io/js/lambda-dom)
 [![Build Status](https://travis-ci.com/JJWesterkamp/lambda-dom.svg?branch=master)](https://travis-ci.com/JJWesterkamp/lambda-dom)
 [![Coverage Status](https://coveralls.io/repos/github/JJWesterkamp/lambda-dom/badge.svg?branch=master)](https://coveralls.io/github/JJWesterkamp/lambda-dom?branch=master)
 
-Some DOM helper functions for programming web projects in a functional style.
+This package aims to provide some convenient, practical helpers for DOM manipulation and interaction, querying elements and implementing safe continuation patterns to facilitate a slightly more functional programming style in vanilla web projects.
 
-> This package does not (yet) aim to use the best FP practices, nor to be as pure as it gets. Instead it aims to provide some convenient, practical helpers for DOM manipulation, querying elements, and some continuation patterns to facilitate a slightly more functional style. Many functions are curried (the easy way) but not all of them. There are also some functions that take rest parameters: `(...args)`. It just depends on the situation.
+Many functions are curried, [the Sanctuary JS way](https://github.com/sanctuary-js/sanctuary#-currying), but not all of them. There are also some functions that take rest parameters: `(...args)`. It just depends on the situation.
 
 ## Quick links
 - [npm]
@@ -64,6 +66,35 @@ Alternatively you can grab the UMD bundle from [a CDN like jsDelivr][jsdelivr] t
     });
 </script>
 ```
+
+## Contributing
+
+If you have suggestions how to improve this package, or
+want to contribute by adding new useful functions you're absolutely welcome to do so. File an issue, or even better, submit a PR. If you like this package and think it is useful please leave a star on Github 😃
+
+## Development and testing
+
+**Install (This package requires `yarn v1` for dependency management)** - To get started, clone the repository and install the dependencies. If you don't have yarn installed you can use `npx` to install:
+
+```
+npx yarn
+```
+
+**Build** - There are 3 builds for the package: ES modules, CommonJS modules, and UMD bundles. The package can be built with:
+
+```
+npm run build
+```
+
+**Testing** - The test suite is built with Jest and run with `ts-jest`, and can be run with:
+
+```
+npm run test
+```
+
+## License
+
+The MIT License (MIT). See [license file] for more information.
 
 ## Available functions
 
@@ -231,15 +262,6 @@ Below is an overview of the included functions. Visit the [documentation page][d
 - ### `writeDataset` [full docs](https://jjwesterkamp.github.io/lambda-dom/modules.html#writedataset) | [source](https://github.com/JJWesterkamp/lambda-dom/blob/master/src/writeDataset.ts)
 
   Write dataset values. Takes a key, and returns a new function that takes the value, which in turn returns the last function that takes the element to write the key-value pair to.
-
-## Contributing
-
-I mainly wrote this package for my own convenience. However, if you have suggestions how to improve it, or
-want to contribute by adding new useful functions you're absolutely welcome to do so. File an issue, or even better, submit a PR. If you like this package and think it is useful please leave a star on Github :)
-
-## License
-
-The MIT License (MIT). See [license file] for more information.
 
 [license file]: https://github.com/JJWesterkamp/lambda-dom/blob/master/LICENSE
 [declaration file]: https://github.com/JJWesterkamp/lambda-dom/blob/master/lambda-dom.d.ts
