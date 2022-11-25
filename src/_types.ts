@@ -39,6 +39,3 @@ export type CssDisplayValue =
  * most commonly elements)
  */
 export type StylableElement = ElementCSSInlineStyle
-
-export type ElementFn = <T extends Element>(element: T) => T
-export type HTMLElementFn = <T extends HTMLElement>(element: T) => T
