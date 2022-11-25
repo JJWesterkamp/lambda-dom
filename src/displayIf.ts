@@ -25,6 +25,6 @@ import { CssDisplayValue, StylableElement } from './_types'
  * @param displayValue The `style.display` value to use
  * @return {(element: T) => void}
  */
-export function displayIf(cond: boolean, displayValue?: CssDisplayValue): (element: StylableElement) => void {
+export function displayIf(cond: boolean, displayValue?: CssDisplayValue): <T extends StylableElement>(element: T) => T {
     return cond ? display(displayValue) : hide
 }

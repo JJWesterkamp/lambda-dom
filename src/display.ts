@@ -31,6 +31,6 @@ import { style } from './style'
  * (shouldShow ? showFn : hideFn) (someElement)
  * ```
  */
-export function display(value: CssDisplayValue): (element: StylableElement) => void {
+export function display(value: CssDisplayValue): <T extends StylableElement>(element: T) => T {
     return style({ display: value || '' })
 }

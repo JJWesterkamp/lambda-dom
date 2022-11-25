@@ -18,6 +18,6 @@ import { StylableElement } from './_types'
  * display('none') (someElement)
  * ```
  */
-export function hide(element: StylableElement): void {
-    display('none')(element)
+export function hide<T extends StylableElement>(element: T): T {
+    return display('none')(element)
 }

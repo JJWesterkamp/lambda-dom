@@ -11,3 +11,7 @@
 export function ifElse<T, U, V>(pred: (x: T) => boolean, onTrue: (x: T) => U, onFalse: (x: T) => V): (x: T) => U | V {
     return (value) => pred(value) ? onTrue(value) : onFalse(value)
 }
+
+export function tap<T>(fn: (x: T) => unknown): (x: T) => T {
+    return (x) => { fn(x); return x }
+}

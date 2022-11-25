@@ -1,3 +1,5 @@
+import { tap } from './_tools'
+
 /**
  * Takes a string or `null`, and returns a function that takes `HTMLElement` elements. Sets `innerText` of
  * given elements to the given string, or to an empty string if given `null`.
@@ -15,8 +17,8 @@
  * elements.forEach(innerText(null))
  * ```
  */
-export function innerText(text: string | null): (element: HTMLElement) => void {
-    return (element) => {
+export function innerText(text: string | null): <T extends HTMLElement>(element: T) => T {
+    return tap((element) => {
         element.innerText = text || ''
-    }
+    })
 }

@@ -21,6 +21,6 @@ import { toggleClasses } from './toggleClasses'
  * addClasses('class-one', 'class-two') (someElement)
  * ```
  */
-export function addClasses(...classes: string[]): (element: Element) => void {
+export function addClasses(...classes: string[]): <T extends Element>(element: T) => T {
     return (element) => toggleClasses(...classes)(element, true)
 }

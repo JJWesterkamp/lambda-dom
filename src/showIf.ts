@@ -31,6 +31,6 @@ import { StylableElement } from './_types'
  * @param cond The condition for showing elements
  * @return {(element: HTMLElement) => void}
  */
-export function showIf(cond: boolean): (element: StylableElement) => void {
+export function showIf(cond: boolean): <T extends StylableElement>(element: T) => T {
     return cond ? show : hide
 }

@@ -21,6 +21,6 @@ import { toggleClasses } from './toggleClasses'
  * removeClasses('class-one', 'class-two', 'even-more-classes')(element)
  * ```
  */
-export function removeClasses(...classes: string[]): (element: Element) => void {
+export function removeClasses(...classes: string[]): <T extends Element>(element: T) => T {
     return (element) => toggleClasses(...classes)(element, false)
 }

@@ -22,6 +22,6 @@ import { StylableElement } from './_types'
  *
  * @param element The element to unset the inline display value for.
  */
-export function show(element: StylableElement): void {
-    display(null)(element)
+export function show<T extends StylableElement>(element: T): T {
+    return display(null)(element)
 }

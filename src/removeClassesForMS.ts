@@ -1,5 +1,6 @@
 import { addClasses } from './addClasses'
 import { removeClasses } from './removeClasses'
+import { tap } from './_tools'
 
 /**
  * Removes classes from an element for a given amount of milliseconds.
@@ -14,9 +15,9 @@ import { removeClasses } from './removeClasses'
  * removeClassesForMS(500, 'class-a', 'class-b') (element)
  * ```
  */
-export function removeClassesForMS(ms: number, ...classes: string[]): (element: Element) => void {
-    return (element) => {
+export function removeClassesForMS(ms: number, ...classes: string[]): <T extends Element>(element: T) => T {
+    return tap((element) => {
         removeClasses(...classes)(element)
         window.setTimeout(() => addClasses(...classes)(element), ms)
-    }
+    })
 }

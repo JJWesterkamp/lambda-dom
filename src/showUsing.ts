@@ -28,6 +28,6 @@ import { StylableElement } from './_types'
  * @param {(element: T) => boolean} pred
  * @return {(element: T) => void}
  */
-export function showUsing<T extends StylableElement>(pred: (element: T) => boolean): (element: T) => void {
+export function showUsing<T extends StylableElement>(pred: (element: T) => boolean): (element: T) => T {
     return ifElse(pred, show, hide)
 }

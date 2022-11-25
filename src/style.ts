@@ -24,6 +24,9 @@ import { StylableElement } from './_types'
  * @param styles An object with inline styles to set.
  * @param element An element to apply the inline styles to.
  */
-export function style(styles: Partial<CSSStyleDeclaration>): (element: StylableElement) => void {
-    return (element) => Object.assign(element.style, styles)
+export function style(styles: Partial<CSSStyleDeclaration>): <T extends StylableElement>(element: T) => T {
+    return (element) => {
+        Object.assign(element.style, styles)
+        return element
+    }
 }

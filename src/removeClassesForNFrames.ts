@@ -1,6 +1,7 @@
 import { addClasses } from './addClasses'
 import { deferFrames } from './deferFrames'
 import { removeClasses } from './removeClasses'
+import { tap } from './_tools'
 
 /**
  * Removes classes from an element for a given amount of animation frames.
@@ -16,9 +17,9 @@ import { removeClasses } from './removeClasses'
  * removeClassesForNFrames(10, 'class-a', 'class-b') (element)
  * ```
  */
-export function removeClassesForNFrames(n: number, ...classes: string[]): (element: Element) => void {
-    return (element) => {
+export function removeClassesForNFrames(n: number, ...classes: string[]): <T extends Element>(element: T) => T {
+    return tap((element) => {
         removeClasses(...classes)(element)
         deferFrames(n, () => addClasses(...classes)(element))
-    }
+    })
 }

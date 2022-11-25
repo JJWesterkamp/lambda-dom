@@ -9,6 +9,7 @@
  * preventDefault(event)
  * ```
  */
-export function preventDefault(event: Event): void {
+export function preventDefault<T extends Event>(event: T): T {
     event.preventDefault()
+    return event
 }

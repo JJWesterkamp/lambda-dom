@@ -30,6 +30,12 @@
  * toggleClasses('class-one', 'class-two', '...') (someElement, false)
  * ```
  */
-export function toggleClasses(...classes: string[]): (element: Element, force?: boolean) => void {
-    return (element, force) => classes.forEach((className) => element.classList.toggle(className, force))
+export function toggleClasses(...classes: string[]): <T extends Element>(element: T, force?: boolean) => T {
+    return (element, force) => {
+        for (const className of classes) {
+            element.classList.toggle(className, force)
+        }
+
+        return element
+    }
 }
